@@ -8,11 +8,6 @@ import Toggle from "../../App/layout/Question/new/toggle";
 import Answer from "../../App/layout/Question/new/answer";
 import Button from '@material-ui/core/Button';
 const ListPage = ({match, history}) =>{
-
-    const onClick= ()=>{
-        history.push(`${match.path}new`)
-
-    }
     return (<>
              <Aux>
                 <Row id="regForm">

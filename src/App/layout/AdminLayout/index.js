@@ -12,6 +12,7 @@ import routes from "../../../routes";
 import Aux from "../../../hoc/_Aux";
 import * as actionTypes from "../../../store/actions";
 
+import NoMatch from "../../components/nomatch";
 import Auth from "./Auth";
 import './app.scss';
 
@@ -80,7 +81,8 @@ class AdminLayout extends Component {
                                             <Suspense fallback={<Loader/>}>
                                                 <Switch>
                                                     {menu}
-                                                    <Redirect from="/" to={this.props.defaultPath} />
+                                                    {/* <Redirect from="/" to={this.props.defaultPath} /> */}
+                                                    <Route component={NoMatch}/>
                                                 </Switch>
                                             </Suspense>
                                         </div>

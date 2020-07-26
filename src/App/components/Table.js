@@ -15,7 +15,7 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
-import EditIcon from '@material-ui/icons/Edit';
+
 const TableComponent = (props) => {
     
     const tableIcons = {
@@ -43,6 +43,7 @@ const TableComponent = (props) => {
 
     return (<>
     <MaterialTable
+    icons={tableIcons}
       title={title}
       columns={columns}
       data={data}

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Button from '@material-ui/core/Button';
 import { Card, Form} from 'react-bootstrap';
-import Doh from "../../../../assets/images/doh.png"
 import Images from "../../../components/ImageViewer";
 import { useSelector, useDispatch } from "react-redux";
 import SaveIcon from '@material-ui/icons/Save';
@@ -89,7 +88,6 @@ const ImageContainer = () => {
                         <Button 
                             variant="contained" 
                             color="primary"  
-                            onClick={upload}
                             size="small" 
                             startIcon={<SaveIcon />} 
                             onClick={e=> {upload('hintFile')}}>

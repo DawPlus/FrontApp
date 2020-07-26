@@ -1,17 +1,14 @@
 import React,{useEffect} from 'react';
-import {NavLink} from 'react-router-dom';
-import { useDispatch , useSelector}         from "react-redux";
 import './../../../assets/scss/style.scss';
 import Aux from "../../../hoc/_Aux";
+import {NavLink} from 'react-router-dom';
+import {useDispatch , useSelector} from "react-redux";
 import Breadcrumb from "../AdminLayout/Breadcrumb";
-import TextField from '@material-ui/core/TextField';
-import {withRouter }                        from 'react-router-dom';
-
+import {withRouter}  from 'react-router-dom';
 import {login ,changeField, initializeForm} from "../../../store/modules/auth"
       
 const SignUp = ({ history }) => {
 
-  
     const dispatch = useDispatch();
     const {loginInfo, authrization, tokken, userInfo, authError } = useSelector(state => state.auth);
     
@@ -20,9 +17,7 @@ const SignUp = ({ history }) => {
     }, [dispatch]);
   
     useEffect(() => {
-    
-      if (authError) {
-          console.log(authError);
+      if (authError) {         
           return;
       }
       if (authrization) {

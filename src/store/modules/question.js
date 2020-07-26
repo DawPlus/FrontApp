@@ -2,7 +2,7 @@ import { createAction, handleActions } from 'redux-actions';
 import produce from 'immer';
 import { takeLatest } from 'redux-saga/effects';
 import createRequestSaga, {createRequestActionTypes} from '../lib/createRequestSaga';
-import * as API from '../lib/api/question';
+// import * as API from '../lib/api/question';
 import * as FILE from "../lib/api/file";
 
 const INITIALIZE = 'question/INITIALIZE';
@@ -17,21 +17,21 @@ const [MAP_UPLOAD, MAP_UPLOAD_SUCCESS, MAP_UPLOAD_FAILURE] = createRequestAction
 // 힌트파일 업로드 
 const [HINT_UPLOAD, HINT_UPLOAD_SUCCESS, HINT_UPLOAD_FAILURE] = createRequestActionTypes('question/HINT_UPLOAD');
 
-const [LIST, LIST_SUCCESS, LIST_FAILURE]       = createRequestActionTypes('question/LIST');
+//const [LIST, LIST_SUCCESS, LIST_FAILURE]   = createRequestActionTypes('question/LIST');
 
 
 
 
-export const list                = createAction(LIST);
-export const initialize          = createAction(INITIALIZE);
-export const initializeForm      = createAction(INITIALIZE_FORM);
-export const changeField         = createAction(CHANGE_FIELD);
-export const changeFieldForm     = createAction(CHANGE_FIELD_FORM);
-export const mapFileUpload           = createAction(MAP_UPLOAD ,  (file) => (file));
-export const hintFileUpload           = createAction(HINT_UPLOAD ,  (file) => (file));
+//export const list             = createAction(LIST);
+export const initialize       = createAction(INITIALIZE);
+export const initializeForm   = createAction(INITIALIZE_FORM);
+export const changeField      = createAction(CHANGE_FIELD);
+export const changeFieldForm  = createAction(CHANGE_FIELD_FORM);
+export const mapFileUpload    = createAction(MAP_UPLOAD ,  (file) => (file));
+export const hintFileUpload   = createAction(HINT_UPLOAD ,  (file) => (file));
 
 export function* questionSaga() {
-  yield takeLatest(LIST,        createRequestSaga(LIST, API.list));
+  //yield takeLatest(LIST,        createRequestSaga(LIST, API.list));
   yield takeLatest(MAP_UPLOAD,  createRequestSaga(MAP_UPLOAD, FILE.upload));
   yield takeLatest(HINT_UPLOAD,  createRequestSaga(HINT_UPLOAD, FILE.upload));
 

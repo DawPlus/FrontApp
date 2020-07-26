@@ -1,7 +1,7 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {Card, Form} from 'react-bootstrap';
-import {changeField} from "../../../../store/modules/question";
+import {useSelector } from "react-redux";
+import {Card} from 'react-bootstrap';
+
 
 import AnswerList from "./answerList";
 import AnswerSingle from "./answerSingle";

@@ -16,31 +16,22 @@ const AnswerList = () => {
     const test = ()=>{
         console.log("Hello")
     }
-return(<>
 
-    <Input id="" startAdornment={ <Icon idx={1} onClick={test}/>} size="small" fullWidth/>
-    <Input id="" startAdornment={ <Icon idx={2} />} size="small" fullWidth/>
-    <Input id="" startAdornment={ <Icon idx={3} />} size="small" fullWidth/>
-    <Input id="" startAdornment={ <Icon idx={4} />} size="small" fullWidth />
-    <Input id="" startAdornment={ <Icon idx={5} />} size="small" fullWidth />
-  
-
-
-
-
-
-
-
-
-
-</>)
-
+    return(<>
+        <Input id="" startAdornment={ <Icon idx={1} onClick={test}/>} size="small" fullWidth/>
+        <Input id="" startAdornment={ <Icon idx={2} />} size="small" fullWidth/>
+        <Input id="" startAdornment={ <Icon idx={3} />} size="small" fullWidth/>
+        <Input id="" startAdornment={ <Icon idx={4} />} size="small" fullWidth />
+        <Input id="" startAdornment={ <Icon idx={5} />} size="small" fullWidth />
+    </>);
 }
 
 const Icon = (props) => {
+    
     const {idx , onClick} = props
     const onClickHandler = e =>{
         console.log(e.target);
+        onClick(e);
     }
 
 
@@ -51,10 +42,9 @@ const Icon = (props) => {
             case 3 : return  <Looks3Icon   onClick={onClickHandler}/>;
             case 4 : return  <Looks4Icon   onClick={onClickHandler}/>;
             case 5 : return  <Looks5Icon   onClick={onClickHandler}/>;
+            default : return;
         }
     }
-    
-
 
     return (
         <InputAdornment position="start">
