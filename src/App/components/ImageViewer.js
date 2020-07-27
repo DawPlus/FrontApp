@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Viewer from "react-viewer";
-
+import NoImage  from "../../assets/images/noImage.jpg";
 const ImageViewer = (props) => {
 
     const {src, alt} = props
@@ -11,7 +11,7 @@ const ImageViewer = (props) => {
 
     return(<>
         <img 
-            src={src} 
+            src={src === null ? NoImage :  src} 
             alt={alt}
             className="imageView"
             onClick={showMap}   
@@ -21,7 +21,7 @@ const ImageViewer = (props) => {
             noNavbar={true}
             visible={visible}
             onClose={()=>{setVisible(false)} }
-            images={[{src:src, alt: alt}]}
+            images={[{src:src === null ? NoImage :  src, alt: alt}]}
         />
 
 

@@ -1,12 +1,13 @@
 import React,{useEffect} from 'react';
 import './../../../assets/scss/style.scss';
 import Aux from "../../../hoc/_Aux";
-import {NavLink} from 'react-router-dom';
+
 import {useDispatch , useSelector} from "react-redux";
 import Breadcrumb from "../AdminLayout/Breadcrumb";
 import {withRouter}  from 'react-router-dom';
-import {login ,changeField, initializeForm} from "../../../store/modules/auth"
-      
+import {login ,changeField, initializeForm} from "../../modules/auth"
+import TextField from '@material-ui/core/TextField';
+
 const SignUp = ({ history }) => {
 
     const dispatch = useDispatch();
@@ -62,34 +63,46 @@ const SignUp = ({ history }) => {
                                 </div>
                                 <h3 className="mb-4">Login</h3>
                                 <div className="input-group mb-3">
-                                    <input type="text" 
+                                    <TextField
+                                        label="User Id"
+                                        type="text"
+                                        autoComplete="off"
+                                        variant="outlined"
+                                        size="small"
+                                        fullWidth
+                                        name="id"
+                                        value={loginInfo.id}
+                                        onChange={onChange}/>
+                                    {/* <input type="text" 
                                         className="form-control" 
                                         placeholder="UserId"
                                         name="id"
                                         value={loginInfo.id}
-                                        onChange={onChange}/>
+                                        onChange={onChange}/> */}
+
                                 </div>
                                 <div className="input-group mb-4">
-                                    <input type="password" 
-                                           className="form-control" 
-                                           placeholder="password"  
-                                           value={loginInfo.password}
-                                           name="password"
-                                           onChange={onChange}/>
+                                    <TextField
+                                        id="password"
+                                        label="Password"
+                                        type="password"
+                                        autoComplete="off"
+                                        variant="outlined"
+                                        size="small"
+                                        fullWidth
+                                        name="password"
+                                        value={loginInfo.password}
+                                        onChange={onChange}/>
                                 </div>
-                                <div className="form-group text-left">
-                                    <div className="checkbox checkbox-fill d-inline">
-                                        <input type="checkbox" name="checkbox-fill-1" id="checkbox-fill-a1" />
-                                            <label htmlFor="checkbox-fill-a1" className="cr"> Save credentials</label>
-                                    </div>
-                                </div>
-                                
+                               
                                 <button className="btn btn-primary shadow-2 mb-4"  onClick={loginAction}>
                                         Login
                                 </button>
                                 
-                                <p className="mb-2 text-muted">Forgot password? <NavLink to="/auth/reset-password-1">Reset</NavLink></p>
-                                <p className="mb-0 text-muted">Don’t have an account? <NavLink to="/auth/signup-1">Signup</NavLink></p>
+                                <p className="mb-2 text-muted">
+                                    Copyright © 2020 The React Admin Project
+                                </p>
+                                {/* <p className="mb-0 text-muted">Don’t have an account? <NavLink to="/auth/signup-1">Signup</NavLink></p> */}
                             </div>
                         </div>
                     </div>

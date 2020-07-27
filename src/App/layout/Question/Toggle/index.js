@@ -3,15 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 
-import {changeField} from "../../../../store/modules/question";
+import {changeField} from "../../../modules/question";
 const ToggleContainer = () => {
-
-
     const dispatch = useDispatch();
-
     const {type} = useSelector(state => state.question);
-
-    
 
     const handleChange = (e) => {
         dispatch(changeField({
@@ -22,13 +17,15 @@ const ToggleContainer = () => {
 
     return(<>
           <FormControlLabel
-                style={{    float: "right"}}
+          style={{float : "right"}}
+               
                 control={
                 <Switch
                     checked={type}
                     onChange={handleChange}
                     name="checkedB"
                     color="primary"
+                    size="small"
                 />
                 }
                 label="문제유형"

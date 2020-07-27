@@ -1,5 +1,5 @@
 import React, { Component, Suspense } from 'react';
-import {Route, Switch, Redirect} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Fullscreen from "react-full-screen";
 import windowSize from 'react-window-size';
@@ -13,7 +13,7 @@ import Aux from "../../../hoc/_Aux";
 import * as actionTypes from "../../../store/actions";
 
 import NoMatch from "../../components/nomatch";
-import Auth from "./Auth";
+// import Auth from "./Auth";
 import './app.scss';
 
 
@@ -67,7 +67,7 @@ class AdminLayout extends Component {
 
         return (
             <Aux>
-                <Auth/>
+                {/* <Auth/> */}
                 <Fullscreen enabled={this.props.isFullScreen}>
                     <Navigation />
                     <NavBar />

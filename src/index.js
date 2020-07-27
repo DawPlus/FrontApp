@@ -12,8 +12,8 @@ import './index.scss';
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
-import rootReducer, { rootSaga } from './store/modules';
-import {checkTokken} from './store/modules/auth';
+import rootReducer, { rootSaga } from './App/modules';
+import {checkTokken} from './App/modules/auth';
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(

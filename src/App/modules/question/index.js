@@ -1,9 +1,9 @@
 import { createAction, handleActions } from 'redux-actions';
 import produce from 'immer';
 import { takeLatest } from 'redux-saga/effects';
-import createRequestSaga, {createRequestActionTypes} from '../lib/createRequestSaga';
+import createRequestSaga, {createRequestActionTypes} from '../../lib/createRequestSaga';
 // import * as API from '../lib/api/question';
-import * as FILE from "../lib/api/file";
+import * as FILE from "../../lib/api/file";
 
 const INITIALIZE = 'question/INITIALIZE';
 const INITIALIZE_FORM = 'question/INITIALIZE_FORM';
