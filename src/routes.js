@@ -28,11 +28,17 @@ const QuestionList = React.lazy(() => import('./Page/Question/list'));
 const QuestionNew = React.lazy(() => import('./Page/Question/new'));
 const QuestionView  = React.lazy(() => import('./Page/Question/view'));
 
+
+const MapList  = React.lazy(() => import('./Page/Map/list'));
+
+const MapSelectList  = React.lazy(() => import('./Page/Map/selectList'));
 const routes = [
     // Question
     { path: '/question', exact: true,   name: 'Question List', component: QuestionList },
     { path: '/question/new', exact: true, name: 'Question Add', component: QuestionNew },
     { path: '/question/:id', exact: true, name: 'Question View', component: QuestionView },
+    { path: '/maps', exact: true, name: 'Map ', component: MapList },
+    { path: '/maps2', exact: true, name: 'Map ', component: MapSelectList },
 
     { path: '/dashboard/default', exact: true, name: 'Default', component: DashboardDefault },
     { path: '/basic/button', exact: true, name: 'Basic Button', component: UIBasicButton },

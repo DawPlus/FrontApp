@@ -19,6 +19,21 @@ export default {
                     type: 'item',
                     url: '/question',
                     icon: 'feather icon-file-text'
+                },
+                {
+                    id: 'maps',
+                    title: 'Map 관리',
+                    type: 'item',
+                    url: '/maps',
+                    icon: 'feather icon-file-text'
+                }
+                ,
+                {
+                    id: 'maps2',
+                    title: 'Map2 관리',
+                    type: 'item',
+                    url: '/maps2',
+                    icon: 'feather icon-file-text'
                 }
             ]
         },
