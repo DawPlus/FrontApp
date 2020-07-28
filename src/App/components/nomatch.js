@@ -14,7 +14,7 @@ const NoMatch = ({location}) => {
   },[location.pathname]);
 
     return (<>
-    {redirctTo ?  <Redirect to='/login' /> :
+    {redirctTo ?  <Redirect to='/signin' /> :
           <div className="text-center">
             <div className="error mx-auto" data-text="404">404</div>
             <p className="lead text-gray-800 mb-5">Page Not Found</p>

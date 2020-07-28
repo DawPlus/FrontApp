@@ -19,7 +19,7 @@ const InfoContainer = () => {
 
     }
     return(<>
-            <Form.Group controlId="formBasicEmail">
+            <Form.Group controlid="formTitle">
                 <Form.Label>제목</Form.Label>
                 <Form.Control type="text"
                     id="title"
@@ -30,7 +30,7 @@ const InfoContainer = () => {
                     onChange={onChange}    
                 />
             </Form.Group>
-            <Form.Group controlId="formBasicPassword">
+            <Form.Group controlid="formContent">
                 <Form.Label>내용</Form.Label>
                 <Form.Control  
                         id="content"  

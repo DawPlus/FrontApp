@@ -47,11 +47,11 @@ const initialState = {
     mapImage : null,
     hintImage : null,
     answer : [
-        {content : "" , isTrue : null},
-        {content : "" , isTrue : null},
-        {content : "" , isTrue : null},
-        {content : "" , isTrue : null},
-        {content : "" , isTrue : null},
+        {content : "" , isTrue : false},
+        {content : "" , isTrue : false},
+        {content : "" , isTrue : false},
+        {content : "" , isTrue : false},
+        {content : "" , isTrue : false},
     ],
     status : null
 };
