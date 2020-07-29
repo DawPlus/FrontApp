@@ -25,9 +25,9 @@ const ListPage = () => {
    const [items, setItems] = useState(photos);
    const [visible , setVisible] = useState(false);
 
-   const showMap = () => {
-       setVisible(true);
-   }
+//    const showMap = () => {
+//        setVisible(true);
+//    }
 
   const onSortEnd = ({ oldIndex, newIndex }) => {
       console.log(oldIndex)

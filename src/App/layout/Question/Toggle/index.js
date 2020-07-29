@@ -16,9 +16,7 @@ const ToggleContainer = () => {
     };
 
     return(<>
-          <FormControlLabel controlid="toggleSwitch" id="toggleSwitch"
-          style={{float : "right"}}
-               
+          <FormControlLabel controlid="toggleSwitch" id="toggleSwitch" style={{float : "right"}}
                 control={
                 <Switch
                     checked={type}

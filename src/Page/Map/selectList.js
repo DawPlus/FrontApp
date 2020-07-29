@@ -1,11 +1,11 @@
-import React ,{useState, useCallback} from "react"
+import React ,{useState } from "react"
 import {Row, Col, Card} from 'react-bootstrap';
 import Aux from "../../hoc/_Aux";
 
 import Gallery from "react-photo-gallery";
-import Photo from "./photo";
-import arrayMove from "array-move";
-import SelectedImage from "./selectedImage";
+//import Photo from "./photo";
+//import arrayMove from "array-move";
+//import SelectedImage from "./selectedImage";
 import { photos } from "./photos";
 
 import Viewer from "react-viewer";
@@ -13,33 +13,33 @@ import Viewer from "react-viewer";
   
 
 const ListPage = () => {
-    const [selectAll, setSelectAll] = useState(false);
+  //  const [selectAll, setSelectAll] = useState(false);
     const [visible , setVisible] = useState(false);
 
     const showMap = () => {
         setVisible(true);
     }
-    const toggleSelectAll = () => {
-      setSelectAll(!selectAll);
-    };
+    // const toggleSelectAll = () => {
+    //   setSelectAll(!selectAll);
+    // };
   
     const onClick= ()=>{
         showMap()
     }
-    const imageRenderer = useCallback(
-      ({ index, left, top, key, photo }) => (
-        <SelectedImage
-          selected={selectAll ? true : false}
-          key={key}
-          margin={"2px"}
-          index={index}
-          photo={photo}
-          left={left}
-          top={top}
-        />
-      ),
-      [selectAll]
-    );
+    // const imageRenderer = useCallback(
+    //   ({ index, left, top, key, photo }) => (
+    //     <SelectedImage
+    //       selected={selectAll ? true : false}
+    //       key={key}
+    //       margin={"2px"}
+    //       index={index}
+    //       photo={photo}
+    //       left={left}
+    //       top={top}
+    //     />
+    //   ),
+    //   [selectAll]
+    // );
     return(<>
 
             <Aux>

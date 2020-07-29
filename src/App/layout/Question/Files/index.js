@@ -2,7 +2,7 @@ import React ,{useState} from "react";
 import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
 import {Form} from 'react-bootstrap';
-import {changeField, hintFileUpload, mapFileUpload} from "../../../../modules/question"
+import {changeField, hintFileUpload, mapFileUpload} from "../../../modules/question"
 import { useSelector, useDispatch } from "react-redux";
 
 

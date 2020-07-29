@@ -12,6 +12,7 @@ import routes from "../../../routes";
 import Aux from "../../../hoc/_Aux";
 import * as actionTypes from "../../../store/actions";
 
+
 import NoMatch from "../../components/nomatch";
 // import Auth from "./Auth";
 import './app.scss';
@@ -72,6 +73,7 @@ class AdminLayout extends Component {
                     <Navigation />
                     <NavBar />
                     <div className="pcoded-main-container" onClick={() => this.mobileOutClickHandler}>
+                   
                         <div className="pcoded-wrapper">
                             <div className="pcoded-content">
                                 <div className="pcoded-inner-content">

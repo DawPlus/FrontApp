@@ -19,8 +19,9 @@ const [HINT_UPLOAD, HINT_UPLOAD_SUCCESS, HINT_UPLOAD_FAILURE] = createRequestAct
 
 //const [LIST, LIST_SUCCESS, LIST_FAILURE]   = createRequestActionTypes('question/LIST');
 
-
-
+// 상세보기
+//const [VIEW, VIEW_SUCCES, VIEW_FAILURE]  = createRequestActionTypes('question/VIEW');  
+const VIEW = 'question/VIEW';
 
 //export const list             = createAction(LIST);
 export const initialize       = createAction(INITIALIZE);
@@ -29,6 +30,9 @@ export const changeField      = createAction(CHANGE_FIELD);
 export const changeFieldForm  = createAction(CHANGE_FIELD_FORM);
 export const mapFileUpload    = createAction(MAP_UPLOAD ,  (file) => (file));
 export const hintFileUpload   = createAction(HINT_UPLOAD ,  (file) => (file));
+
+export const view   = createAction(VIEW, id=> {console.log(id)});
+
 
 export function* questionSaga() {
   //yield takeLatest(LIST,        createRequestSaga(LIST, API.list));
@@ -92,9 +96,19 @@ const question = handleActions(
     [HINT_UPLOAD_FAILURE] : (state , {payload : data}) =>({
         ...state,
         status : "HINT_UPLOAD_FAILURE"
-    })
-
-
+    }),
+   
+    [HINT_UPLOAD_FAILURE] : (state , {payload : data}) =>({
+      ...state,
+      status : "HINT_UPLOAD_FAILURE"
+    }),
+    [VIEW]  :(state ) =>({
+      ...state,
+      title : "테스트 데이터입니다.",
+      content :"테스트 콘텐츠 입니다. ",
+      type : true,
+      status : "HINT_UPLOAD_FAILURE"
+    }),
 
    },
   initialState

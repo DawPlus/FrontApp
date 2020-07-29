@@ -1,14 +1,15 @@
 import React from "react";
 import Aux from "../../hoc/_Aux";
 import { withRouter } from 'react-router-dom';
-import {Row, Col, Card} from 'react-bootstrap';
+import {Row, Col, Card, Form} from 'react-bootstrap';
 import Info from "../../App/layout/Question/Info";
 // import Hint from "../../App/layout/Question/Hint";
 // import Map from "../../App/layout/Question/Map";
-import Images from "../../App/layout/Question/Images";
-
+import MapImage from "../../App/layout/Question/MapImage";
+import HintImage from "../../App/layout/Question/HintImage";
+import Files from "../../App/layout/Question/Files";
 import Toggle from "../../App/layout/Question/Toggle";
-import Answer from "../../App/layout/Question/Answer";
+import Example from "../../App/layout/Question/Example";
 import Button from '@material-ui/core/Button';
 
 
@@ -30,12 +31,36 @@ const ListPage = ({match, history}) =>{
                                 <hr/>
                                 <Row>
                                     <Col md={8}>
-                                        <Info/>
+                                        <Form>
+                                            <Info/>
+                                            <Files/>
+                                        </Form>
                                         <hr/>
-                                        <Answer/>
+                                        <Example/>
                                     </Col>
                                     <Col md={4}>
-                                        <Images/>
+
+                                    <Card>
+                                        <Card.Header>
+                                            <Card.Title as="h5">Map</Card.Title>
+                                        </Card.Header>
+                                        <Card.Body>
+                                            <MapImage/>
+                                        </Card.Body>
+                                    </Card>
+
+
+                                    <Card>
+                                        <Card.Header>
+                                            <Card.Title as="h5">Hint</Card.Title>
+                                        </Card.Header>
+                                        <Card.Body>
+                                            <HintImage/>
+                                        </Card.Body>
+                                    </Card>
+
+
+                                    
                                     </Col>
                                 </Row>
                                <Button variant="contained" color="primary">
