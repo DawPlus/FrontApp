@@ -4,13 +4,13 @@ import { takeLatest } from 'redux-saga/effects';
 import createRequestSaga, {createRequestActionTypes} from '../../lib/createRequestSaga';
 // import * as API from '../lib/api/question';
 import * as FILE from "../../lib/api/file";
-
+import * as Util from "../../Util/array";
 const INITIALIZE = 'question/INITIALIZE';
 const INITIALIZE_FORM = 'question/INITIALIZE_FORM';
+const INITIALIZE_RADIO = 'question/INITIALIZE_RADIO';
 const CHANGE_FIELD = 'question/CHANGE_FIELD';
 const CHANGE_FIELD_FORM = 'question/CHANGE_FIELD_FORM';
-
-
+const CHANGE_FIELD_LIST = 'question/CHANGE_FIELD_LIST';
 // 맵파일 업로드 
 const [MAP_UPLOAD, MAP_UPLOAD_SUCCESS, MAP_UPLOAD_FAILURE] = createRequestActionTypes('question/MAP_UPLOAD');
 
@@ -28,6 +28,10 @@ export const initialize       = createAction(INITIALIZE);
 export const initializeForm   = createAction(INITIALIZE_FORM);
 export const changeField      = createAction(CHANGE_FIELD);
 export const changeFieldForm  = createAction(CHANGE_FIELD_FORM);
+export const changeFieldList  = createAction(CHANGE_FIELD_LIST);
+export const initializeRadio  = createAction(INITIALIZE_RADIO);
+
+
 export const mapFileUpload    = createAction(MAP_UPLOAD ,  (file) => (file));
 export const hintFileUpload   = createAction(HINT_UPLOAD ,  (file) => (file));
 
@@ -50,13 +54,14 @@ const initialState = {
     hintFile : null,
     mapImage : null,
     hintImage : null,
-    answer : [
+    examples : [
         {content : "" , isTrue : false},
         {content : "" , isTrue : false},
         {content : "" , isTrue : false},
         {content : "" , isTrue : false},
         {content : "" , isTrue : false},
     ],
+    singleExample : "",
     status : null
 };
 
@@ -70,6 +75,23 @@ const question = handleActions(
       produce(state, draft => {
         draft[key] = value; 
     }),
+    [CHANGE_FIELD_LIST]: (state,  {payload: value} ) =>{
+   
+      return ({
+        ...state, 
+        examples : Util.update(state.examples, value)
+      })
+    },
+    [INITIALIZE_RADIO]: (state) =>{
+      
+      return ({
+        ...state, 
+        examples : state.examples.map(item => {return {...item,  isTrue : false}})
+      })
+    },
+    
+
+
     [INITIALIZE]: (state) => initialState,
 
     [INITIALIZE_FORM]: (state, { payload: form }) => ({
