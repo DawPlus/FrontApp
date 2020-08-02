@@ -9,6 +9,7 @@
     "array-move": "^3.0.0",
     "axios": "^0.19.2",
     "bootstrap": "^4.3.1",
+    "downloadjs": "^1.4.7",
     "font-awesome": "^4.7.0",
     "google-maps-react": "^2.0.2",
     "immutable": "^4.0.0-rc.12",

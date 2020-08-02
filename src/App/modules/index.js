@@ -3,14 +3,14 @@ import reducers from "../../store/reducer";
 import { all } from 'redux-saga/effects';
 import auth, { authSaga } from './auth';
 import question , {questionSaga} from "./question";
-
+import init, {initSaga} from "./init";
 
 
 const rootReducer = combineReducers({
     reducers,
     auth,
-    question
-  
+    question,
+    init,
    
   
     
@@ -20,7 +20,8 @@ const rootReducer = combineReducers({
 export function* rootSaga() {
     yield all([
       authSaga(),
-      questionSaga()
+      questionSaga(),
+      initSaga()
       
         
     ]);

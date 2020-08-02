@@ -35,6 +35,14 @@ export default {
                     url: '/maps2',
                     icon: 'feather icon-file-text'
                 }
+                ,
+                {
+                    id: 'api',
+                    title: 'API 관리',
+                    type: 'item',
+                    url: '/init',
+                    icon: 'feather icon-file-text'
+                }
             ]
         },
         {

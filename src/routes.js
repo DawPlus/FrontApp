@@ -30,8 +30,12 @@ const QuestionView  = React.lazy(() => import('./Page/Question/view'));
 
 
 const MapList  = React.lazy(() => import('./Page/Map/list'));
-
 const MapSelectList  = React.lazy(() => import('./Page/Map/selectList'));
+
+const initList    = React.lazy(() => import('./Page/Init/list'));
+const initNew    = React.lazy(() => import('./Page/Init/new'));
+
+
 const routes = [
     // Question
     { path: '/question', exact: true,   name: 'Question List', component: QuestionList },
@@ -39,6 +43,9 @@ const routes = [
     { path: '/question/:id', exact: true, name: 'Question View', component: QuestionView },
     { path: '/maps', exact: true, name: 'Map ', component: MapList },
     { path: '/maps2', exact: true, name: 'Map ', component: MapSelectList },
+    { path: '/init', exact: true, name: 'API 관리  ', component: initList },
+    { path: '/init/new', exact: true, name: 'API 등록 ', component: initNew },
+
 
     { path: '/dashboard/default', exact: true, name: 'Default', component: DashboardDefault },
     { path: '/basic/button', exact: true, name: 'Basic Button', component: UIBasicButton },

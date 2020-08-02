@@ -23,5 +23,5 @@ const client = axios.create();
     }
   })  
 */
-client.defaults.baseURL = 'http://localhost:3001/' 
+client.defaults.baseURL = 'http://localhost:8080/api/' 
 export default client;
