@@ -2,14 +2,13 @@ import React, { useEffect } from "react";
 import {Col, Form, Button} from 'react-bootstrap';
 import { useSelector, useDispatch } from "react-redux";
 import {chageField, initialize,newAction} from "../../../modules/init"
+
 const NewForm = () => {
 
     const dispatch = useDispatch();
     const newInfo = useSelector(state=> state.init.new);
     const {name, url, description } = newInfo;
 
-
-    
     const onChange = e => {
         dispatch(chageField({
                 form : "new",
@@ -20,8 +19,6 @@ const NewForm = () => {
 
     const onClick = e =>{
         dispatch(newAction(newInfo));
-            console.log("onClick");
-            console.log(newInfo);
     }
 
     useEffect(()=>{

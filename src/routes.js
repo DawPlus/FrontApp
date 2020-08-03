@@ -35,6 +35,7 @@ const MapSelectList  = React.lazy(() => import('./Page/Map/selectList'));
 const initList    = React.lazy(() => import('./Page/Init/list'));
 const initNew    = React.lazy(() => import('./Page/Init/new'));
 
+const ExceptionList =  React.lazy(() => import('./Page/Exception/list'));
 
 const routes = [
     // Question
@@ -46,6 +47,9 @@ const routes = [
     { path: '/init', exact: true, name: 'API 관리  ', component: initList },
     { path: '/init/new', exact: true, name: 'API 등록 ', component: initNew },
 
+    { path: '/exception', exact: true, name: 'Exception 관리 ', component: ExceptionList },
+
+    
 
     { path: '/dashboard/default', exact: true, name: 'Default', component: DashboardDefault },
     { path: '/basic/button', exact: true, name: 'Basic Button', component: UIBasicButton },

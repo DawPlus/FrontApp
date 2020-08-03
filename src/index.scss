@@ -334,3 +334,6 @@ img.imageView:hover {
     animation: noise-anim-2 3s infinite linear alternate-reverse;
   }
   
+  .mdb-dataTable tbody a { color : #3f51b5; font-weight: bold;}
+  
+  .mdb-dataTable tbody a:hover { color : tomato; text-decoration: underline;}

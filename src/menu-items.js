@@ -43,6 +43,14 @@ export default {
                     url: '/init',
                     icon: 'feather icon-file-text'
                 }
+                ,
+                {
+                    id: 'exception',
+                    title: '오류관리',
+                    type: 'item',
+                    url: '/exception',
+                    icon: 'feather icon-file-text'
+                }
             ]
         },
         {
