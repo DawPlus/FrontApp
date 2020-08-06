@@ -11,9 +11,9 @@ import { photos } from "./photos";
 import Viewer from "react-viewer";
 
     const SortablePhoto = SortableElement(item => <Photo {...item} />);
-
     const SortableGallery = SortableContainer(({ items , onClick}) => {
-    
+   
+
   
     return  <Gallery photos={items}
               onClick={onClick}  
@@ -22,6 +22,7 @@ import Viewer from "react-viewer";
 
 
 const ListPage = () => {
+    const [imageIdx , setImageIdx] = useState(2)
    const [items, setItems] = useState(photos);
    const [visible , setVisible] = useState(false);
 
@@ -38,7 +39,6 @@ const ListPage = () => {
    console.log(photo, index);
   }, []);
     return(<>
-
             <Aux>
                 <Row>
                     <Col>
@@ -53,10 +53,10 @@ const ListPage = () => {
                                     noImgDetails={true}
                                     noNavbar={true}
                                     visible={visible}
+                                    activeIndex={imageIdx}
                                     onClose={()=>{setVisible(false)} }
                                     images={photos}
                                 />
-
                             </Card.Body>
                         </Card>
                         
