@@ -1,7 +1,7 @@
 import React, {useState, useCallback} from "react";
+import ImageUploader from "react-images-upload"
 
-
-const ImageUploader = () => {
+const ImageUploaderComponent = () => {
 
     const [pictures, setPicktures] = useState([]);
     
@@ -20,7 +20,7 @@ return(<>
 
             <ImageUploader
                 withIcon={true}
-                buttonText='Choose images'
+                buttonText='파일을 선택해 주십시오'
                 onChange={onDrop}
                 imgExtension={['.jpg', '.gif', '.png', '.gif']}
                 maxFileSize={5242880}
@@ -31,4 +31,4 @@ return(<>
 
 
 }
-export default ImageUploader
+export default ImageUploaderComponent

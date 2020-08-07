@@ -3,6 +3,7 @@ export const photos = [
       src: "https://source.unsplash.com/2ShvY8Lf6l0/800x599",
       alt : "hello world",
       title : "helllo?",
+      id : "123",
       width: 1,
       height: 1
     },
@@ -10,6 +11,7 @@ export const photos = [
       src: "https://source.unsplash.com/Dm-qxdynoEc/800x799",
       width: 1,
       height: 1,
+      id : "345",
       title : "살려주세요",
       alt : "야야야야"
     },
