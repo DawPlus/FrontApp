@@ -25,7 +25,7 @@ const NewForm = () => {
         return()=>{
             dispatch(initialize());
         }
-    },[])
+    },[dispatch])
 
 
     return(<> 

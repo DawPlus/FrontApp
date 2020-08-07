@@ -19,7 +19,7 @@ const ListPage = () => {
     const onClicks= useCallback((event, {photo, index} ) => {
         setVisible(true);
         setImageIdx(index);
-       }, []);
+       });
 
        const imageRenderer = useCallback(
         ({ index, left, top, key, photo , onClick}) => (

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import DeleteIcon from '@material-ui/icons/DeleteForever';
 
 const btnCss = {

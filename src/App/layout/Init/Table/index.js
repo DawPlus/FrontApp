@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import {Table} from 'react-bootstrap';
 import { useDispatch, useSelector } from "react-redux";
-import {listAction , initialize, initializeForm} from "../../../modules/init"
+import {listAction , initialize} from "../../../modules/init"
 
 const TableContainer = () => {
 

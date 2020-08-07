@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { MDBDataTableV5, MDBBtn } from 'mdbreact';
+import { MDBDataTableV5 } from 'mdbreact';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import {listAction, initializeForm} from "../../../modules/exceptions";
@@ -28,12 +28,13 @@ console.log(data);
       case "LIST_SUCCESS": 
             data.rows.map(it=> it.title = <Link to={`/exception/${it.exception_id}`}>{it.title}</Link> );
           break;
+      default : break;
     }
 
 
 
     dispatch(initializeForm("status"));
-  },[dispatch, status])
+  },[dispatch, status, data.rows])
 
   // datatable.rows.map(it=> it.name = <Link to={`/exception/${it.age}`}>{it.name}</Link> );
   // console.log(datatable.rows);
