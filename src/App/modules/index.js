@@ -5,13 +5,14 @@ import auth, { authSaga } from './auth';
 import question , {questionSaga} from "./question";
 import init, {initSaga} from "./init";
 import exceptions , {exceptionsSaga} from "./exceptions";
-
+import map, {mapSaga} from "./map";
 const rootReducer = combineReducers({
     reducers,
     auth,
     question,
     init,
-    exceptions
+    exceptions,
+    map,
    
   
     
@@ -23,7 +24,8 @@ export function* rootSaga() {
       authSaga(),
       questionSaga(),
       initSaga(),
-      exceptionsSaga()
+      exceptionsSaga(),
+      mapSaga()
       
         
     ]);

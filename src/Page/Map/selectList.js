@@ -1,20 +1,27 @@
-import React ,{useState, useCallback } from "react"
+import React ,{useState, useCallback, useEffect } from "react"
 import {Row, Col, Card} from 'react-bootstrap';
 import Aux from "../../hoc/_Aux";
-
 import Gallery from "react-photo-gallery";
-import ImageUploader from "../../App/components/imageUploader"
 import SelectedImage from "./imgBtn"
-import { photos } from "./photos";
+import {useLifecycles} from 'react-use';
+import {listAction} from "../../App/modules/map";
 
 import Viewer from "react-viewer";
-
+import { useSelector, useDispatch } from "react-redux";
+import ImageUploader from "../../App/layout/Map/Uploader";
   
 
 const ListPage = () => {
   
     const [visible , setVisible] = useState(false);
     const [imageIdx, setImageIdx] = useState(0);
+
+    const {fileList, newInfo} = useSelector(state => state.map);
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+      dispatch(listAction());
+    },[]);
   
     const onClicks= useCallback((event, {photo, index} ) => {
         setVisible(true);
@@ -46,15 +53,17 @@ const ListPage = () => {
                                 <span className="d-block m-t-5">마우스 오버시 <code>파일명</code>을 확인할 수 있습니다.</span>
                             </Card.Header>
                             <Card.Body>
-                          <ImageUploader/>
-                            <Gallery photos={photos} onClick={onClicks} renderImage={imageRenderer} />
+                            
+                            <ImageUploader/>
+                          
+                            <Gallery photos={fileList} onClick={onClicks} renderImage={imageRenderer} />
                               <Viewer
                                     activeIndex={imageIdx}
                                     noImgDetails={true}
                                     noNavbar={true}
                                     visible={visible}
                                     onClose={()=>{setVisible(false)} }
-                                    images={photos}
+                                    images={fileList}
                                 />
                             </Card.Body>
                         </Card>

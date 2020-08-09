@@ -26,9 +26,14 @@ img.imageView{
 img.imageView:hover { 
     box-shadow: 0.5px 0.5px 0.5px 0.5px darkgrey;
 }
+.react-viewer-mask{z-index: 1029  !important;}
+.react-viewer-canvas{z-index:1030 !important;}
+.react-viewer-footer{z-index:1030 !important;}
 .react-viewer-btn{
-    z-index: 1030  !important;
+    z-index: 1031  !important;
 }
+
+
 .answer_list {
   padding: 25px 10px;
   border: 1px #c4c4c4 solid !important;

@@ -7,7 +7,7 @@ const TableContainer = () => {
   
   const dispatch = useDispatch();
   const {data, status} = useSelector(state => state.exceptions);
-console.log(data);
+
 
   useEffect(()=>{
 
