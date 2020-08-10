@@ -1,24 +1,27 @@
 import React, { useEffect } from "react";
-import {Col, Form, Button} from 'react-bootstrap';
+import {Row, Col, Form, Button} from 'react-bootstrap';
 import { useSelector, useDispatch } from "react-redux";
-import {chageField, initialize,newAction} from "../../../modules/init"
+import {chageField, initialize, initializeForm, newAction} from "../../../modules/init"
+import { useUpdateEffect } from "react-use";
 
 const NewForm = () => {
 
     const dispatch = useDispatch();
-    const newInfo = useSelector(state=> state.init.new);
-    const {name, url, description } = newInfo;
+    const {newApi, status} = useSelector(state=> state.init);
+    const {name, url, description } = newApi;
 
     const onChange = e => {
-        dispatch(chageField({
-                form : "new",
+        dispatch(
+            chageField({
+                form : "newApi",
                 key : e.target.name,
                 value : e.target.value
-        }));
+            })
+        );
     };
 
     const onClick = e =>{
-        dispatch(newAction(newInfo));
+        dispatch(newAction(newApi));
     }
 
     useEffect(()=>{
@@ -28,7 +31,29 @@ const NewForm = () => {
     },[dispatch])
 
 
+
+     
+  useUpdateEffect(() => {
+    if(status === null ) return;
+
+    switch(status){
+
+            case "NEW_FAILURE" : 
+                    alert("실패 ! ")
+                    break;
+            default : break;
+    }
+
+    dispatch(initializeForm("status"));
+
+
+    return () => { // *OPTIONAL*
+      // do something on unmount
+    }
+  }) // you can include deps array if necessary
+
     return(<> 
+    <Row>
         <Col md={6}>
             <Form>
                 <Form.Group controlId="formBasicEmail">
@@ -55,22 +80,27 @@ const NewForm = () => {
                         onChange={onChange}
                     />
                 </Form.Group>
-                <Button variant="primary" onClick={onClick}>
-                    Submit
-                </Button>
             </Form>
         </Col>
         <Col md={6}>
             <Form.Group controlId="exampleForm.ControlTextarea1">
                 <Form.Label>Description textarea</Form.Label>
                 <Form.Control as="textarea" 
-                    rows="3" 
+                    rows="6" 
                     value={description} 
                     name="description"
                     onChange={onChange}
                 />
             </Form.Group>
         </Col>
+    </Row>
+    <Row>
+        <Col>
+            <Button variant="primary" onClick={onClick}>
+                Submit
+            </Button>
+        </Col>
+    </Row>
     </>);
 
 }

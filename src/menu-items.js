@@ -22,17 +22,17 @@ export default {
                 },
                 {
                     id: 'maps',
-                    title: 'Map 관리',
+                    title: '지도관리',
                     type: 'item',
-                    url: '/maps',
+                    url: '/map',
                     icon: 'feather icon-file-text'
                 }
                 ,
                 {
-                    id: 'maps2',
-                    title: 'Map2 관리',
+                    id: 'guide',
+                    title: '가이드관리',
                     type: 'item',
-                    url: '/maps2',
+                    url: '/guide',
                     icon: 'feather icon-file-text'
                 }
                 ,

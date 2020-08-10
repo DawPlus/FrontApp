@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from "react";
+import React  from "react";
 import ImageUploader from "react-images-upload"
 
 const ImageUploaderComponent = (props) => {
@@ -22,8 +22,9 @@ return(<>
                 imgExtension={['.jpg', '.gif', '.png', '.gif']}
                 maxFileSize={5242880}
                 singleImage={true}
+                withPreview={true}
                 fileContainerStyle={{
-                    maxWidth: "500px",
+                    maxWidth: "400px",
                     margin:" 20px auto"}
 
                 }

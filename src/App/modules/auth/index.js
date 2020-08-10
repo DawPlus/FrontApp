@@ -49,7 +49,9 @@ const initialState = {
   },
   authrization: null,
   tokken : null,
-  authError: null
+  authError: null,
+  status : null
+  
 };
 
 const auth = handleActions(
@@ -65,12 +67,12 @@ const auth = handleActions(
     }),
   
     // 로그인 성공
-    [LOGIN_SUCCESS]: (state, {payload : data}) =>({
+    [LOGIN_SUCCESS]: (state, {payload : result}) =>({
         ...state,
         authError: null,
-        authrization: data.authrization,
-        tokken : data.tokken,
-        userInfo : data.userInfo
+        authrization: result.data.authrization,
+        tokken : result.data.tokken,
+        userInfo : result.data.userInfo
     }),
 
 
@@ -83,24 +85,22 @@ const auth = handleActions(
     }),
 
     
-    [CHECK_TOKKEN_SUCCESS]: (state, { payload : {authrization, tokken, userInfo} }) =>({
+    [CHECK_TOKKEN_SUCCESS]: (state, { payload : result }) =>({
       ...state,
       authError: null,
-      authrization: authrization,
-      tokken : tokken,
-      userInfo : userInfo
+      authrization: result.data.authrization,
+      tokken : result.data.tokken,
+      userInfo : result.data.userInfo
      
     }),
 
 
-    [CHECK_TOKKEN_FAILURE]: (state, { payload : {authrization, tokken, userInfo} }) =>({
+    [CHECK_TOKKEN_FAILURE]: (state, { payload : {result, message, data} }) =>({
       ...state,
-      authError: "토큰에러 발생",
-      authrization: false,
-      tokken :null,
-      userInfo :{
-
-      }
+      authError: message,
+      authrization: data.authrization,
+      tokken :data.tokken,
+      userInfo :data.userInfo
      
     }),
     

@@ -1,43 +1,11 @@
-import React ,{useState, useCallback} from "react"
+import React from "react"
 import {Row, Col, Card} from 'react-bootstrap';
 import Aux from "../../hoc/_Aux";
-
-import Gallery from "react-photo-gallery";
-import Photo from "./photo";
-import arrayMove from "array-move";
-import { SortableContainer, SortableElement } from "react-sortable-hoc";
-import { photos } from "./photos";
-
-import Viewer from "react-viewer";
-
-    const SortablePhoto = SortableElement(item => <Photo {...item} />);
-    const SortableGallery = SortableContainer(({ items , onClick}) => {
-   
-
-  
-    return  <Gallery photos={items}
-              onClick={onClick}  
-              renderImage={props => <SortablePhoto {...props} />} />
-    });
-
+import ImageUploader from "../../App/layout/Map/Uploader";
+import MapList from "../../App/layout/Map/List";
 
 const ListPage = () => {
-    const [imageIdx , setImageIdx] = useState(2)
-   const [items, setItems] = useState(photos);
-   const [visible , setVisible] = useState(false);
-
-//    const showMap = () => {
-//        setVisible(true);
-//    }
-
-  const onSortEnd = ({ oldIndex, newIndex }) => {
-      console.log(oldIndex)
-    setItems(arrayMove(items, oldIndex, newIndex));
-  };
-
-  const onClick = useCallback((event, { photo, index }) => {
-   console.log(photo, index);
-  }, []);
+  
     return(<>
             <Aux>
                 <Row>
@@ -45,18 +13,11 @@ const ListPage = () => {
                         <Card>
                             <Card.Header>
                                 <Card.Title as="h5">Basic Table</Card.Title>
-                                <span className="d-block m-t-5">use bootstrap <code>Table</code> component</span>
+                                <span className="d-block m-t-5">마우스 오버시 <code>파일명</code>을 확인할 수 있습니다.</span>
                             </Card.Header>
                             <Card.Body>
-                              <SortableGallery items={items} onClick={onClick}  onSortEnd={onSortEnd} axis={"xy"} />
-                              <Viewer
-                                    noImgDetails={true}
-                                    noNavbar={true}
-                                    visible={visible}
-                                    activeIndex={imageIdx}
-                                    onClose={()=>{setVisible(false)} }
-                                    images={photos}
-                                />
+                              <ImageUploader/>
+                              <MapList/>
                             </Card.Body>
                         </Card>
                         

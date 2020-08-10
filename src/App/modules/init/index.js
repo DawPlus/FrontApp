@@ -15,7 +15,6 @@ const [NEW, NEW_SUCCESS, NEW_FAILURE]       = createRequestActionTypes('init/NEW
 const [DELETE, DELETE_SUCCESS, DELETE_FAILURE]       = createRequestActionTypes('init/DELETE');
 
 
-export const listAction   = createAction(LIST);
 
 
 
@@ -24,6 +23,7 @@ export const initialize   = createAction(INITIALIZE);
 export const initializeForm   = createAction(INITIALIZE_FORM);
 export const chageField   = createAction(CHANGE_FIELD);
 
+export const listAction   = createAction(LIST);
 export const newAction  = createAction(NEW, data => data);
 export const deleteAction  = createAction(DELETE, data => data);
 
@@ -39,7 +39,7 @@ export function* initSaga() {
 
 const initialState = {
     list : [],
-    new : {
+    newApi : {
         name :"",
         url : "",
         description: ""
@@ -49,7 +49,7 @@ const initialState = {
         apiId : ""
     },
 
-
+    message : null,
     status  : null
 };
 
@@ -68,14 +68,41 @@ const init = handleActions(
    // 목록조회 성공
    [LIST_SUCCESS]: (state, {payload : data}) =>({
         ...state,
+        message : data.message,
         list : data.list,
         status : "LIST_SUCCESS"
     }),
     // 목록조회 실패
    [LIST_FAILURE]: (state, {payload : data}) =>({
         ...state,
+        message : data.message,
         status : "LIST_FAILURE"
     }),
+
+    // 
+    [NEW_SUCCESS]: (state, {payload : data}) =>({
+      ...state,
+      newApi : initialState.newApi,
+      status : "NEW_SUCCESS"
+    }),
+    // 
+    [NEW_FAILURE]: (state, {payload : data}) =>({
+      ...state,
+      status : "NEW_FAILURE"
+    }),
+
+    // 
+    [DELETE_SUCCESS]: (state, {payload : data}) =>({
+      ...state,
+      DELETE : data.DELETE,
+      status : "DELETE_SUCCESS"
+    }),
+    // 
+    [DELETE_FAILURE]: (state, {payload : data}) =>({
+      ...state,
+      status : "DELETE_FAILURE"
+    }),
+
 
   },
   initialState

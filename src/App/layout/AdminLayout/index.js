@@ -14,7 +14,7 @@ import * as actionTypes from "../../../store/actions";
 
 
 import NoMatch from "../../components/nomatch";
-// import Auth from "./Auth";
+import Auth from "./Auth";
 import './app.scss';
 
 
@@ -68,7 +68,7 @@ class AdminLayout extends Component {
 
         return (
             <Aux>
-                {/* <Auth/> */}
+                <Auth/>
                 <Fullscreen enabled={this.props.isFullScreen}>
                     <Navigation />
                     <NavBar />
