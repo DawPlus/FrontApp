@@ -3,12 +3,32 @@ import {Row, Col, Form, Button} from 'react-bootstrap';
 import { useSelector, useDispatch } from "react-redux";
 import {chageField, initialize, initializeForm, newAction} from "../../../modules/init"
 import { useUpdateEffect } from "react-use";
+import { useSnackbar } from 'notistack';
+import { withRouter } from 'react-router-dom';
+import TextField from '@material-ui/core/TextField';
 
-const NewForm = () => {
-
+const NewForm = ({ history}) => {
+    
     const dispatch = useDispatch();
-    const {newApi, status} = useSelector(state=> state.init);
+    const {newApi, status, message} = useSelector(state=> state.init);
     const {name, url, description } = newApi;
+    
+    const { enqueueSnackbar } = useSnackbar();
+
+    const snackBar = (text, variant='info') =>{
+        enqueueSnackbar(text,
+            {
+                variant  : variant,
+                anchorOrigin: {
+                    vertical: 'bottom',
+                    horizontal: 'right',
+                },
+                autoHideDuration : 3000
+            }
+        );
+    }
+
+
 
     const onChange = e => {
         dispatch(
@@ -25,9 +45,10 @@ const NewForm = () => {
     }
 
     useEffect(()=>{
-        return()=>{
-            dispatch(initialize());
-        }
+            return()=>{
+                console.log("뒷정리 ");
+                dispatch(initialize());
+            }
     },[dispatch])
 
 
@@ -36,13 +57,26 @@ const NewForm = () => {
   useUpdateEffect(() => {
     if(status === null ) return;
 
-    switch(status){
+        switch(status){
 
-            case "NEW_FAILURE" : 
-                    alert("실패 ! ")
+            case "NEW_SUCCESS" : 
+                    snackBar(message, 'success');
+                    history.push("/init");
                     break;
+            case "NEW_FAILURE" : 
+                    snackBar(message, 'error');
+                    break;
+         
+            case "DELETE_SUCCESS" : 
+                    snackBar(message, 'success')
+                    break;
+            case "DELETE_FAILURE" : 
+                    snackBar(message, 'error')
+                    break;
+
+
             default : break;
-    }
+        }
 
     dispatch(initializeForm("status"));
 
@@ -56,21 +90,47 @@ const NewForm = () => {
     <Row>
         <Col md={6}>
             <Form>
-                <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control 
-                        type="text" 
-                        placeholder="Enter API Name" 
-                        value={name}
-                        name="name"
-                        onChange={onChange}
-                        />
-                    <Form.Text className="text-muted">
-                        API Name (Key)
-                    </Form.Text>
-                </Form.Group>
+                <Form.Row>
+                    <Form.Group as={Col} md="6" controlId="apiName">
+                        <Form.Label>API Name</Form.Label>
+                        <TextField 
+                            required 
+                            label="API Name"  
+                            margin="dense"
+                            variant="outlined"
+                            inputProps={{style: {fontSize: 14}}} // font size of input text
+                            InputLabelProps={{style: {fontSize: 14}}} // font size of input label
+                            fullWidth/>
+                        {/* <Form.Control 
+                            type="text" 
+                            placeholder="Enter API Name" 
+                            value={name}
+                            name="name"
+                            onChange={onChange}
+                            />
+                        <Form.Text className="text-muted">
+                            API Name (Key)
+                        </Form.Text> */}
+                    </Form.Group>
+                    <Form.Group as={Col} md="6" controlId="method">
+                        <Form.Label>Method</Form.Label>
+                        {/* <Form.Control as="select" 
+                            className="mb-3" 
+                            name="method"
+                            onChange={onChange}
+                            value={newApi.method}
+                        >
+                            <option value='' >선택</option>
+                            <option value='GET' >GET</option>
+                            <option value='POST'>POST</option>
+                            <option value='PUT'>PUT</option>
+                            <option value='DELETE'>DELETE</option>
+                        </Form.Control> */}
+                        <TextField required id="standard-required" label="API Name"  size="small" fullWidth/>
+                    </Form.Group>
+                </Form.Row>
 
-                <Form.Group controlId="formBasicPassword">
+                <Form.Group controlId="url">
                     <Form.Label>URL</Form.Label>
                     <Form.Control 
                         type="text" 
@@ -83,7 +143,7 @@ const NewForm = () => {
             </Form>
         </Col>
         <Col md={6}>
-            <Form.Group controlId="exampleForm.ControlTextarea1">
+            <Form.Group controlId="description">
                 <Form.Label>Description textarea</Form.Label>
                 <Form.Control as="textarea" 
                     rows="6" 
@@ -96,12 +156,13 @@ const NewForm = () => {
     </Row>
     <Row>
         <Col>
-            <Button variant="primary" onClick={onClick}>
+            <Button variant="primary" onClick={onClick}  block>
                 Submit
             </Button>
         </Col>
     </Row>
+  
     </>);
 
 }
-export default NewForm;
+export default withRouter(NewForm);

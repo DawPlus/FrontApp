@@ -10,12 +10,9 @@ const INITIALIZE_FORM = 'init/INITIALIZE_FORM';
 const CHANGE_FIELD = 'init/CHANGE_FIELD';
 
 
-const [LIST, LIST_SUCCESS, LIST_FAILURE]       = createRequestActionTypes('init/LIST');
-const [NEW, NEW_SUCCESS, NEW_FAILURE]       = createRequestActionTypes('init/NEW');
-const [DELETE, DELETE_SUCCESS, DELETE_FAILURE]       = createRequestActionTypes('init/DELETE');
-
-
-
+const [LIST, LIST_SUCCESS, LIST_FAILURE]              = createRequestActionTypes('init/LIST');
+const [NEW, NEW_SUCCESS, NEW_FAILURE]                 = createRequestActionTypes('init/NEW');
+const [DELETE, DELETE_SUCCESS, DELETE_FAILURE]        = createRequestActionTypes('init/DELETE');
 
 
 
@@ -23,9 +20,10 @@ export const initialize   = createAction(INITIALIZE);
 export const initializeForm   = createAction(INITIALIZE_FORM);
 export const chageField   = createAction(CHANGE_FIELD);
 
+
 export const listAction   = createAction(LIST);
 export const newAction  = createAction(NEW, data => data);
-export const deleteAction  = createAction(DELETE, data => data);
+export const deleteAction  = createAction(DELETE, id => id);
 
 
 
@@ -42,13 +40,11 @@ const initialState = {
     newApi : {
         name :"",
         url : "",
-        description: ""
+        description: "",
+        method  : ""
         
     },
-    delete : {
-        apiId : ""
-    },
-
+   
     message : null,
     status  : null
 };
@@ -82,24 +78,28 @@ const init = handleActions(
     // 
     [NEW_SUCCESS]: (state, {payload : data}) =>({
       ...state,
+      message : data.message,
       newApi : initialState.newApi,
       status : "NEW_SUCCESS"
     }),
     // 
     [NEW_FAILURE]: (state, {payload : data}) =>({
       ...state,
+      message : data.message,
       status : "NEW_FAILURE"
     }),
 
     // 
     [DELETE_SUCCESS]: (state, {payload : data}) =>({
       ...state,
-      DELETE : data.DELETE,
+      delete : initialState.delete,
+      message : data.message,
       status : "DELETE_SUCCESS"
     }),
     // 
     [DELETE_FAILURE]: (state, {payload : data}) =>({
       ...state,
+      message : data.message,
       status : "DELETE_FAILURE"
     }),
 

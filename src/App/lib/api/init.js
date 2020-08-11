@@ -12,7 +12,8 @@ export const newAPI = (data) =>{
 };
 
 // 삭제 
-export const deleteAPI = (data) =>{
-    return client.delete(baseUrl, data);
+export const deleteAPI = (id) =>{
+    console.log(id);
+    return client.delete(`${baseUrl}/${id}`);
 };
 

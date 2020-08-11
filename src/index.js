@@ -16,6 +16,8 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
 import rootReducer, { rootSaga } from './App/modules';
 import {checkTokken} from './App/modules/auth';
+import { SnackbarProvider } from 'notistack';
+
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
@@ -47,8 +49,9 @@ function loadUser() {
 const app = (
     <Provider store={store}>
         <BrowserRouter basename={config.basename}>
-            {/* basename="/datta-able" */}
-            <App />
+            <SnackbarProvider maxSnack={3}>
+              <App />
+            </SnackbarProvider>
         </BrowserRouter>
     </Provider>
 );

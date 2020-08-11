@@ -11,7 +11,7 @@ const NewPage = () => {
         <Aux>  
             <Card>
                 <Card.Header>
-                    <Card.Title as="h5">Basic Component</Card.Title>
+                    <Card.Title as="h5">API 신규등록</Card.Title>
                 </Card.Header>
                 <Card.Body>
               

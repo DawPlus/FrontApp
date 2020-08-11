@@ -24,4 +24,5 @@ const client = axios.create();
   })  
 */
 client.defaults.baseURL = 'http://localhost:8080/api/' 
+//client.defaults.baseURL = 'http://foresthealing113.gabia.io/api/' 
 export default client;
