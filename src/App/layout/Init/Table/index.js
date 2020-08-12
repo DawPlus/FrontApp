@@ -42,6 +42,19 @@ const TableContainer = () => {
         }
     },[dispatch])
 
+
+    const buttonComponent = (id)=>
+        <div style={{textAlign:"center"}}>
+          <IconButton 
+            aria-label="delete" 
+            color="primary" 
+            className="deleteBtn" 
+            onClick={e => showConfirm(e,id)}
+          >
+            <DeleteIcon fontSize="small" />
+        </IconButton>
+       </div> ;
+
     
   useUpdateEffect(() => {
     if(status === null ) return;
@@ -50,17 +63,10 @@ const TableContainer = () => {
 
             case "LIST_SUCCESS" : 
 
-            list.map(it=> it.action = 
-              <div style={{textAlign:"center"}}>
-            <IconButton 
-              aria-label="delete" 
-              color="primary" 
-              className="deleteBtn" 
-              onClick={e => showConfirm(e, it.API_ID)}
-          >
-            <DeleteIcon fontSize="small" />
-          </IconButton>
-          </div> );
+            
+            list.map(it=>  
+                it.action = buttonComponent(it.API_ID)
+            );
           
                     break;
             case "LIST_FAILURE" : 
@@ -107,7 +113,7 @@ const TableContainer = () => {
 
 
 
-  console.log(columns);
+  
     return(<>
         <Confirm
             message ="삭제하시겠습니까?"

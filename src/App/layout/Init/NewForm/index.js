@@ -7,6 +7,13 @@ import { useSnackbar } from 'notistack';
 import { withRouter } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 
+
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+
 const NewForm = ({ history}) => {
     
     const dispatch = useDispatch();
@@ -93,15 +100,15 @@ const NewForm = ({ history}) => {
                 <Form.Row>
                     <Form.Group as={Col} md="6" controlId="apiName">
                         <Form.Label>API Name</Form.Label>
-                        <TextField 
+                        {/* <TextField 
                             required 
                             label="API Name"  
                             margin="dense"
                             variant="outlined"
                             inputProps={{style: {fontSize: 14}}} // font size of input text
                             InputLabelProps={{style: {fontSize: 14}}} // font size of input label
-                            fullWidth/>
-                        {/* <Form.Control 
+                            fullWidth/> */}
+                        <Form.Control 
                             type="text" 
                             placeholder="Enter API Name" 
                             value={name}
@@ -110,11 +117,11 @@ const NewForm = ({ history}) => {
                             />
                         <Form.Text className="text-muted">
                             API Name (Key)
-                        </Form.Text> */}
+                        </Form.Text>
                     </Form.Group>
                     <Form.Group as={Col} md="6" controlId="method">
                         <Form.Label>Method</Form.Label>
-                        {/* <Form.Control as="select" 
+                        <Form.Control as="select" 
                             className="mb-3" 
                             name="method"
                             onChange={onChange}
@@ -125,8 +132,9 @@ const NewForm = ({ history}) => {
                             <option value='POST'>POST</option>
                             <option value='PUT'>PUT</option>
                             <option value='DELETE'>DELETE</option>
-                        </Form.Control> */}
-                        <TextField required id="standard-required" label="API Name"  size="small" fullWidth/>
+                        </Form.Control>
+                      
+                        {/* <TextField required id="standard-required" label="API Name"  size="small" fullWidth/> */}
                     </Form.Group>
                 </Form.Row>
 
@@ -155,9 +163,16 @@ const NewForm = ({ history}) => {
         </Col>
     </Row>
     <Row>
-        <Col>
+        <Col md={6}>
             <Button variant="primary" onClick={onClick}  block>
-                Submit
+                등록
+            </Button>
+        </Col>
+        <Col md={6}>
+         
+        <Button variant="contained" onClick={onClick}  block style={{backgroundColor: "#eaeaea",
+    fontWeight: "bold"}}>
+                취소
             </Button>
         </Col>
     </Row>

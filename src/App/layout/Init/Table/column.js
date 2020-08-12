@@ -2,6 +2,12 @@
   export default 
        [
             {
+                label: '#',
+                field: 'num',
+                width: 40,
+                sort: "disabled"
+            },
+            {
                 label: 'Method',
                 field: 'method',
                 width: 70,

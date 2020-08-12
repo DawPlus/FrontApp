@@ -1,11 +1,18 @@
 import React from 'react';
 import { MDBDataTable  } from 'mdbreact';
 const MuTableComponent = (props) => {
-      const {columns, rows} =  props;
+    const {columns, rows} =  props;
 
+    rows.map((it, idx)=> it.num = 
+        <div style={{textAlign :"center"}}>{idx+1}</div>
+      )
+  
+  
+  
     const datas = {
         columns : columns,
-        rows : rows}
+        rows : rows
+      }
     
         const [datatable, setDatatable] = React.useState({
           columns: [
@@ -506,7 +513,7 @@ const MuTableComponent = (props) => {
             },
           ],
         });
-      console.log(datas);
+      
 
  
       return      <MDBDataTable
