@@ -42,9 +42,9 @@ const ConfirmComponent = (props) => {
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-slide-description">
-                        <div style={messageStyle}>
+                        <span style={messageStyle}>
                             {message}
-                        </div>
+                        </span>
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>

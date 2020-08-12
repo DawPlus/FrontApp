@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {Table} from 'react-bootstrap';
+//import {Table} from 'react-bootstrap';
 import {useDispatch, useSelector } from "react-redux";
 import {listAction , deleteAction, initialize, initializeForm} from "../../../modules/init"
 import { useUpdateEffect } from "react-use";
@@ -7,8 +7,8 @@ import { useSnackbar } from 'notistack';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Confirm from "../../../components/Confirm";
-
-
+import MdbTable from "../../../components/MdbTable";
+import columns from "./column";
 const TableContainer = () => {
 
 
@@ -49,6 +49,19 @@ const TableContainer = () => {
         switch(status){
 
             case "LIST_SUCCESS" : 
+
+            list.map(it=> it.action = 
+              <div style={{textAlign:"center"}}>
+            <IconButton 
+              aria-label="delete" 
+              color="primary" 
+              className="deleteBtn" 
+              onClick={e => showConfirm(e, it.API_ID)}
+          >
+            <DeleteIcon fontSize="small" />
+          </IconButton>
+          </div> );
+          
                     break;
             case "LIST_FAILURE" : 
                   snackBar(message);
@@ -87,6 +100,14 @@ const TableContainer = () => {
     dispatch(deleteAction(deleteId));
   }
 
+
+  
+
+
+
+
+
+  console.log(columns);
     return(<>
         <Confirm
             message ="삭제하시겠습니까?"
@@ -94,11 +115,24 @@ const TableContainer = () => {
             onCancle={()=>{setIsOpen(false)}}
             onAccept={onDelete}
         />
-         <Table responsive>
+
+
+
+
+
+        <MdbTable columns={columns} rows ={list}/>
+
+
+
+
+
+
+
+         {/* <Table responsive>
                 <thead>
                 <tr>
                     <th>#</th>
-                    {/* <th>API ID</th> */}
+                  
                     <th>Method</th>
                     <th>NAME</th>
                     <th>URL</th>
@@ -111,7 +145,7 @@ const TableContainer = () => {
                     
                       <tr key={idx}>
                         <th scope="row">{idx+1}</th>
-                        {/* <td>{item.API_ID}</td> */}
+                  
                         <td>{item.method}</td>
                         <td>{item.NAME}</td>
                         <td>{item.URL}</td>
@@ -130,7 +164,7 @@ const TableContainer = () => {
                     </tr>
                     )}
                 </tbody>
-            </Table>
+            </Table> */}
     </>);
 
 }
