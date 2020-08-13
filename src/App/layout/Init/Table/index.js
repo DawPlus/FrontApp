@@ -126,7 +126,7 @@ const TableContainer = () => {
 
 
 
-        <MdbTable columns={columns} rows ={list}/>
+        <MdbTable columns={columns} rows ={list} rowNum/>
 
 
 

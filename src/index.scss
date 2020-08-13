@@ -358,6 +358,24 @@ table td, table th{white-space: pre-line !important;}
   height: calc(1.8125rem + 2px) !important;
   padding: 0.375rem 1.75rem 0.375rem 0.75rem ;
   line-height: 13px;
+  background:  url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right 0.75rem center/8px 10px
 }
-.mbdTable th{ text-align: center;}
+
 #alert-dialog-slide-description{    min-width: 400px;min-height: 50px;}
+
+.mbdTable .dataTables_scrollHead th{color:#000}
+.mbdTable .mdb-dataTable_scrollBody td{color: #222; font-size: 13px; font-weight: 400;}
+.mbdTable .mdb-dataTable_scrollBody td:first-child{padding-left:20px}
+.mbdTable table thead.mdb-dataTable-head .sorting_desc:after,
+.mbdTable table thead.mdb-dataTable-head .sorting_asc:before,
+.mbdTable table thead.mdb-dataTable-head .sorting:before,
+.mbdTable table thead.mdb-dataTable-head .sorting:after{bottom: 0.9rem;}
+.mbdTable table thead.mdb-dataTable-head tr th:first-child{padding-left : 18px}
+
+.mbdTable table thead.mdb-dataTable-head tr th:first-child.sorting_desc:after,
+.mbdTable table thead.mdb-dataTable-head tr th:first-child.sorting_asc:before,
+.mbdTable table thead.mdb-dataTable-head tr th:first-child.sorting:before,
+.mbdTable table thead.mdb-dataTable-head tr th:first-child.sorting:after{left: 0px;}
+
+.mdb-datatable table tr {border-bottom: 1px solid #d0d0d0;}
+.table td{    border-top: 1px solid #d0d0d0;}

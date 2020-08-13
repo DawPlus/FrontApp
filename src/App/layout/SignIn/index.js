@@ -24,7 +24,7 @@ const SignUp = ({ history }) => {
       if (authrization) {
           sessionStorage.setItem("tokken",tokken);
           console.log('로그인 성공');
-          history.push("/main");
+          history.push("/dashboard/default");
       }
    
     }, [authrization, authError, userInfo, history, tokken, dispatch]);
