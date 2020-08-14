@@ -44,7 +44,7 @@ const initialState = {
         method  : ""
         
     },
-   
+    result : null,
     message : null,
     status  : null
 };
@@ -62,12 +62,17 @@ const init = handleActions(
     
     }),
    // 목록조회 성공
-   [LIST_SUCCESS]: (state, {payload : data}) =>({
-        ...state,
-        message : data.message,
-        list : data.list,
-        status : "LIST_SUCCESS"
-    }),
+   [LIST_SUCCESS]: (state, {payload : {message, data, result} }) =>({
+  
+      ...state,
+      result : result, 
+      message : message,
+      list : data,
+      status : "LIST_SUCCESS"
+  
+   })
+   
+   ,
     // 목록조회 실패
    [LIST_FAILURE]: (state, {payload : data}) =>({
         ...state,

@@ -19,7 +19,7 @@ const NewForm = ({ history}) => {
     const dispatch = useDispatch();
     const {newApi, status, message} = useSelector(state=> state.init);
     const {name, url, description } = newApi;
-    
+    console.log(newApi)
     const { enqueueSnackbar } = useSnackbar();
 
     const snackBar = (text, variant='info') =>{

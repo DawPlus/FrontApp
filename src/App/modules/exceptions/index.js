@@ -31,43 +31,9 @@ export function* exceptionsSaga() {
 }
 
 const initialState = {
-    data : {   
-        columns: [
-                  {
-                    label: 'Exception ID',
-                    field: 'exception_id',
-                    width: 150,
-                    attributes: {
-                      'aria-controls': 'DataTable',
-                      'aria-label': 'Name',
-                    },
-                  },
-                  {
-                    label: 'Title',
-                    field: 'title',
-                    width: 270,
-                  },
-                  {
-                    label: 'Exception Info',
-                    field: 'exceptions',
-                    width: 200,
-                  },
-                  {
-                    label: 'Device_ID',
-                    field: 'device_id',
-                    sort: 'asc',
-                    width: 100,
-                  },
-                  {
-                    label: 'Save Date',
-                    field: 'save_date',
-                    sort: 'desc',
-                    width: 150,
-                  },
-               ],
-        rows: []
-    },
-
+    list : [],
+    message : null,
+    result : null, 
     delete : {
         apiId : ""
     },
@@ -87,14 +53,13 @@ const exceptions = handleActions(
     
     }),
    // 목록조회 성공
-   [LIST_SUCCESS]: (state, {payload : datas}) =>{
+   [LIST_SUCCESS]: (state, {payload : {message, data, result}}) =>{
   
         return {   
           ...state,
-            data : {
-                ...state.data
-                , rows : datas.list
-            },
+            message : message,
+            list    : data,
+            result : result, 
             status : "LIST_SUCCESS"
         }
     },

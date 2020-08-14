@@ -15,10 +15,6 @@ const reducer = (state = initialState, action) => {
 
     switch (action.type) {
         case actionTypes.COLLAPSE_MENU:
-            console.log({
-                ...state,
-                collapseMenu: !state.collapseMenu
-            });
             return {
                 ...state,
                 collapseMenu: !state.collapseMenu

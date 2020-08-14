@@ -9,6 +9,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Confirm from "../../../components/Confirm";
 import MdbTable from "../../../components/MdbTable";
 import columns from "./column";
+
 const TableContainer = () => {
 
 
@@ -17,9 +18,7 @@ const TableContainer = () => {
     const { enqueueSnackbar } = useSnackbar();
     const [isOpen, setIsOpen] = useState(false);
     const [deleteId, setDeleteId] = useState(null);
-
-
-
+    console.log(list)
     const snackBar = (text, variant='info') =>{
       enqueueSnackbar(text,
             {
@@ -37,14 +36,16 @@ const TableContainer = () => {
 
     useEffect(()=>{
         dispatch(listAction());
+      
         return()=>{
             dispatch(initialize());
         }
     },[dispatch])
 
 
-    const buttonComponent = (id)=>
-        <div style={{textAlign:"center"}}>
+    const buttonComponent = (id)=>{
+        
+        return <div style={{textAlign:"center"}}>
           <IconButton 
             aria-label="delete" 
             color="primary" 
@@ -53,22 +54,20 @@ const TableContainer = () => {
           >
             <DeleteIcon fontSize="small" />
         </IconButton>
-       </div> ;
+       </div> };
 
     
   useUpdateEffect(() => {
+    
     if(status === null ) return;
 
         switch(status){
 
             case "LIST_SUCCESS" : 
-
-            
-            list.map(it=>  
-                it.action = buttonComponent(it.API_ID)
-            );
-          
-                    break;
+                list.map(it=>  
+                    it.action = buttonComponent(it.API_ID)
+                );
+                break;
             case "LIST_FAILURE" : 
                   snackBar(message);
                     break;
@@ -90,11 +89,13 @@ const TableContainer = () => {
     return () => { // *OPTIONAL*
       // do something on unmount
     }
-  }) // you can include deps array if necessary
+  },[status]) // you can include deps array if necessary
 
 
 
   const showConfirm = (e, id) => {
+    e.preventDefault();
+    console.log("render");
     setIsOpen(true);
     setDeleteId(id);
   }
@@ -121,18 +122,9 @@ const TableContainer = () => {
             onCancle={()=>{setIsOpen(false)}}
             onAccept={onDelete}
         />
-
-
-
-
-
         <MdbTable columns={columns} rows ={list} rowNum/>
-
-
-
-
-
-
+        
+        
 
          {/* <Table responsive>
                 <thead>

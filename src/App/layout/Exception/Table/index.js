@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
-import { MDBDataTableV5 } from 'mdbreact';
+
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
-import {listAction, initializeForm} from "../../../modules/exceptions";
+import {listAction,initialize, initializeForm} from "../../../modules/exceptions";
+import MbdTable from "../../../components/MdbTable";
+import column from "./column";
 const TableContainer = () => {
   
   const dispatch = useDispatch();
-  const {data, status} = useSelector(state => state.exceptions);
+  const {list, status} = useSelector(state => state.exceptions);
 
 
   useEffect(()=>{
@@ -14,7 +16,8 @@ const TableContainer = () => {
     dispatch(listAction());
 
     return(()=>{
-
+      console.log("뒷정리")
+      dispatch(initialize())
     });
 
   }, [dispatch]);
@@ -26,7 +29,7 @@ const TableContainer = () => {
 
     switch(status){
       case "LIST_SUCCESS": 
-            data.rows.map(it=> it.title = <Link to={`/exception/${it.exception_id}`}>{it.title}</Link> );
+            list.map(it=> it.title = <Link to={`/exception/${it.exception_id}`}>{it.title}</Link> );
           break;
       default : break;
     }
@@ -34,21 +37,15 @@ const TableContainer = () => {
 
 
     dispatch(initializeForm("status"));
-  },[dispatch, status, data.rows])
+    dispatch(initializeForm("message"));
+  },[dispatch, status, list])
 
   // datatable.rows.map(it=> it.name = <Link to={`/exception/${it.age}`}>{it.name}</Link> );
   // console.log(datatable.rows);
 
 
     return(<>
-    
-
-      <MDBDataTableV5 hover 
-            entriesOptions={[5, 20, 25]} 
-            entries={5}
-            pagesAmount={4}
-            data={data} 
-      />
+      <MbdTable columns={column} rows={list} rowNum/>
     
     </>);
 
