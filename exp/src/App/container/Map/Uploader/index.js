@@ -4,14 +4,11 @@ import Button from '@material-ui/core/Button';
 import ImageUploader from "../../../components/imageUploader";
 import {chageField, newAction, listAction, initializeForm} from "../../../../store/modules/map";
 import {Row, Col} from 'react-bootstrap';
-import {  useUpdateEffect} from "react-use";
 const UploaderContainer = () => {
 
     const dispatch = useDispatch();
     const {newInfo, status} = useSelector(state => state.map);
     
-      console.log(1);
-   
     const onChange = (pictureFiles, url ) =>{
         dispatch(chageField({
             form : "newInfo",
@@ -22,13 +19,10 @@ const UploaderContainer = () => {
     }
         
     const fileUpload = ()=>{
-
         if(newInfo.fileInfo === null){
             alert("파일을 선택해 주십시오");
             return;
-        }
-        console.log(newInfo)
-    
+        }        
         dispatch(newAction(newInfo.fileInfo));
     }
     
@@ -36,7 +30,6 @@ const UploaderContainer = () => {
 
     useEffect(()=>{
             if(status === null) return;
-
             switch(status) {
                 case "NEW_SUCCESS" :
                         alert("등록이 완료 되었습니다.");
@@ -74,16 +67,8 @@ const UploaderContainer = () => {
     //     border: "1px solid #d0dbe4",
     //     position:" relative",
     // }
- useUpdateEffect(() => {
-    console.log("update!!!!") // will only show 1 and beyond
-    
-    return () => { // *OPTIONAL*
-      // do something on unmount
-    }
-  }) // you can include deps array if necessary
 
     return(<>
-
             <Row>
                 <Col >
                     <ImageUploader onChange={onChange} />

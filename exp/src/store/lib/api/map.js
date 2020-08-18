@@ -10,11 +10,12 @@ export const list = () =>{
 export const newMap = (file) =>{
     const formData = new FormData();
     formData.append('file', file);
-    return client.post(`${baseUrl}/upload`, formData);
+    return client.post(`${baseUrl}/new`, formData);
 };
 
 // 삭제 
 export const deleteAPI = (data) =>{
-    return client.delete(baseUrl, data);
+    const {file_id, path} = data;
+    return client.post(`${baseUrl}/delete`, {file_id, path});
 };
 

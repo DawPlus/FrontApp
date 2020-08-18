@@ -17,11 +17,6 @@ const TableContainer = () => {
     const dispatch = useDispatch();
     const {list, message, status} = useSelector(state => state.init);
     const { enqueueSnackbar } = useSnackbar();
-    
-    
-
-
-    
     const snackBar = (text, variant='info') =>{
       enqueueSnackbar(text,
             {
