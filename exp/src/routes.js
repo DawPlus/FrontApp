@@ -44,6 +44,8 @@ const ExceptionView =  React.lazy(() => import('./page/exception/view'));
 // 지도관리 
 const mapList =  React.lazy(() => import('./page/map/list'));
 
+// 팀관리 
+const teaamList = React.lazy(()=> import("./page/team/list"))
 const routes = [
     // // Question
     // { path: '/question', exact: true,   name: 'Question List', component: QuestionList },
@@ -64,6 +66,11 @@ const routes = [
     
     // 지도관리 
     { path: '/map', exact: true, name: '지도 관리 ', component: mapList },
+
+    // 팀관리
+    { path: '/team', exact: true, name: '팀관리 ', component: teaamList },
+    
+
     // { path: '/dashboard/default', exact: true, name: 'Default', component: DashboardDefault },
     // { path: '/basic/button', exact: true, name: 'Basic Button', component: UIBasicButton },
     // { path: '/basic/badges', exact: true, name: 'Basic Badges', component: UIBasicBadges },

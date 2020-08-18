@@ -55,6 +55,12 @@ const SideBar = () => {
                                     지도 관리 
                                 </Link>
                             </li>
+                            <li>
+                                <Link to="/team">
+                                    <i className="metismenu-icon pe-7s-rocket"></i>
+                                    팀 관리 
+                                </Link>
+                            </li>
                             <li className="app-sidebar__heading">UI Components</li>
                             <li>
                                 <a href="index.html">

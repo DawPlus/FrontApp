@@ -70,7 +70,7 @@ const ViewContainer = ({history, match}) => {
         return () => {
             dispatch(initialize());
         }
-    }, [dispatch])
+    }, [dispatch, id])
 
 
     return(<>
@@ -87,7 +87,12 @@ const ViewContainer = ({history, match}) => {
             <div className="position-relative row form-group"><label for="device_id" className="col-sm-2 col-form-label">Password</label>
                 <div className="col-sm-10">
                     <input name="device_id" id="device_id" placeholder="password placeholder" type="text" className="form-control" value={device_id}/>
-
+                    </div>
+            </div>
+            <div className="position-relative row form-group">
+                <label for="save_date" className="col-sm-2 col-form-label">등록일</label>
+                <div className="col-sm-10">
+                    <input name="save_date" id="save_date" placeholder="password placeholder" type="text" className="form-control" value={save_date}/>
                     </div>
             </div>
         

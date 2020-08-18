@@ -1,10 +1,7 @@
 import React from 'react'
-// import { useHistory } from 'react-router-dom';
-
 
 
 const TitleContainer = () => {
-    //const history = useHistory();
     
     return(<>
     
@@ -15,11 +12,12 @@ const TitleContainer = () => {
                         <i className="pe-7s-car icon-gradient bg-mean-fruit">
                         </i>
                     </div>
-                    <div>지도 관리 
-                        <div className="page-title-subheading">지도 목록을 조회하고 관리합니다. 
+                    <div>팀 관리 
+                        <div className="page-title-subheading">팀 목록을 조회하고 ScreenShot을 관리합니다. 
                         </div>
                     </div>
                 </div>
+            
             </div>
         </div>
 

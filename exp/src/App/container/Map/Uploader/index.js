@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react"
+import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import Button from '@material-ui/core/Button';
 import ImageUploader from "../../../components/imageUploader";
 import {chageField, newAction, listAction, initializeForm} from "../../../../store/modules/map";
 import {Row, Col} from 'react-bootstrap';
-import { useEffectOnce , useUpdateEffect} from "react-use";
+import {  useUpdateEffect} from "react-use";
 const UploaderContainer = () => {
 
     const dispatch = useDispatch();
     const {newInfo, status} = useSelector(state => state.map);
     
-      
+      console.log(1);
    
     const onChange = (pictureFiles, url ) =>{
         dispatch(chageField({
@@ -28,7 +28,7 @@ const UploaderContainer = () => {
             return;
         }
         console.log(newInfo)
-        return;
+    
         dispatch(newAction(newInfo.fileInfo));
     }
     
@@ -52,15 +52,15 @@ const UploaderContainer = () => {
     },[dispatch, status])
 
 
-    const imgCon ={
-        cursor: "pointer",
-        width: "100%",
-        border: "1px #c4c4c4 solid",
-        padding: "2px",
-        borderRadius: "5px",
-        maxWidth:"300px",
-        margin:"0 auto"
-    }
+    // const imgCon ={
+    //     cursor: "pointer",
+    //     width: "100%",
+    //     border: "1px #c4c4c4 solid",
+    //     padding: "2px",
+    //     borderRadius: "5px",
+    //     maxWidth:"300px",
+    //     margin:"0 auto"
+    // }
 
     // const imgContainer = {
     //     width: "30%",
@@ -94,7 +94,7 @@ const UploaderContainer = () => {
                     </div>
                 </Col> */}
             </Row>
-            <Row style={{marginTop : "10px", textAlign : "right"}}>
+            <Row style={{marginBottom : "15px", textAlign : "right"}}>
                 <Col>   
                     <Button variant="contained" color="primary" onClick={fileUpload}>
                         업로드

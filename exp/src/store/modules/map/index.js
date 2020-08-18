@@ -54,6 +54,14 @@ const map = handleActions(
     }),
    // 목록조회 성공
    [LIST_SUCCESS]: (state, {payload : {data}}) =>{
+     
+     data.map(it=> it.src = "http://localhost:8080"+it.url);
+     data.map(it=> it.thumbnail = "http://localhost:8080"+it.url);
+     data.map(it=> it.thumbnailWidth = 1);
+     data.map(it=> it.thumbnailHeight = 1);
+     data.map(it=> it.caption = "hello");
+     
+     
         return {   
           ...state,
           fileList : data,
