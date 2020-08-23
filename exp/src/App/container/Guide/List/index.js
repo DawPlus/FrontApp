@@ -2,7 +2,7 @@ import React, {  useCallback }  from "react"
 //import Gallery from "react-photo-gallery";
 //import Viewer from "react-viewer";
 import {useLifecycles, useUpdateEffect} from 'react-use';
-import {listAction, initialize, initializeForm, deleteAction} from "../../../../store/modules/map";
+import {listAction, initialize, initializeForm, deleteAction} from "../../../../store/modules/guide";
 import { useSelector, useDispatch } from "react-redux";
 import ImageList from "../../../components/ImageList";
 import { useSnackbar } from "notistack";
@@ -13,7 +13,7 @@ const ListContainer = () => {
     
     // Dispatch
     const dispatch = useDispatch();
-    const {fileList, status, message} = useSelector(state => state.map);
+    const {fileList, status, message} = useSelector(state => state.guide);
     const { enqueueSnackbar } = useSnackbar();
     
     
@@ -35,7 +35,9 @@ const ListContainer = () => {
         if(status === null ) return;
             switch(status){
                 case "LIST_SUCCESS" : 
-                        break;
+                console.log("list")
+                      
+                    break;
                 case "LIST_FAILURE" : 
                       snackBar(message);
                         break;

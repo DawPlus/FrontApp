@@ -56,6 +56,18 @@ const SideBar = () => {
                                 </Link>
                             </li>
                             <li>
+                                <Link to="/guide">
+                                    <i className="metismenu-icon pe-7s-rocket"></i>
+                                    가이드 관리 
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/question">
+                                    <i className="metismenu-icon pe-7s-rocket"></i>
+                                    문제 관리 
+                                </Link>
+                            </li>
+                            <li>
                                 <Link to="/team">
                                     <i className="metismenu-icon pe-7s-rocket"></i>
                                     팀 관리 

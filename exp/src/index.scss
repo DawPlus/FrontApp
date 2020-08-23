@@ -6,7 +6,7 @@
 @import "./assets/scss/generic";
 @import "./assets/scss/authentication";
 @import "./assets/scss/button";
-
+@import "~video-react/styles/scss/video-react"; // or import scss
 @import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css); 
 *{font-family: 'Nanum Barun Gothic'; }
 
@@ -353,3 +353,63 @@ table td, table th{white-space: pre-line !important;}
 
 
 .dataTables_scrollHead{border-top: 1px #3e1d1d solid;border-bottom: 1px #3e1d1d solid;margin-top: 10px;}
+
+
+#checkBoxArea{
+  .onoffswitch {
+    position: relative; width: 90px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #FFFFFF; border-radius: 13px;
+}
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    font-size: 13px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+    content: "객관식";
+    padding-left: 11px;
+    background-color: #1976d2; color: #FFFFFF;
+}
+.onoffswitch-inner:after {
+    content: "주관식";
+    padding-right: 11px;
+    background-color: #1976d2; color: #FFFFFF;
+    text-align: right;
+}
+.onoffswitch-switch {
+    display: block; width: 15px; margin: 7.5px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 56px;
+    border: 2px solid #FFFFFF; border-radius: 13px;
+    transition: all 0.3s ease-in 0s; 
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px; 
+}
+}
+
+.card-title{text-transform: uppercase;
+  color: rgba(13,27,62,0.7);
+  font-weight: bold !important;
+  font-size: .88rem;
+}
+.card .card-block, .card .card-body {
+  padding: 15px 20px;
+}

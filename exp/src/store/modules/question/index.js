@@ -5,6 +5,7 @@ import createRequestSaga, {createRequestActionTypes} from '../../lib/createReque
 // import * as API from '../lib/api/question';
 import * as FILE from "../../lib/api/file";
 import * as Util from "../../Util/array";
+
 const INITIALIZE = 'question/INITIALIZE';
 const INITIALIZE_FORM = 'question/INITIALIZE_FORM';
 const INITIALIZE_RADIO = 'question/INITIALIZE_RADIO';
@@ -49,7 +50,7 @@ export function* questionSaga() {
 const initialState = {
     title : "",
     content :"",
-    type : false,
+    type : true,
     mapFile : null,
     hintFile : null,
     mapImage : null,

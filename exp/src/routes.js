@@ -44,6 +44,15 @@ const ExceptionView =  React.lazy(() => import('./page/exception/view'));
 // 지도관리 
 const mapList =  React.lazy(() => import('./page/map/list'));
 
+// 가이드관리
+const guideList = React.lazy(() => import('./page/guide/list'));
+
+// 문제관리
+const questionList = React.lazy(() => import('./page/question/list'));
+const questionNew = React.lazy(() => import('./page/question/new'));
+
+
+
 // 팀관리 
 const teaamList = React.lazy(()=> import("./page/team/list"))
 const routes = [
@@ -55,20 +64,26 @@ const routes = [
     // { path: '/map', exact: true, name: '지도관리 ', component: MapList },
 
     // API 관리 
-    { path: '/init', exact: true, name: 'API 관리  ', component: initList },
-    { path: '/init/new', exact: true, name: 'API 등록 ', component: initNew },
-    { path: '/init/:id', exact: true, name: 'API 상세 ', component: initView },
+    { path: '/init',        exact: true, name: 'API관리  ', component: initList },
+    { path: '/init/new',    exact: true, name: 'API등록 ', component: initNew },
+    { path: '/init/:id',    exact: true, name: 'API상세 ', component: initView },
 
     // Exception 관리 
-    { path: '/exception', exact: true, name: 'Exception 관리 ', component: ExceptionList },
-    { path: '/exception/:id', exact: true, name: 'Exception 상세 ', component: ExceptionView },
-
+    { path: '/exception',   exact: true, name: 'Exception관리 ', component: ExceptionList },
+    { path: '/exception/:id', exact: true, name: 'Exception상세 ', component: ExceptionView },
     
     // 지도관리 
-    { path: '/map', exact: true, name: '지도 관리 ', component: mapList },
+    { path: '/map',         exact: true, name: '지도관리 ', component: mapList },
+
+    // 가이드관리
+    { path: '/guide',       exact: true, name: '가이드관리 ', component: guideList },
 
     // 팀관리
-    { path: '/team', exact: true, name: '팀관리 ', component: teaamList },
+    { path: '/team',        exact: true, name: '팀관리 ', component: teaamList },
+    
+    // 문제관리
+    { path: '/question',        exact: true, name: '문제관리 ', component: questionList },
+    { path: '/question/new',    exact: true, name: '문제등록 ', component: questionNew },
     
 
     // { path: '/dashboard/default', exact: true, name: 'Default', component: DashboardDefault },

@@ -1,13 +1,13 @@
 import React, {  useCallback }  from "react"
-//import Gallery from "react-photo-gallery";
-//import Viewer from "react-viewer";
 import {useLifecycles, useUpdateEffect} from 'react-use';
-import {listAction, initialize, initializeForm, deleteAction} from "../../../../store/modules/map";
+import {listAction
+        , initialize
+        , initializeForm
+        , deleteAction} from "../../../../store/modules/map";
 import { useSelector, useDispatch } from "react-redux";
 import ImageList from "../../../components/ImageList";
 import { useSnackbar } from "notistack";
 
-//import RenderComponent from "../../../components/ImageRender";
 
 const ListContainer = () => {
     
