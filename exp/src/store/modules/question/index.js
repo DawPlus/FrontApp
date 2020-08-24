@@ -3,8 +3,10 @@ import produce from 'immer';
 import { takeLatest } from 'redux-saga/effects';
 import createRequestSaga, {createRequestActionTypes} from '../../lib/createRequestSaga';
 // import * as API from '../lib/api/question';
-import * as FILE from "../../lib/api/file";
 import * as Util from "../../Util/array";
+import{list as mapList} from "../../lib/api/map"
+
+
 
 const INITIALIZE = 'question/INITIALIZE';
 const INITIALIZE_FORM = 'question/INITIALIZE_FORM';
@@ -12,17 +14,16 @@ const INITIALIZE_RADIO = 'question/INITIALIZE_RADIO';
 const CHANGE_FIELD = 'question/CHANGE_FIELD';
 const CHANGE_FIELD_FORM = 'question/CHANGE_FIELD_FORM';
 const CHANGE_FIELD_LIST = 'question/CHANGE_FIELD_LIST';
-// 맵파일 업로드 
-const [MAP_UPLOAD, MAP_UPLOAD_SUCCESS, MAP_UPLOAD_FAILURE] = createRequestActionTypes('question/MAP_UPLOAD');
-
-// 힌트파일 업로드 
-const [HINT_UPLOAD, HINT_UPLOAD_SUCCESS, HINT_UPLOAD_FAILURE] = createRequestActionTypes('question/HINT_UPLOAD');
 
 //const [LIST, LIST_SUCCESS, LIST_FAILURE]   = createRequestActionTypes('question/LIST');
 
 // 상세보기
 //const [VIEW, VIEW_SUCCES, VIEW_FAILURE]  = createRequestActionTypes('question/VIEW');  
-const VIEW = 'question/VIEW';
+//const VIEW = 'question/VIEW';
+
+const [MAP_LIST, MAP_LIST_SUCCESS, MAP_LIST_FAILURE]   = createRequestActionTypes('question/MAP_LIST');
+
+
 
 //export const list             = createAction(LIST);
 export const initialize       = createAction(INITIALIZE);
@@ -33,16 +34,12 @@ export const changeFieldList  = createAction(CHANGE_FIELD_LIST);
 export const initializeRadio  = createAction(INITIALIZE_RADIO);
 
 
-export const mapFileUpload    = createAction(MAP_UPLOAD ,  (file) => (file));
-export const hintFileUpload   = createAction(HINT_UPLOAD ,  (file) => (file));
-
-export const view   = createAction(VIEW, id=> {console.log(id)});
-
+export const mapListAction  = createAction(MAP_LIST);
 
 export function* questionSaga() {
   //yield takeLatest(LIST,        createRequestSaga(LIST, API.list));
-  yield takeLatest(MAP_UPLOAD,  createRequestSaga(MAP_UPLOAD, FILE.upload));
-  yield takeLatest(HINT_UPLOAD,  createRequestSaga(HINT_UPLOAD, FILE.upload));
+  yield takeLatest(MAP_LIST,  createRequestSaga(MAP_LIST, mapList));
+  
 
 
 }
@@ -51,7 +48,7 @@ const initialState = {
     title : "",
     content :"",
     type : true,
-    mapFile : null,
+    mapUrl : null,
     hintFile : null,
     mapImage : null,
     hintImage : null,
@@ -63,6 +60,10 @@ const initialState = {
         {content : "" , isTrue : false},
     ],
     singleExample : "",
+
+    mapList :[],
+    result : null,
+    message : null,
     status : null
 };
 
@@ -90,9 +91,6 @@ const question = handleActions(
         examples : state.examples.map(item => {return {...item,  isTrue : false}})
       })
     },
-    
-
-
     [INITIALIZE]: (state) => initialState,
 
     [INITIALIZE_FORM]: (state, { payload: form }) => ({
@@ -100,38 +98,27 @@ const question = handleActions(
       [form]: initialState[form],
     
     }),
-    [MAP_UPLOAD_SUCCESS] : (state , {payload : data}) =>({
-        ...state,
-        mapImage : data.filePath,
-        status : "MAP_UPLOAD_SUCCESS"
-    }),
 
-    [MAP_UPLOAD_FAILURE] : (state , {payload : data}) =>({
+    // 맵목록 조회 
+    [MAP_LIST_SUCCESS]: (state, {payload : {data, message, result}}) =>{
+      return {   
         ...state,
-        status : "MAP_UPLOAD_FAILURE"
-    }),
-    [HINT_UPLOAD_SUCCESS] : (state , {payload : data}) =>({
-      ...state,
-      hintImage : data.filePath,
-      status : "HINT_UPLOAD_SUCCESS"
-    }),
+          mapList : data,
+          mesage :  message,
+          result : result,
+          status : "MAP_LIST_SUCCESS"
+      }
+      },
+      // 맵목록 조회 실패
+      [MAP_LIST_FAILURE]: (state, {payload : {message, result}}) =>({
+          ...state,
+          message : message,
+          result : result,
+          status : "MAP_LIST_FAILURE"
+      }),
+  
 
-    [HINT_UPLOAD_FAILURE] : (state , {payload : data}) =>({
-        ...state,
-        status : "HINT_UPLOAD_FAILURE"
-    }),
    
-    [HINT_UPLOAD_FAILURE] : (state , {payload : data}) =>({
-      ...state,
-      status : "HINT_UPLOAD_FAILURE"
-    }),
-    [VIEW]  :(state ) =>({
-      ...state,
-      title : "테스트 데이터입니다.",
-      content :"테스트 콘텐츠 입니다. ",
-      type : true,
-      status : "HINT_UPLOAD_FAILURE"
-    }),
 
    },
   initialState

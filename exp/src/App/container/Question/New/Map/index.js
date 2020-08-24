@@ -1,30 +1,49 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { Row,  Col} from 'react-bootstrap';
 import ImageViewer from "../../../../components/ImageViewer";
-
+import { useSelector, useDispatch } from 'react-redux';
+import { useMount } from 'react-use';
+import {mapListAction, changeField } from "../../../../../store/modules/question";
+import config from "../../../../../config";
 const MapContainer = () => {
 
+    const dispatch = useDispatch();
+    const {mapList} = useSelector(state=> state.question);
+    const [image , setimage] = useState(null);
+    
+    useMount(() => {
+        dispatch(mapListAction());
+    });    
+    
+    const onChange =e => {
+        // image Viewer 셋팅 
+        setimage(e.target.value === "" ? null : e.target.value);
+        dispatch(
+            changeField({
+                key : e.target.name,
+                value : e.target.value
+            })
+        );
+    }
 
     return(<>
           <Row>
             <Col>
             <div class="position-relative form-group">
-                <label for="exampleSelect" class="">Select</label>
-                <select name="select" id="exampleSelect" class="form-control">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                <select name="mapUrl" id="mapUrl" class="form-control" onChange={onChange}>
+                    <option value="">선택</option>
+                    {mapList.map(item=>
+                    <option value={config.baseURL+item.url}>{item.original_name}</option>
+                    )}
                 </select>
             </div>
             </Col>
                 
         </Row>
-        <Row>
+        <Row className="questionViewer">
             <Col>
-            <ImageViewer src={null}/>
+            <ImageViewer src={image}/>
             </Col>
         </Row>
     

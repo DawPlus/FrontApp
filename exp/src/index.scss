@@ -413,3 +413,7 @@ table td, table th{white-space: pre-line !important;}
 .card .card-block, .card .card-body {
   padding: 15px 20px;
 }
+//react-viewer Transration 삭제 
+.react-viewer-transition{transition: none 0s ease 0s !important; }
+.questionViewer img{width : 100%; cursor: pointer;}
+// .video-react-video{max-height:90%}
