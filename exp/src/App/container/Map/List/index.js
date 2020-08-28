@@ -43,7 +43,7 @@ const ListContainer = () => {
                     window.$('.close_1x3s325').trigger("click");
                     snackBar(message);
                     dispatch(listAction());
-                    console.log("delete")
+                    
                     break;
                 case "DELETE_FAILURE" : 
                     snackBar(message);

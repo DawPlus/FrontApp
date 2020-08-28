@@ -18,18 +18,19 @@ const VideoContainer = () => {
     },[dispatch])
 
     const onChange = e => {
+        console.log(e.target.value);
         setPlay(config.baseURL+"/static/video/"+e.target.value);
     }
 
     return(<>
         <Row>
             <Col>   
-                <div class="position-relative form-group">
-                    <select name="select" id="exampleSelect" class="form-control"
+                <div className="position-relative form-group">
+                    <select name="select" id="exampleSelect" className="form-control"
                             onChange={onChange}
                     >
                         <option>선택</option>
-                        {fileList.map(item=><option>{item}</option>)}
+                        {fileList.map((item,idx)=><option key={idx}>{item}</option>)}
                     </select>
                 </div> 
             </Col>

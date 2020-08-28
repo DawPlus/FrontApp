@@ -4,16 +4,16 @@ import { Row,  Col} from 'react-bootstrap';
 import ImageViewer from "../../../../components/ImageViewer";
 import { useSelector, useDispatch } from 'react-redux';
 import { useMount } from 'react-use';
-import {mapListAction, changeField } from "../../../../../store/modules/question";
+import {guideListAction, changeField } from "../../../../../store/modules/question";
 import config from "../../../../../config";
 const MapContainer = () => {
 
     const dispatch = useDispatch();
-    const {mapList} = useSelector(state=> state.question);
+    const {guideList} = useSelector(state=> state.question);
     const [image , setimage] = useState(null);
     
     useMount(() => {
-        dispatch(mapListAction());
+        dispatch(guideListAction());
     });    
     
     const onChange =e => {
@@ -33,7 +33,7 @@ const MapContainer = () => {
             <div className="position-relative form-group">
                 <select name="mapUrl" id="mapUrl" className="form-control" onChange={onChange}>
                     <option value="">선택</option>
-                    {mapList.map((item, idx)=>
+                    {guideList.map((item, idx)=>
                     <option key={idx} value={config.baseURL+item.url}>{item.original_name}</option>
                     )}
                 </select>
@@ -41,9 +41,9 @@ const MapContainer = () => {
             </Col>
                 
         </Row>
-        <Row className="questionViewer" id="guideViewer">
+        <Row className="questionViewer">
             <Col>
-            <ImageViewer src={image} container={document.querySelector("#guideViewer")}/>
+            <ImageViewer src={image}/>
             </Col>
         </Row>
     

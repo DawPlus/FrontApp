@@ -9,30 +9,29 @@ const Toggle = () => {
   const {type} = useSelector(state=> state.question);
 
   const test = e => {
-      console.log(e.target.checked)
       dispatch(changeField({
           key : e.target.name,
           value : e.target.checked
       }))
   }
-  console.log(type)
+  
 
     return(<>
         <div id="checkBoxArea">
-            <div class="onoffswitch">
+            <div className="onoffswitch">
                 <input 
                   type="checkbox" 
                   name="type" 
-                  class="onoffswitch-checkbox" 
+                  className="onoffswitch-checkbox" 
                   id="myonoffswitch" 
                   tabIndex="0" 
                   value={type} 
                   onChange={test}
                   checked={type}
                 />
-                <label class="onoffswitch-label" for="myonoffswitch">
-                    <span class="onoffswitch-inner"></span>
-                    <span class="onoffswitch-switch"></span>
+                <label className="onoffswitch-label" htmlFor="myonoffswitch">
+                    <span className="onoffswitch-inner"></span>
+                    <span className="onoffswitch-switch"></span>
                 </label>
             </div>
         </div>

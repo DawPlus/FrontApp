@@ -23,7 +23,7 @@ const InfoContainer = (props) => {
             <Row>
                 <Col>
                     <div className="position-relative form-group">
-                        <label for="exampleEmail" className="">제목</label>
+                        <label htmlFor="exampleEmail" className="">제목</label>
                         <TextField
                             id="standard-full-width"
                             label="제목을 입력해 주십시오"
@@ -39,7 +39,7 @@ const InfoContainer = (props) => {
             <Row>
                 <Col>         
                     <div className="position-relative form-group">
-                        <label for="exampleText" className="">내용</label>
+                        <label htmlFor="exampleText" className="">내용</label>
                         <TextField
                             id="standard-full-width"
                             label="내용을 입력해 주십시오"

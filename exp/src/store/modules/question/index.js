@@ -4,14 +4,15 @@ import { takeLatest } from 'redux-saga/effects';
 import createRequestSaga, {createRequestActionTypes} from '../../lib/createRequestSaga';
 // import * as API from '../lib/api/question';
 import * as Util from "../../Util/array";
+
 import{list as mapList} from "../../lib/api/map"
+import{list as guideList} from "../../lib/api/guide"
 
 
-
-const INITIALIZE = 'question/INITIALIZE';
-const INITIALIZE_FORM = 'question/INITIALIZE_FORM';
-const INITIALIZE_RADIO = 'question/INITIALIZE_RADIO';
-const CHANGE_FIELD = 'question/CHANGE_FIELD';
+const INITIALIZE        = 'question/INITIALIZE';
+const INITIALIZE_FORM   = 'question/INITIALIZE_FORM';
+const INITIALIZE_RADIO  = 'question/INITIALIZE_RADIO';
+const CHANGE_FIELD      = 'question/CHANGE_FIELD';
 const CHANGE_FIELD_FORM = 'question/CHANGE_FIELD_FORM';
 const CHANGE_FIELD_LIST = 'question/CHANGE_FIELD_LIST';
 
@@ -23,6 +24,7 @@ const CHANGE_FIELD_LIST = 'question/CHANGE_FIELD_LIST';
 
 const [MAP_LIST, MAP_LIST_SUCCESS, MAP_LIST_FAILURE]   = createRequestActionTypes('question/MAP_LIST');
 
+const [GUIDE_LIST, GUIDE_LIST_SUCCESS, GUIDE_LIST_FAILURE]   = createRequestActionTypes('question/GUIDE_LIST');
 
 
 //export const list             = createAction(LIST);
@@ -33,12 +35,13 @@ export const changeFieldForm  = createAction(CHANGE_FIELD_FORM);
 export const changeFieldList  = createAction(CHANGE_FIELD_LIST);
 export const initializeRadio  = createAction(INITIALIZE_RADIO);
 
-
 export const mapListAction  = createAction(MAP_LIST);
+export const guideListAction  = createAction(GUIDE_LIST);
 
 export function* questionSaga() {
   //yield takeLatest(LIST,        createRequestSaga(LIST, API.list));
   yield takeLatest(MAP_LIST,  createRequestSaga(MAP_LIST, mapList));
+  yield takeLatest(GUIDE_LIST,  createRequestSaga(GUIDE_LIST, guideList));
   
 
 
@@ -49,19 +52,18 @@ const initialState = {
     content :"",
     type : true,
     mapUrl : null,
-    hintFile : null,
-    mapImage : null,
-    hintImage : null,
+    guideUrl : null,
     examples : [
-        {content : "" , isTrue : false},
-        {content : "" , isTrue : false},
-        {content : "" , isTrue : false},
-        {content : "" , isTrue : false},
-        {content : "" , isTrue : false},
+        {content : "" , isAnswer : false},
+        {content : "" , isAnswer : false},
+        {content : "" , isAnswer : false},
+        {content : "" , isAnswer : false},
+        {content : "" , isAnswer : false},
     ],
     singleExample : "",
 
     mapList :[],
+    guideList :[],
     result : null,
     message : null,
     status : null
@@ -117,6 +119,23 @@ const question = handleActions(
           status : "MAP_LIST_FAILURE"
       }),
   
+      // 가이드 목록 조회 
+      [GUIDE_LIST_SUCCESS]: (state, {payload : {data, message, result}}) =>{
+        return {   
+          ...state,
+            guideList : data,
+            mesage :  message,
+            result : result,
+            status : "GUIDE_LIST_SUCCESS"
+        }
+        },
+        // 가이드 목록 조회 실패
+        [GUIDE_LIST_FAILURE]: (state, {payload : {message, result}}) =>({
+            ...state,
+            message : message,
+            result : result,
+            status : "GUIDE_LIST_FAILURE"
+        }),
 
    
 

@@ -3,7 +3,7 @@ import Viewer from "react-viewer";
 import NoImage  from "../../assets/images/doh.png";
 const ImageViewer = (props) => {
 
-    const {src, alt} = props
+    const {src, alt, container} = props
     const [visible , setVisible] = useState(false);
     const showMap = () => {
         setVisible(true);
@@ -20,6 +20,7 @@ const ImageViewer = (props) => {
             noImgDetails={true}
             noNavbar={true}
             visible={visible}
+            container={container}
             onClose={()=>{setVisible(false)} }
             images={[{src:src === null ? NoImage :  src, alt: alt}]}
         />

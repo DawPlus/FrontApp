@@ -2,9 +2,23 @@ import React from 'react'
 import TextField from '@material-ui/core/TextField';
 
 import {Row,  Col} from 'react-bootstrap';
-// import {useDispatch, useSelector} from "react-redux";
+
+import {useDispatch, useSelector} from "react-redux";
+import {changeField} from "../../../../../../store/modules/question";
 
 const SingeContainer = () => {
+
+    const dispatch = useDispatch();
+    const {singleExample} = useSelector(state=>state.question);
+
+    const onChange = e => {
+
+        dispatch(changeField({
+            key : e.target.name,
+            value : e.target.value
+
+        }));
+    }
 
 
     return(<>
@@ -23,6 +37,9 @@ const SingeContainer = () => {
                             variant="outlined"
                             margin="normal"
                             size="small"
+                            value={singleExample}
+                            name="singleExample"
+                            onChange={onChange}
                             />
                     </div>
                 </Col>

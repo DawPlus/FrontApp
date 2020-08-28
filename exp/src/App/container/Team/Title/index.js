@@ -4,7 +4,6 @@ import React from 'react'
 const TitleContainer = () => {
     
     return(<>
-    
          <div className="app-page-title">
             <div className="page-title-wrapper">
                 <div className="page-title-heading">
