@@ -14,6 +14,7 @@ const MultiContainer = () => {
         }));
     }
     return(<>
+            <p>※ 정답은 CheckBox 를 선택해 주십시오</p>
             {examples.map((item, idx)=>
                 <div className="input-group" key={idx}  style={{margin:"3px 0px"}}>
                     <div className="input-group-prepend">

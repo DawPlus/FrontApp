@@ -51,8 +51,9 @@ const initialState = {
     title : "",
     content :"",
     type : true,
-    mapUrl : null,
-    guideUrl : null,
+    map : null,
+    guide : null,
+    video: null,
     examples : [
         {content : "" , isAnswer : false},
         {content : "" , isAnswer : false},
@@ -61,6 +62,26 @@ const initialState = {
         {content : "" , isAnswer : false},
     ],
     singleExample : "",
+
+
+
+    new : {
+        title : "",
+        content : "",
+        type : null ,
+        map : null,
+        guide : null,
+        video : null ,
+        examples : [
+          {content : "" , isAnswer : false},
+          {content : "" , isAnswer : false},
+          {content : "" , isAnswer : false},
+          {content : "" , isAnswer : false},
+          {content : "" , isAnswer : false},
+      ],
+      singleExample : ""
+    },
+
 
     mapList :[],
     guideList :[],

@@ -12,7 +12,7 @@ const NewPage = ()=>{
         <Title/>
         <Toggle/>
         <Row>
-            <Col>
+            <Col md={6}>
                 <div className="main-card mb-3 card">
                     <div className="card-body">
                             <h5 className="card-title">Info</h5>
@@ -21,9 +21,7 @@ const NewPage = ()=>{
                     </div>
                 </div>
             </Col>
-        </Row>
-        <Row>
-            <Col>
+            <Col md={6}>
                 <div className="main-card mb-3 card">
                     <div className="card-body">
                             <h5 className="card-title">Example</h5>

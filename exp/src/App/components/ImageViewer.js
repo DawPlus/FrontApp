@@ -11,7 +11,7 @@ const ImageViewer = (props) => {
 
     return(<>
         <img 
-            src={src === null ? NoImage :  src} 
+            src={src === null || src===""  ? NoImage :  src} 
             alt={alt}
             className="imageView"
             onClick={showMap}   
@@ -21,7 +21,7 @@ const ImageViewer = (props) => {
             noNavbar={true}
             visible={visible}
             container={container}
-            onClose={()=>{setVisible(false)} }
+            onClose={()=>{window.$('body').css("overflow",""); setVisible(false)} }
             images={[{src:src === null ? NoImage :  src, alt: alt}]}
         />
 
