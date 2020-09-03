@@ -18,6 +18,7 @@ const ImageRenderer = (props) => {
 
     const { index, photo,  onClick, onDeleteClick} = props;
 
+    console.log(photo.width, "<=")
     const handleOnClick = e => {
         onClick(e, {photo, index});
     };

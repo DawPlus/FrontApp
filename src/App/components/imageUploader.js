@@ -2,17 +2,7 @@ import React  from "react";
 import ImageUploader from "react-images-upload"
 
 const ImageUploaderComponent = (props) => {
-
     const {onChange} =  props;
-    
-    
-   
-    // const onDrop = useCallback( (e) => {
-    //     console.log(e[0]);
-    //         //setPicktures(pictureFiles);
-    //    }, []);
-
-
 return(<>
 
             <ImageUploader
@@ -24,7 +14,7 @@ return(<>
                 singleImage={true}
                 withPreview={true}
                 fileContainerStyle={{
-                    maxWidth: "400px",
+                    maxWidth: "600px",
                     margin:" 20px auto"}
 
                 }

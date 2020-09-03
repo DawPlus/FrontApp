@@ -1,14 +1,14 @@
 import React from "react";
 import {Card} from 'react-bootstrap';
-import Aux from "../../hoc/_Aux";
-import NewForm from "../../App/layout/Init/NewForm";
 
+import NewForm from "../../App/container/Init/NewForm";
+import Title from "../../App/container/Init/Title";
 
 const NewPage = () => {
 
 
     return(<>    
-        <Aux>  
+            <Title/>
             <Card>
                 <Card.Header>
                     <Card.Title as="h5">API 신규등록</Card.Title>
@@ -19,7 +19,7 @@ const NewPage = () => {
                  
                 </Card.Body>
             </Card>
-        </Aux>
+
     </>);
 
 }

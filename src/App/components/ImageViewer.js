@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Viewer from "react-viewer";
-import NoImage  from "../../assets/images/noImage.jpg";
+import NoImage  from "../../assets/images/doh.png";
 const ImageViewer = (props) => {
 
-    const {src, alt} = props
+    const {src, alt, container} = props
     const [visible , setVisible] = useState(false);
     const showMap = () => {
         setVisible(true);
@@ -11,7 +11,7 @@ const ImageViewer = (props) => {
 
     return(<>
         <img 
-            src={src === null ? NoImage :  src} 
+            src={src === null || src===""  ? NoImage :  src} 
             alt={alt}
             className="imageView"
             onClick={showMap}   
@@ -20,7 +20,8 @@ const ImageViewer = (props) => {
             noImgDetails={true}
             noNavbar={true}
             visible={visible}
-            onClose={()=>{setVisible(false)} }
+            container={container}
+            onClose={()=>{window.$('body').css("overflow",""); setVisible(false)} }
             images={[{src:src === null ? NoImage :  src, alt: alt}]}
         />
 

@@ -1,47 +1,14 @@
+@import "~bootstrap/dist/css/bootstrap";
+@import "./assets/scss/variables";
+@import "./assets/scss/menu-lite";
+@import "./assets/scss/widget";
+@import "./assets/scss/general";
+@import "./assets/scss/generic";
+@import "./assets/scss/authentication";
+@import "./assets/scss/button";
+@import "~video-react/styles/scss/video-react"; // or import scss
 @import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css); 
 *{font-family: 'Nanum Barun Gothic'; }
-#regForm {
-    label {
-        display: inline-block;
-        margin-bottom: 0px;
-    }
-}
-button {
-    outline:  0 !important;
-}
-img.imageView{
-    cursor: pointer;
-    width: 100%;
-    height: 152px;
-    margin-top: 10px;
-    border: 1px #c4c4c4 solid;
-    padding: 2px;
-    border-radius: 5px;
-    
-}
-.pcoded-header{
-    z-index: 999;
-}
- .custom-file-input, .custom-file-label{
-    z-index: 0 !important;
-}
-img.imageView:hover { 
-    box-shadow: 0.5px 0.5px 0.5px 0.5px darkgrey;
-}
-.react-viewer-mask{z-index: 1029  !important;}
-.react-viewer-canvas{z-index:1030 !important;}
-.react-viewer-footer{z-index:1030 !important;}
-.react-viewer-btn{
-    z-index: 1031  !important;
-}
-
-
-.answer_list {
-  padding: 25px 10px;
-  border: 1px #c4c4c4 solid !important;
-  border-radius: 5px !important;
-}
-
 
 .error {
     color: #5a5c69;
@@ -340,10 +307,11 @@ img.imageView:hover {
     clip: rect(0, 900px, 0, 0);
     animation: noise-anim-2 3s infinite linear alternate-reverse;
   }
-  
-  .mdb-dataTable tbody a { color : #3f51b5; font-weight: bold;}
-  .mdb-dataTable tbody a:hover { color : tomato; text-decoration: underline;}
-  .m-header{z-index: 5;}
+ 
+
+.mdb-dataTable tbody a { color : #3f51b5; font-weight: bold;}
+.mdb-dataTable tbody a:hover { color : tomato; text-decoration: underline;}
+.m-header{z-index: 5;}
 
 button.deleteBtn{padding:2px; border-radius: 5px;}
 button.deleteBtn:hover{background-color: #dfe1e3;}
@@ -360,6 +328,9 @@ table td, table th{white-space: pre-line !important;}
   line-height: 13px;
   background:  url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right 0.75rem center/8px 10px
 }
+
+.app-container{min-height: 763px; min-width: 485px;}
+
 
 #alert-dialog-slide-description{    min-width: 400px;min-height: 50px;}
 
@@ -379,3 +350,70 @@ table td, table th{white-space: pre-line !important;}
 
 .mdb-datatable table tr {border-bottom: 1px solid #d0d0d0;}
 .table td{    border-top: 1px solid #d0d0d0;}
+
+
+.dataTables_scrollHead{border-top: 1px #3e1d1d solid;border-bottom: 1px #3e1d1d solid;margin-top: 10px;}
+
+
+#checkBoxArea{
+  .onoffswitch {
+    position: relative; width: 90px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #FFFFFF; border-radius: 13px;
+}
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    font-size: 13px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+    content: "객관식";
+    padding-left: 11px;
+    background-color: #1976d2; color: #FFFFFF;
+}
+.onoffswitch-inner:after {
+    content: "주관식";
+    padding-right: 11px;
+    background-color: #1976d2; color: #FFFFFF;
+    text-align: right;
+}
+.onoffswitch-switch {
+    display: block; width: 15px; margin: 7.5px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 56px;
+    border: 2px solid #FFFFFF; border-radius: 13px;
+    transition: all 0.3s ease-in 0s; 
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px; 
+}
+}
+
+.card-title{text-transform: uppercase;
+  color: rgba(13,27,62,0.7);
+  font-weight: bold !important;
+  font-size: .88rem;
+}
+.card .card-block, .card .card-body {
+  padding: 15px 20px;
+}
+//react-viewer Transration 삭제 
+.react-viewer-transition{transition: none 0s ease 0s !important; }
+.questionViewer img{width : 100%; cursor: pointer;}
+// .video-react-video{max-height:90%}

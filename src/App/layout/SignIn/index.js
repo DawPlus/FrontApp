@@ -1,15 +1,14 @@
 import React,{useEffect} from 'react';
-import './../../../assets/scss/style.scss';
-import Aux from "../../../hoc/_Aux";
-
 import {useDispatch , useSelector} from "react-redux";
-import Breadcrumb from "../AdminLayout/Breadcrumb";
 import {withRouter}  from 'react-router-dom';
-import {login ,changeField, initializeForm} from "../../modules/auth"
 import TextField from '@material-ui/core/TextField';
+import { useHistory } from "react-router-dom";
 
-const SignUp = ({ history }) => {
+import {login ,changeField, initializeForm} from "../../../store/modules/auth";
+import config from "../../../config";
 
+const SignUp = () => {
+    const history = useHistory();
     const dispatch = useDispatch();
     const {loginInfo, authrization, tokken, userInfo, authError } = useSelector(state => state.auth);
     
@@ -23,10 +22,9 @@ const SignUp = ({ history }) => {
       }
       if (authrization) {
           sessionStorage.setItem("tokken",tokken);
-          console.log('로그인 성공');
-          history.push("/dashboard/default");
+          console.log('로그인 성공');  
+          history.push(config.defaultPath);
       }
-   
     }, [authrization, authError, userInfo, history, tokken, dispatch]);
   
 
@@ -45,9 +43,8 @@ const SignUp = ({ history }) => {
         e.preventDefault();
           dispatch(login(loginInfo));
       }
-        return(
-            <Aux>
-                <Breadcrumb/>
+        return(<>
+           
                 <div className="auth-wrapper">
                     <div className="auth-content">
                         <div className="auth-bg">
@@ -107,8 +104,8 @@ const SignUp = ({ history }) => {
                         </div>
                     </div>
                 </div>
-            </Aux>
-        );
+         
+        </>);
  
 }
 

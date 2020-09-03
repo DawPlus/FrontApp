@@ -1,23 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
-
 import App from './App/index';
-import * as serviceWorker from './serviceWorker';
 import '@fortawesome/fontawesome-free/css/all.min.css'; 
-import 'bootstrap-css-only/css/bootstrap.min.css'; 
 import 'mdbreact/dist/css/mdb.css';
 import config from './config';
 import './index.scss';
+import * as serviceWorker from './serviceWorker';
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
-import rootReducer, { rootSaga } from './App/modules';
-import {checkTokken} from './App/modules/auth';
 import { SnackbarProvider } from 'notistack';
 
+import rootReducer, { rootSaga } from './store/modules';
+import {checkTokken} from './store/modules/auth';
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(

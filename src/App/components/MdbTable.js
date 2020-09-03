@@ -20,6 +20,7 @@ const MuTableComponent = (props) => {
         ]
       } :{columns , rows}
     
+      
  
       return      <MDBDataTableV5
                           className="mbdTable"   

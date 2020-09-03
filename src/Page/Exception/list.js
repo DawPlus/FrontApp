@@ -1,44 +1,36 @@
-import React  from "react";
-import {Row, Col, Card} from 'react-bootstrap';
-import { withRouter } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
-import Aux from "../../hoc/_Aux";
-import Table from "../../App/layout/Exception/Table"
+import React from 'react'
+import Title from "../../App/container/Exception/Title";
+import List from "../../App/container/Exception/List";
+import {Card} from 'react-bootstrap';
 
-const ListPage = ({match, history}) =>{
+const ExceptionPage = () => {
 
-    // 신규페이지 이동
-    const onClick= ()=>{      
-        history.push(`${match.path}/new`);
-    }
-  
 
-    return (<>
-        <Aux>   
-            <Row>
-                <Col>
-                    <Card>
-                        <Card.Header>
-                            <Card.Title as="h5">Basic Table</Card.Title>
-                            <span className="d-block m-t-5">use bootstrap <code>Table</code> component</span>
-                            <Button 
-                                variant="contained" 
-                                color="primary" 
-                                onClick={onClick}
-                                style={{float : "right"}}
-                            >
-                            신규작성
-                            </Button>
-                        </Card.Header>
-                        <Card.Body>
-                            <Table/>
-                        </Card.Body>
-                    </Card>
-                </Col>
-            </Row>
-        </Aux>
+    return(<>
+    
+        <Title/>
+        <Card>
+            <Card.Header>
+                <Card.Title as="h5">Exception 목록</Card.Title>
+                {/* <span className="d-block m-t-5">API 목록 관리 수행 </span> */}
+            </Card.Header>
+            <Card.Body>
+                <List/>
+            </Card.Body>
+        </Card>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     </>);
 
-
 }
-export default withRouter(ListPage);
+export default ExceptionPage;
