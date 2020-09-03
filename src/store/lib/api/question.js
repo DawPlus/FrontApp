@@ -1,6 +1,9 @@
 import client from './client';
 
-// 로그인
-export const list = () =>{return client.post('/api/auth/login')};
+const baseUrl = "/question"
 
 
+// 신규 
+export const newQuestion = (data) =>{
+    return client.post(`${baseUrl}/new`, data);
+};

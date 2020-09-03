@@ -4,21 +4,23 @@ import TextField from '@material-ui/core/TextField';
 import {Row,  Col} from 'react-bootstrap';
 
 import {useDispatch, useSelector} from "react-redux";
-import {changeField} from "../../../../../../store/modules/question";
+import {changeFieldForm} from "../../../../../../store/modules/question";
 
 const SingeContainer = () => {
 
     const dispatch = useDispatch();
-    const {singleExample} = useSelector(state=>state.question);
+    const {singleExample} = useSelector(state=>state.question.new);
 
     const onChange = e => {
 
-        dispatch(changeField({
+        dispatch(changeFieldForm({
+            form : "new",
             key : e.target.name,
             value : e.target.value
 
         }));
     }
+
 
 
     return(<>

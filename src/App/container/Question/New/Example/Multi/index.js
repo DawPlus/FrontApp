@@ -4,7 +4,7 @@ import {changeFieldList} from "../../../../../../store/modules/question";
 
 const MultiContainer = () => {
     const dispatch = useDispatch();
-    const {examples} = useSelector(state=> state.question);
+    const {examples} = useSelector(state=> state.question.new);
     const onChange = (e, idx )=> {
         dispatch(changeFieldList({
                 index : idx,

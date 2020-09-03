@@ -1,15 +1,15 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {changeField} from "../../../../../store/modules/question";
-  
+import {changeFieldForm} from "../../../../../store/modules/question";
 
 const Toggle = () => {
     
   const dispatch = useDispatch();
-  const {type} = useSelector(state=> state.question);
+  const {type} = useSelector(state=> state.question.new);
 
-  const test = e => {
-      dispatch(changeField({
+  const onChange = e => {
+      dispatch(changeFieldForm({
+          form : "new",
           key : e.target.name,
           value : e.target.checked
       }))
@@ -26,7 +26,7 @@ const Toggle = () => {
                   id="myonoffswitch" 
                   tabIndex="0" 
                   value={type} 
-                  onChange={test}
+                  onChange={onChange}
                   checked={type}
                 />
                 <label className="onoffswitch-label" htmlFor="myonoffswitch">
@@ -34,7 +34,10 @@ const Toggle = () => {
                     <span className="onoffswitch-switch"></span>
                 </label>
             </div>
+          
         </div>
+
+    
     </>);
 
 }

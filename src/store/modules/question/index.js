@@ -2,7 +2,7 @@ import { createAction, handleActions } from 'redux-actions';
 import produce from 'immer';
 import { takeLatest } from 'redux-saga/effects';
 import createRequestSaga, {createRequestActionTypes} from '../../lib/createRequestSaga';
-// import * as API from '../lib/api/question';
+import * as API from '../../lib/api/question';
 import * as Util from "../../Util/array";
 
 import{list as mapList} from "../../lib/api/map"
@@ -16,11 +16,16 @@ const CHANGE_FIELD      = 'question/CHANGE_FIELD';
 const CHANGE_FIELD_FORM = 'question/CHANGE_FIELD_FORM';
 const CHANGE_FIELD_LIST = 'question/CHANGE_FIELD_LIST';
 
+
+
+
 //const [LIST, LIST_SUCCESS, LIST_FAILURE]   = createRequestActionTypes('question/LIST');
 
 // 상세보기
 //const [VIEW, VIEW_SUCCES, VIEW_FAILURE]  = createRequestActionTypes('question/VIEW');  
 //const VIEW = 'question/VIEW';
+// 신규등록
+const [NEW, NEW_SUCCESS, NEW_FAILURE]  = createRequestActionTypes('question/NEW');  
 
 const [MAP_LIST, MAP_LIST_SUCCESS, MAP_LIST_FAILURE]   = createRequestActionTypes('question/MAP_LIST');
 
@@ -37,11 +42,14 @@ export const initializeRadio  = createAction(INITIALIZE_RADIO);
 
 export const mapListAction  = createAction(MAP_LIST);
 export const guideListAction  = createAction(GUIDE_LIST);
+export const newAction  = createAction(NEW);
 
 export function* questionSaga() {
   //yield takeLatest(LIST,        createRequestSaga(LIST, API.list));
   yield takeLatest(MAP_LIST,  createRequestSaga(MAP_LIST, mapList));
   yield takeLatest(GUIDE_LIST,  createRequestSaga(GUIDE_LIST, guideList));
+  yield takeLatest(NEW,  createRequestSaga(NEW, API.newQuestion));
+  
   
 
 
@@ -68,7 +76,7 @@ const initialState = {
     new : {
         title : "",
         content : "",
-        type : null ,
+        type : true ,
         map : null,
         guide : null,
         video : null ,
@@ -104,14 +112,19 @@ const question = handleActions(
    
       return ({
         ...state, 
-        examples : Util.update(state.examples, value)
+          new : {
+            ...state.new,
+              examples : Util.update(state.new.examples, value)
+          }
       })
     },
     [INITIALIZE_RADIO]: (state) =>{
-      
       return ({
         ...state, 
-        examples : state.examples.map(item => {return {...item,  isTrue : false}})
+        new : {
+          ...state.new,
+        examples : state.new.examples.map(item => {return {...item,  isTrue : false}})
+        }
       })
     },
     [INITIALIZE]: (state) => initialState,
@@ -159,6 +172,28 @@ const question = handleActions(
         }),
 
    
+
+
+        // 등록 성공
+        [NEW_SUCCESS]: (state, {payload : data}) =>({
+          ...state,
+          message : data.message,
+          new : initialState.new,
+          status : "NEW_SUCCESS"
+        }),
+        //  등록실패 
+        [NEW_FAILURE]: (state, {payload : data}) =>({
+          ...state,
+          message : data.message,
+          status : "NEW_FAILURE"
+        }),
+
+
+
+
+
+
+
 
    },
   initialState

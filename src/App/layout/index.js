@@ -8,7 +8,7 @@ import routes from "../../routes";
 import Header from "./Header";
 // import ThemeSetting from "./ThemeSetting";
 import SideBar from "./Sidebar";
-import Footer from "./Footer";
+// import Footer from "./Footer";
 
 import  "../../assets/scripts/main";
 import config from  "../../config";
@@ -61,7 +61,7 @@ const AdminLayout = () =>{
                                 </Switch>
                             </Suspense>    
                         </div>
-                        <Footer/>    
+                        {/* <Footer/>     */}
                     </div>     
                 </div>
             </div>    

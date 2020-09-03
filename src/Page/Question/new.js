@@ -6,7 +6,9 @@ import Toggle from "../../App/container/Question/New/Toggle";
 import Example from "../../App/container/Question/New/Example";
 import Map from "../../App/container/Question/New/Map";
 import Guide from "../../App/container/Question/New/Guide";
-import Video from "../../App/container/Question/New/Video"
+import Video from "../../App/container/Question/New/Video";
+
+import Buttons from "../../App/container/Question/New/Buttons";
 const NewPage = ()=>{
     return(<>
         <Title/>
@@ -60,6 +62,11 @@ const NewPage = ()=>{
                             <Video/>
                     </div>
                 </div>
+            </Col>
+        </Row>
+        <Row style={{marginBottom : "20px"}}>
+            <Col>
+                <Buttons/>
             </Col>
         </Row>
 

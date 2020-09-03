@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 const ExampleContainer = () => {
 
-    const {type} = useSelector(state=> state.question);
+    const {type} = useSelector(state=> state.question.new);
 
 
     return(<>    
