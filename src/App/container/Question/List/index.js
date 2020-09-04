@@ -30,16 +30,11 @@ const ListContainer = () => {
     },[enqueueSnackbar]);
 
     
-    const buttonComponent = (id, name)=>{
-        
-        return;
-
-    }
     useUpdateEffect(() => {
         if(status === null ) return;
             switch(status){
                 case "LIST_SUCCESS" : 
-                        list.map(it=>{ 
+                        list.map(it=> { 
                             it.title = <Link to={`/init/${it.question_id}`} >{it.title}</Link>
                             it.type = it.type === '1' ?  
                                 <div className="mb-2 mr-2 badge badge-primary" style={{fontSize : "12px"}}>
@@ -48,11 +43,7 @@ const ListContainer = () => {
                                 <div className="mb-2 mr-2 badge badge-success" style={{fontSize : "12px"}}>
                                     주관식
                                 </div>
-                            
-
-
-                            
-                               
+                            return null;
                         });
 
 
