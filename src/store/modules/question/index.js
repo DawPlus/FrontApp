@@ -26,6 +26,8 @@ const CHANGE_FIELD_LIST = 'question/CHANGE_FIELD_LIST';
 //const VIEW = 'question/VIEW';
 // 신규등록
 const [NEW, NEW_SUCCESS, NEW_FAILURE]  = createRequestActionTypes('question/NEW');  
+// 문제 목록 조회 
+const [LIST, LIST_SUCCESS, LIST_FAILURE]  = createRequestActionTypes('question/LIST');  
 
 const [MAP_LIST, MAP_LIST_SUCCESS, MAP_LIST_FAILURE]   = createRequestActionTypes('question/MAP_LIST');
 
@@ -43,12 +45,14 @@ export const initializeRadio  = createAction(INITIALIZE_RADIO);
 export const mapListAction  = createAction(MAP_LIST);
 export const guideListAction  = createAction(GUIDE_LIST);
 export const newAction  = createAction(NEW);
+export const listAction  = createAction(LIST);
 
 export function* questionSaga() {
   //yield takeLatest(LIST,        createRequestSaga(LIST, API.list));
   yield takeLatest(MAP_LIST,  createRequestSaga(MAP_LIST, mapList));
   yield takeLatest(GUIDE_LIST,  createRequestSaga(GUIDE_LIST, guideList));
   yield takeLatest(NEW,  createRequestSaga(NEW, API.newQuestion));
+  yield takeLatest(LIST,  createRequestSaga(LIST, API.list));
   
   
 
@@ -76,20 +80,20 @@ const initialState = {
     new : {
         title : "",
         content : "",
-        type : true ,
+        type : 1 ,
         map : null,
         guide : null,
         video : null ,
         examples : [
-          {content : "" , isAnswer : false},
-          {content : "" , isAnswer : false},
-          {content : "" , isAnswer : false},
-          {content : "" , isAnswer : false},
-          {content : "" , isAnswer : false},
+          {content : "" , isAnswer : 2},
+          {content : "" , isAnswer : 2},
+          {content : "" , isAnswer : 2},
+          {content : "" , isAnswer : 2},
+          {content : "" , isAnswer : 2},
       ],
       singleExample : ""
     },
-
+    list : [],
 
     mapList :[],
     guideList :[],
@@ -190,6 +194,22 @@ const question = handleActions(
 
 
 
+
+        // 목록조회성공
+        [LIST_SUCCESS]: (state, {payload : {data, result, message}}) =>({
+          ...state,
+          message : message,
+          list : data,
+          result : result,
+          status : "LIST_SUCCESS"
+        }),
+        //  목록조회실패 
+        [LIST_FAILURE]: (state, {payload : {message, result}}) =>({
+          ...state,
+          message : message,
+          result : result,
+          status : "LIST_FAILURE"
+        }),
 
 
 

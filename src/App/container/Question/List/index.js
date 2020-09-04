@@ -1,22 +1,21 @@
 import React, {  useCallback }  from "react"
 import {useLifecycles, useUpdateEffect} from 'react-use';
-import {listAction
-        , initialize
-        , initializeForm
-        , deleteAction} from "../../../../store/modules/map";
+import {listAction , initialize, initializeForm} from "../../../../store/modules/question";
 import { useSelector, useDispatch } from "react-redux";
-import ImageList from "../../../components/ImageList";
-import { useSnackbar } from "notistack";
 
+import { useSnackbar } from "notistack";
+import MdbTable from "../../../components/MdbTable";
+import columns from "./column";
+import { Link } from "react-router-dom";
 
 const ListContainer = () => {
+
     
     // Dispatch
     const dispatch = useDispatch();
-    const {fileList, status, message} = useSelector(state => state.map);
+    const {list, message,  status} = useSelector(state=>state.question);
+
     const { enqueueSnackbar } = useSnackbar();
-    
-    
     const snackBar = useCallback( (text, variant='info') =>{
       enqueueSnackbar(text,
             {
@@ -31,24 +30,36 @@ const ListContainer = () => {
     },[enqueueSnackbar]);
 
     
+    const buttonComponent = (id, name)=>{
+        
+        return;
+
+    }
     useUpdateEffect(() => {
         if(status === null ) return;
             switch(status){
                 case "LIST_SUCCESS" : 
-                        break;
+                        list.map(it=>{ 
+                            it.title = <Link to={`/init/${it.question_id}`} >{it.title}</Link>
+                            it.type = it.type === '1' ?  
+                                <div className="mb-2 mr-2 badge badge-primary" style={{fontSize : "12px"}}>
+                                     객관식
+                                </div>: 
+                                <div className="mb-2 mr-2 badge badge-success" style={{fontSize : "12px"}}>
+                                    주관식
+                                </div>
+                            
+
+
+                            
+                               
+                        });
+
+
+                    break;
                 case "LIST_FAILURE" : 
                       snackBar(message);
                         break;
-                case "DELETE_SUCCESS" : 
-                    window.$('.close_1x3s325').trigger("click");
-                    snackBar(message);
-                    dispatch(listAction());
-                    console.log("delete")
-                    break;
-                case "DELETE_FAILURE" : 
-                    snackBar(message);
-                    break;
-                    
                 default : break;
             }
     
@@ -73,25 +84,9 @@ const ListContainer = () => {
         }
       );
 
-     
-
-      const onDelete = (info) =>{
-          if(window.confirm("삭제 하시겠습니까?")){
-              dispatch(deleteAction(info));
-          }
-      }
     
     return(<>
-        
-            <ImageList images={fileList} onDelete={onDelete}/>
-            {/* <Gallery photos={fileList} onClick={onClicks} renderImage={rerender} />
-            <Viewer activeIndex={imageIdx}
-                noImgDetails={true}
-                noNavbar={true}
-                visible={visible}
-                onClose={()=>{setVisible(false)} }
-                images={fileList}
-            /> */}
+       <MdbTable columns={columns} rows ={list} rowNum/>
     </>);
 
 

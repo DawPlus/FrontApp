@@ -10,7 +10,7 @@ const ExampleContainer = () => {
 
 
     return(<>    
-         {type ? <Multi/> : <Single/> }
+         {type ===1? <Multi/> : <Single/> }
     </>);
 
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import {Card} from 'react-bootstrap';
 
 import Title from "../../App/container/Question/Title";
-
+import List from "../../App/container/Question/List";
 
 const GuidePage = () => {
 
@@ -10,13 +10,14 @@ const GuidePage = () => {
           <Title/>
             <Card>
                 <Card.Header>
-                    <Card.Title as="h5">문제관리</Card.Title>
+                    <Card.Title as="h5">Question</Card.Title>
                 </Card.Header>
                 <Card.Body>
-                    
-                    
+                    <List/>
+       
                 </Card.Body>
             </Card>
+            
     </>);
 }
 export default GuidePage;

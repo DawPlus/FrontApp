@@ -7,11 +7,14 @@ const Toggle = () => {
   const dispatch = useDispatch();
   const {type} = useSelector(state=> state.question.new);
 
+  // type -> 1 : 객관식   , 2 : 주관식 
+  const toggle = type === 1 ? true : false;
+  console.log(type, toggle)
   const onChange = e => {
       dispatch(changeFieldForm({
           form : "new",
           key : e.target.name,
-          value : e.target.checked
+          value : e.target.checked ? 1 : 2
       }))
   }
   
@@ -25,9 +28,9 @@ const Toggle = () => {
                   className="onoffswitch-checkbox" 
                   id="myonoffswitch" 
                   tabIndex="0" 
-                  value={type} 
+                  value={toggle} 
                   onChange={onChange}
-                  checked={type}
+                  checked={toggle}
                 />
                 <label className="onoffswitch-label" htmlFor="myonoffswitch">
                     <span className="onoffswitch-inner"></span>

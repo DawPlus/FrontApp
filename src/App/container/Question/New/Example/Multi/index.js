@@ -9,7 +9,7 @@ const MultiContainer = () => {
         dispatch(changeFieldList({
                 index : idx,
                 item : {
-                        [e.target.name] : e.target.type ==="text" ? e.target.value : e.target.checked
+                        [e.target.name] : e.target.type ==="text" ? e.target.value : e.target.checked ? 1 :2
                 }
         }));
     }
@@ -22,8 +22,7 @@ const MultiContainer = () => {
                             <input aria-label="Checkbox for following text input" 
                                         type="checkbox" 
                                         className="" 
-                                        name="isAnswer"
-                                        value={item.isAnswer}
+                                        name="isAnswer"                                    
                                         onChange={e => onChange(e, idx)} 
                             />
                         </span>
