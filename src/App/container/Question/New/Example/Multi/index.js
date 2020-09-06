@@ -20,7 +20,7 @@ const MultiContainer = () => {
                     <div className="input-group-prepend">
                         <span className="input-group-text">
                             <input aria-label="Checkbox for following text input" 
-                                        type="checkbox" 
+                                        type="radio" 
                                         className="" 
                                         name="isAnswer"                                    
                                         onChange={e => onChange(e, idx)} 

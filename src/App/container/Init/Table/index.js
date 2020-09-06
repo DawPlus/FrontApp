@@ -53,7 +53,7 @@ const TableContainer = () => {
         switch(status){
 
             case "LIST_SUCCESS" : 
-                list.map(it=> it.NAME = buttonComponent(it.API_ID, it.NAME )
+                list.map(it=> it.name = buttonComponent(it.apiId, it.name )
                 );
                 break;
             case "LIST_FAILURE" : 
@@ -73,48 +73,7 @@ const TableContainer = () => {
 
 
     return(<>
-      
         <MdbTable columns={columns} rows ={list} rowNum/>
-        
-        
-
-         {/* <Table responsive>
-                <thead>
-                <tr>
-                    <th>#</th>
-                  
-                    <th>Method</th>
-                    <th>NAME</th>
-                    <th>URL</th>
-                    <th>설명</th>
-                    <th style={{textAlign:"center"}}>Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                    {list.map((item,idx) => 
-                    
-                      <tr key={idx}>
-                        <th scope="row">{idx+1}</th>
-                  
-                        <td>{item.method}</td>
-                        <td>{item.NAME}</td>
-                        <td>{item.URL}</td>
-                        <td style={{whiteSpace: "normal"}}>{item.DESCRIPTION}</td>
-                        <td style={{    textAlign: "center"}}>
-                          <IconButton 
-                              aria-label="delete" 
-                              color="primary" 
-                              className="deleteBtn" 
-                              onClick={e => showConfirm(e, item.API_ID)}
-                          >
-                            <DeleteIcon fontSize="small" />
-                          </IconButton>
-
-                        </td>
-                    </tr>
-                    )}
-                </tbody>
-            </Table> */}
     </>);
 
 }

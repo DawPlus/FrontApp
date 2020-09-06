@@ -1,26 +1,17 @@
 import React, { useEffect } from "react";
 import {useDispatch, useSelector } from "react-redux";
-import {listAction ,  initialize, initializeForm, deleteAllAction} from "../../../../store/modules/exceptions"
+import {listAction ,  initialize, initializeForm} from "../../../../store/modules/team"
 import { useUpdateEffect } from "react-use";
 import { useSnackbar } from 'notistack';
-
-
 import MdbTable from "../../../components/MdbTable";
 import columns from "./column";
 import { Link } from "react-router-dom";
-import { Button } from "@material-ui/core";
 
-const TableContainer = () => {
-
+const ListContainer = () => {
 
     const dispatch = useDispatch();
-    const {list, message, status} = useSelector(state => state.exceptions);
+    const {list, message, status} = useSelector(state => state.team);
     const { enqueueSnackbar } = useSnackbar();
-    
-    
-
-
-    
     const snackBar = (text, variant='info') =>{
       enqueueSnackbar(text,
             {
@@ -42,14 +33,13 @@ const TableContainer = () => {
         return()=>{
             dispatch(initialize());
         }
-    },[dispatch])
+    },[dispatch]);
 
 
-    const buttonComponent = (id, title)=>{
+    const buttonComponent = (id, name)=>{
+        return <Link to={`/team/${id}`} >{name}</Link>};  
         
-        return <Link to={`/exception/${id}`} >{title}</Link>};
-
-    
+        
   useUpdateEffect(() => {
     
     if(status === null ) return;
@@ -57,19 +47,12 @@ const TableContainer = () => {
         switch(status){
 
             case "LIST_SUCCESS" : 
-                list.map(it=> it.title = buttonComponent(it.exceptionId, it.title ));
+                    list.map(it=> it.team = buttonComponent(it.teamId, it.team )
+                );
                 break;
             case "LIST_FAILURE" : 
                   snackBar(message);
                     break;
-
-            case "DELETEALL_SUCCESS" : 
-                dispatch(listAction());
-                break;
-            case "DELETEALL_FAILURE" : 
-                snackBar(message);
-                break;
-
             default : break;
         }
 
@@ -77,25 +60,15 @@ const TableContainer = () => {
     dispatch(initializeForm("message"));
 
     return () => { // *OPTIONAL*
-      // do something on unmount
+      
     }
-  },[status]) // you can include deps array if necessary
+  },[status])
 
-
-
-
-  const onDelete = () => {
-      console.log(1);
-    dispatch(deleteAllAction());
-  }
 
 
     return(<>
         <MdbTable columns={columns} rows ={list} rowNum/>
-        <Button variant="contained" color="secondary" onClick={onDelete}>
-                전체삭제(임시)
-        </Button>
     </>);
 
 }
-export default TableContainer;
+export default ListContainer;

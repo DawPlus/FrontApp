@@ -14,6 +14,8 @@ const CHANGE_FIELD = 'exceptions/CHANGE_FIELD';
 const [LIST, LIST_SUCCESS, LIST_FAILURE]       = createRequestActionTypes('exceptions/LIST');
 const [SELECT, SELECT_SUCCESS, SELECT_FAILURE]       = createRequestActionTypes('exceptions/SELECT');
 
+const [DELETEALL, DELETEALL_SUCCESS, DELETEALL_FAILURE]       = createRequestActionTypes('exceptions/DELETEALL');
+
 
 export const initialize   = createAction(INITIALIZE);
 export const initializeForm   = createAction(INITIALIZE_FORM);
@@ -21,14 +23,16 @@ export const chageField   = createAction(CHANGE_FIELD);
 export const listAction   = createAction(LIST);
 export const selectAction   = createAction(SELECT);
 
-
+//임시
+export const deleteAllAction   = createAction(DELETEALL);
 
 
 export function* exceptionsSaga() {
   yield takeLatest(LIST, createRequestSaga(LIST, API.list));
   yield takeLatest(SELECT, createRequestSaga(SELECT, API.select));
  
-
+  yield takeLatest(DELETEALL, createRequestSaga(DELETEALL, API.deleteAll));
+ 
 
 }
 
@@ -40,11 +44,11 @@ const initialState = {
         apiId : ""
     },
     views : {
-        exception_id : "",
+        exceptionId : "",
         title : "",
         exceptions : "",
-        device_id : "",
-        save_date : ""
+        deviceId : "",
+        saveDate : ""
 
     },
     status  : null
@@ -99,6 +103,25 @@ const exceptions = handleActions(
         status : "SELECT_FAILURE"
     }),
 
+
+    
+      // 삭제 성공
+   [DELETEALL_SUCCESS]: (state, {payload : {message, data, result}}) =>{
+  
+      return {   
+        ...state,
+          message : message,          
+          result : result, 
+          status : "DELETEALL_SUCCESS"
+      }
+    },
+    // 삭제 실패
+    [DELETEALL_FAILURE]: (state, {payload : {message, result}}) =>({
+        ...state,
+        message : message,
+        result : result,
+        status : "DELETEALL_FAILURE"
+    }),
 
   },
   initialState

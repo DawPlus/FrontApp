@@ -19,13 +19,10 @@ const VideoContainer = () => {
     },[dispatch])
 
     const onChange = e => {
-        console.log(e.target.value);
-        
-
         dispatch(changeFieldForm({
             form :"new",
             key : e.target.name,
-            value : config.baseURL+"/static/video/"+e.target.value
+            value : config.videoBase+e.target.value
 
 
         }))
@@ -46,7 +43,7 @@ const VideoContainer = () => {
         </Row>
         <Row>
             <Col>
-            <Player src={newInfo.video}>
+            <Player src={config.baseURL+ newInfo.video}>
                 <BigPlayButton position="center" />
                 </Player>
             </Col>

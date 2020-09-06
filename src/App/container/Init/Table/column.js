@@ -9,17 +9,17 @@
             },
             {
                 label: 'Name',
-                field: 'NAME',
+                field: 'name',
                 width: 100,
             },
             {
                 label: 'URL',
-                field: 'URL',
+                field: 'url',
                 width: 150,
             },
             {
                 label: 'DESCRIPTION',
-                field: 'DESCRIPTION',
+                field: 'description',
                 width :250
                 
             }

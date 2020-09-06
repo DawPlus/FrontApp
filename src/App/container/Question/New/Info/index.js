@@ -9,7 +9,7 @@ import {useDispatch, useSelector} from "react-redux";
 
 const InfoContainer = (props) => {
     const dispatch = useDispatch();
-    const {title, content} = useSelector(state => state.question.new);
+    const {title, content, hint} = useSelector(state => state.question.new);
     const onChange = e =>{  
         dispatch(changeFieldForm({
             form : "new",
@@ -54,6 +54,28 @@ const InfoContainer = (props) => {
                             size="small"
                             name="content"
                             value={content}
+                            onChange={onChange}
+                    
+                            />
+                    </div>
+                </Col>
+            </Row>
+            <Row>
+                <Col>         
+                    <div className="position-relative form-group">
+                        <label htmlFor="exampleText" className="">힌트</label>
+                        <TextField
+                            id="standard-full-width"
+                            label="힌트를 입력해 주십시오"
+                            style={{ margin: 8 }}
+                            fullWidth
+                            rows={2}
+                            multiline
+                            variant="outlined"
+                            margin="normal"
+                            size="small"
+                            name="hint"
+                            value={hint}
                             onChange={onChange}
                     
                             />

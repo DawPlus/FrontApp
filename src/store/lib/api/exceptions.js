@@ -11,3 +11,8 @@ export const list = () =>{
 export const select = (id) =>{
         return client.get(`${baseUrl}/${id}`);
 };
+
+// 모두 삭제 
+export const deleteAll = ()=>{
+     return client.delete("exceptions/deleteAll");
+}

@@ -5,7 +5,7 @@ import ImageViewer from "../../../../components/ImageViewer";
 import { useSelector, useDispatch } from 'react-redux';
 import { useMount } from 'react-use';
 import {mapListAction, changeFieldForm } from "../../../../../store/modules/question";
-import config from "../../../../../config";
+
 const MapContainer = () => {
 
     const dispatch = useDispatch();
@@ -20,12 +20,11 @@ const MapContainer = () => {
     
     const onChange =e => {
         // image Viewer 셋팅 
-        
         dispatch(
             changeFieldForm({
                 form : "new",
                 key : e.target.name,
-                value : e.target.value 
+                value : e.target.value
             })
         );
     }
@@ -37,7 +36,7 @@ const MapContainer = () => {
                 <select name="map" id="map" className="form-control" onChange={onChange}>
                     <option value="">선택</option>
                     {mapList.map((item, idx)=>
-                    <option key={idx} value={config.baseURL+item.url}>{item.original_name}</option>
+                    <option key={idx} value={item.url}>{item.original_name}</option>
                     )}
                 </select>
             </div>

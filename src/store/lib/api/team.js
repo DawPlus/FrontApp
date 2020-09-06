@@ -1,9 +1,9 @@
 import client from './client';
 
-const baseUrl = "/init"
+const baseUrl = "/team"
 
 // 목록조회
-export const list = () =>{
+export const listAPI = () =>{
         return client.post(baseUrl);
 };
 // 상세조회
@@ -14,10 +14,14 @@ export const selectAPI = (id) =>{
 export const newAPI = (data) =>{
     return client.post(`${baseUrl}/new`, data);
 };
-
+// 수정 
+export const updateAPI = (data) =>{
+    return client.put(`${baseUrl}`, data);
+};
 // 삭제 
 export const deleteAPI = (id) =>{
     console.log(id);
     return client.delete(`${baseUrl}/${id}`);
 };
+
 

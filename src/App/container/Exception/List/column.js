@@ -5,21 +5,16 @@
             {
                 label: 'Title',
                 field: 'title',
-                width: 100,
+                width: 300,
             },
             {
-                label: 'Exceptions',
-                field: 'exceptions',
-                width: 250,
-            },
-            {
-                label: 'Device_id',
-                field: 'device_id',
+                label: 'DeviceId',
+                field: 'deviceId',
                 width: 100,
             },
             {
                 label: '등록일',
-                field: 'save_date',
+                field: 'saveDate',
                 width :100
                 
             }

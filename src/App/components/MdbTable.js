@@ -33,10 +33,10 @@ const MuTableComponent = (props) => {
                           fullPagination
                           noRecordsFoundLabel="조회결과가 없습니다." 
                           // info={false}
-                          entriesOptions={[ 50, 100, 150 ]}
+                          entriesOptions={[ 5, 10, 15 ]}
                           infoLabel={["", "-", "/", "Total"]}
                           entriesLabel="Page" 
-                          entries={5}// 보여줄 게시글 수
+                          entries={10}// 보여줄 게시글 수
                           pagesAmount={5} // 페이징 수 
                           data={datas}
                         />

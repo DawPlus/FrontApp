@@ -10,14 +10,12 @@ import Confirm from "../../../../components/Confirm";
 
 const ViewContainer = ({match, history}) => {
     const {id} = match.params;
-    
     const dispatch = useDispatch();
     const { enqueueSnackbar } = useSnackbar();
-    const {API_ID, NAME, DESCRIPTION, method, URL} = useSelector(state=> state.init.viewApi);
+    const {apiId, name, description, method, url} = useSelector(state=> state.init.viewApi);
     const {status, message}  = useSelector(state=> state.init);
     const [isOpen, setIsOpen] = useState(false);
 
-     // Component Did Mount 
     useEffect(() => {     
         dispatch(selectAction(id));
         return () => {
@@ -25,17 +23,13 @@ const ViewContainer = ({match, history}) => {
         }
     }, [dispatch, id]);
     
-
-
     // 뒤로 
     const onCancle = () => {
         history.push("/init");
     }
 
 
-
-
-    // SmacBar    
+    // SnackBar    
     const snackBar = (text, variant='info') =>{
         enqueueSnackbar(text,
               {
@@ -90,10 +84,10 @@ const ViewContainer = ({match, history}) => {
     // 삭제 
     const onDelete = () =>{
         setIsOpen(false);
-        if(API_ID ==="") {
+        if(apiId ==="") {
             snackBar("삭제할 API 가 존재하지 않습니다.", "error"); return;
         }
-        dispatch(deleteAction(API_ID));
+        dispatch(deleteAction(apiId));
     }
 
 
@@ -112,21 +106,12 @@ const ViewContainer = ({match, history}) => {
                 <Form.Row>
                     <Form.Group as={Col} md="6" controlId="apiName">
                         <Form.Label>API Name</Form.Label>
-                        {/* <TextField 
-                            required 
-                            label="API Name"  
-                            margin="dense"
-                            variant="outlined"
-                            inputProps={{style: {fontSize: 14}}} // font size of input text
-                            InputLabelProps={{style: {fontSize: 14}}} // font size of input label
-                            fullWidth/> */}
                         <Form.Control 
                             type="text" 
                             placeholder="Enter API Name" 
-                            value={NAME}
+                            value={name}
                             name="name"
                             disabled
-                         
                             />
                         <Form.Text className="text-muted">
                             API Name (Key)
@@ -140,8 +125,6 @@ const ViewContainer = ({match, history}) => {
                             name="method"
                             disabled
                             />
-                      
-                        {/* <TextField required id="standard-required" label="API Name"  size="small" fullWidth/> */}
                     </Form.Group>
                 </Form.Row>
 
@@ -150,10 +133,9 @@ const ViewContainer = ({match, history}) => {
                     <Form.Control 
                         type="text" 
                         placeholder="Enter URL" 
-                        value={URL}
+                        value={url}
                         name="url"
                         disabled
-                        
                     />
                 </Form.Group>
             </Form>
@@ -163,7 +145,7 @@ const ViewContainer = ({match, history}) => {
                 <Form.Label>Description textarea</Form.Label>
                 <Form.Control as="textarea" 
                     rows="6" 
-                    value={DESCRIPTION}
+                    value={description}
                     name="description"
                     disabled
                 />
@@ -175,8 +157,7 @@ const ViewContainer = ({match, history}) => {
             <Button variant="primary" onClick={showConfirm}  >
                 삭제
             </Button>
-         
-        <Button variant="contained" onClick={onCancle}   style={{backgroundColor: "#eaeaea", fontWeight: "bold"}}>
+            <Button variant="contained" onClick={onCancle}   style={{backgroundColor: "#eaeaea", fontWeight: "bold"}}>
                 뒤로 
             </Button>
         </Col>

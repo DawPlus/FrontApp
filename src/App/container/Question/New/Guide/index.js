@@ -5,7 +5,7 @@ import ImageViewer from "../../../../components/ImageViewer";
 import { useSelector, useDispatch } from 'react-redux';
 import { useMount } from 'react-use';
 import {guideListAction, changeFieldForm } from "../../../../../store/modules/question";
-import config from "../../../../../config";
+
 const MapContainer = () => {
 
     const dispatch = useDispatch();
@@ -35,7 +35,7 @@ const MapContainer = () => {
                 <select name="guide" id="guide" className="form-control" onChange={onChange}>
                     <option value="">선택</option>
                     {guideList.map((item, idx)=>
-                    <option key={idx} value={config.baseURL+item.url}>{item.original_name}</option>
+                    <option key={idx} value={item.url}>{item.original_name}</option>
                     )}
                 </select>
             </div>

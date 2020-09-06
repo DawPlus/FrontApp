@@ -8,9 +8,9 @@ import exceptions , {exceptionsSaga} from "./exceptions";
 import map, {mapSaga} from "./map";
 import guide ,{guideSaga} from "./guide";
 import video, {videoSaga} from "./video"
-
+import team , {teamSaga} from "./team";
+import screenshot, {screenshotSaga} from "./screenshot";
 const rootReducer = combineReducers({
-
     auth,
     question,
     init,
@@ -18,6 +18,8 @@ const rootReducer = combineReducers({
     map,
     guide,
     video,
+    team ,
+    screenshot
   });
   
 
@@ -29,7 +31,9 @@ export function* rootSaga() {
       exceptionsSaga(),
       mapSaga(),
       guideSaga(),
-      videoSaga()
+      videoSaga(),
+      teamSaga(),
+      screenshotSaga()
     ]);
   }
   

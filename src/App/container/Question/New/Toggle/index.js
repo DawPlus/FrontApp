@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {changeFieldForm} from "../../../../../store/modules/question";
 
+
 const Toggle = () => {
     
   const dispatch = useDispatch();
@@ -9,7 +10,7 @@ const Toggle = () => {
 
   // type -> 1 : 객관식   , 2 : 주관식 
   const toggle = type === 1 ? true : false;
-  console.log(type, toggle)
+  
   const onChange = e => {
       dispatch(changeFieldForm({
           form : "new",

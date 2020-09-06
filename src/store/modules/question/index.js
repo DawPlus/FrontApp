@@ -47,6 +47,8 @@ export const guideListAction  = createAction(GUIDE_LIST);
 export const newAction  = createAction(NEW);
 export const listAction  = createAction(LIST);
 
+
+
 export function* questionSaga() {
   //yield takeLatest(LIST,        createRequestSaga(LIST, API.list));
   yield takeLatest(MAP_LIST,  createRequestSaga(MAP_LIST, mapList));
@@ -60,23 +62,6 @@ export function* questionSaga() {
 }
 
 const initialState = {
-    title : "",
-    content :"",
-    type : true,
-    map : null,
-    guide : null,
-    video: null,
-    examples : [
-        {content : "" , isAnswer : false},
-        {content : "" , isAnswer : false},
-        {content : "" , isAnswer : false},
-        {content : "" , isAnswer : false},
-        {content : "" , isAnswer : false},
-    ],
-    singleExample : "",
-
-
-
     new : {
         title : "",
         content : "",
@@ -84,17 +69,16 @@ const initialState = {
         map : null,
         guide : null,
         video : null ,
+        hint : null, 
         examples : [
-          {content : "" , isAnswer : 2},
-          {content : "" , isAnswer : 2},
-          {content : "" , isAnswer : 2},
-          {content : "" , isAnswer : 2},
-          {content : "" , isAnswer : 2},
-      ],
-      singleExample : ""
+            {content : "" , isAnswer : 2},
+            {content : "" , isAnswer : 2},
+            {content : "" , isAnswer : 2},
+            {content : "" , isAnswer : 2}
+        ],
+        singleExample : ""
     },
     list : [],
-
     mapList :[],
     guideList :[],
     result : null,
@@ -114,6 +98,8 @@ const question = handleActions(
     }),
     [CHANGE_FIELD_LIST]: (state,  {payload: value} ) =>{
    
+      state.new.examples.map(it => it.isAnswer= 2);
+
       return ({
         ...state, 
           new : {

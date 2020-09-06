@@ -7,8 +7,6 @@ import { useSelector, useDispatch } from "react-redux";
 import ImageList from "../../../components/ImageList";
 import { useSnackbar } from "notistack";
 
-//import RenderComponent from "../../../components/ImageRender";
-
 const ListContainer = () => {
     
     // Dispatch
@@ -81,6 +79,7 @@ const ListContainer = () => {
           }
       }
     
+      console.log(fileList);
     return(<>
         
             <ImageList images={fileList} onDelete={onDelete}/>
