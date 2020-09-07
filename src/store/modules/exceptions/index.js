@@ -43,7 +43,7 @@ const initialState = {
     delete : {
         apiId : ""
     },
-    views : {
+    view : {
         exceptionId : "",
         title : "",
         exceptions : "",
@@ -86,11 +86,11 @@ const exceptions = handleActions(
 
       // 상세 성공
    [SELECT_SUCCESS]: (state, {payload : {message, data, result}}) =>{
-  
+    console.log(data);
         return {   
           ...state,
             message : message,
-            views    : data,
+            view    : data,
             result : result, 
             status : "SELECT_SUCCESS"
         }

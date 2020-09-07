@@ -5,14 +5,17 @@ import { withRouter } from 'react-router-dom';
 import { useUpdateEffect } from "react-use";
 import { useSnackbar } from 'notistack';
 import { initialize, initializeForm  , selectAction} from "../../../../store/modules/exceptions"
+import {Controlled as CodeMirror} from 'react-codemirror2'
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/theme/material.css';
 const ViewContainer = ({history, match}) => {
 
     const {id} = match.params;
     const dispatch = useDispatch();
-    const {status, views, message} = useSelector(state=> state.exceptions);
+    const {status,  message} = useSelector(state=> state.exceptions);
     const { enqueueSnackbar } = useSnackbar();
 
-    const { title, exceptions, device_id, save_date} = views;
+    const { title, exceptions, device_id, save_date} = useSelector(state=> state.exceptions.view);
 
     // SmacBar    
     const snackBar = (text, variant='info') =>{
@@ -98,17 +101,19 @@ const ViewContainer = ({history, match}) => {
         
             <div className="position-relative row form-group"><label for="exceptions" className="col-sm-2 col-form-label">Text Area</label>
                 <div className="col-sm-10">
-                <TextField
-                    id="outlined-multiline-flexible"
-                    label="Multiline"
-                    multiline
-                    rows={8}
+                <CodeMirror
                     value={exceptions}
-                    disabled
-                    fullWidth
-                    variant="outlined"
+                    options={{
+                        mode: 'xml',
+                        theme: 'material',
+                        lineNumbers: true
+                    }}
+                    onChange={(editor, data, value) => {
+                    }}
                     />
-                    {/* <textarea name="text" id="exceptions" className="form-control" value={exceptions}></textarea></div> */}
+                
+                
+
                     </div>
             </div>
         

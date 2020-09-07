@@ -23,7 +23,7 @@ export const chageField   = createAction(CHANGE_FIELD);
 
 
 export const listAction     = createAction(LIST, id=> id);
-export const deleteAction   = createAction(DELETE, id => id);
+export const deleteAction   = createAction(DELETE, data => data);
 
 
 
@@ -35,6 +35,7 @@ export function* screenshotSaga() {
 
 const initialState = {
     list : [],
+  
     result : null,
     message : null,
     status  : null
@@ -85,16 +86,17 @@ const screenshot = handleActions(
  
 
    
-    [DELETE_SUCCESS]: (state, {payload : data}) =>({
+    [DELETE_SUCCESS]: (state, {payload :{ message, result} }) =>({
       ...state,
-      delete : initialState.delete,
-      message : data.message,
+      message : message,
+      result : result ,
       status : "DELETE_SUCCESS"
     }),
    
-    [DELETE_FAILURE]: (state, {payload : data}) =>({
+    [DELETE_FAILURE]: (state, {payload :{ message , result}}) =>({
       ...state,
-      message : data.message,
+      message : message,
+      result : result, 
       status : "DELETE_FAILURE"
     }),
 

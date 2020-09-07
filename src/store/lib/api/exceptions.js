@@ -9,7 +9,7 @@ export const list = () =>{
 
 // 상세조회 
 export const select = (id) =>{
-        return client.get(`${baseUrl}/${id}`);
+        return client.post(`${baseUrl}/${id}`);
 };
 
 // 모두 삭제 

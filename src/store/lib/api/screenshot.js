@@ -13,7 +13,8 @@ export const newAPI = (data) =>{
 };
 
 // 삭제 
-export const deleteAPI = (id) =>{
-    return client.post(`${baseUrl}/delete`, id);
+export const deleteAPI = (data) =>{
+    const {file_id, path} = data;
+    return client.post(`${baseUrl}/delete`, {file_id, path});
 };
 

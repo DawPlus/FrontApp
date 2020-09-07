@@ -39,6 +39,14 @@ export function* teamSaga() {
 
 const initialState = {
     list : [],
+    view : {
+      teamId : null,
+      team : null,
+      manage : null,
+      phone : null,
+      updateDate : null,
+      saveDate : null
+    },
     result : null,
     message : null,
     status  : null
@@ -112,7 +120,7 @@ const team = handleActions(
     ...state,
     result : result, 
     message : message,
-    viewApi : data,
+    view : data,
     status : "SELECT_SUCCESS"
 
   }),

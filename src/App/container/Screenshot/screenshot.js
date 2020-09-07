@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import {initialize, listAction, initializeForm} from "../../../store/modules/screenshot";
+import {initialize, listAction, initializeForm, deleteAction} from "../../../store/modules/screenshot";
 import { useDispatch, useSelector } from 'react-redux';
 import { useUpdateEffect, useLifecycles } from 'react-use';
 import { useSnackbar } from "notistack";
@@ -7,14 +7,13 @@ import { withRouter } from 'react-router-dom';
 import ImageList from "../../components/ImageList";
 
 import noImage from "../../../assets/images/doh.png"
-const ViewContainer = ({match, history}) => {
+const ViewContainer = ({match}) => {
 
     const {id} = match.params;
     const dispatch = useDispatch();
     const {list, status, message} = useSelector(state=> state.screenshot);
     const { enqueueSnackbar } = useSnackbar();
-
-    console.log(list);
+    
     const snackBar = useCallback( (text, variant='info') =>{
         enqueueSnackbar(text,
               {
@@ -35,7 +34,15 @@ const ViewContainer = ({match, history}) => {
                 case "LIST_SUCCESS" : 
                       break;
                 case "LIST_FAILURE" : 
-                      snackBar(message);
+                        snackBar(message);
+                      break;
+                case "DELETE_SUCCESS" : 
+                        window.$('.close_1x3s325').trigger("click");
+                        snackBar(message);
+                        dispatch(listAction(id));
+                      break;
+                case "DELETE_FAILURE" : 
+                       snackBar(message, "error");
                       break;
                 default : break;
             }
@@ -59,21 +66,13 @@ const ViewContainer = ({match, history}) => {
         }
       );
 
-
-
-    const onDelete = () => {
-
-        console.log("delete")
+    const onImageDelete = e => {
+        dispatch(deleteAction(e));
     }
 
 
     return(<>
-    
-        {list.length > 0  ? <ImageList images={list} onDelete={onDelete}/> : <img src={noImage} alt="test"/>}
-    
-
-    
-    
+        {list.length > 0  ? <ImageList images={list} onDelete={onImageDelete}/> : <img src={noImage} alt="noImage"/>}    
     </>);
 }
 export default withRouter(ViewContainer);
