@@ -23,7 +23,7 @@ const guideList = React.lazy(() => import('./Page/Guide/list'));
 // 문제관리
 const questionList = React.lazy(() => import('./Page/Question/list'));
 const questionNew = React.lazy(() => import('./Page/Question/new'));
-
+const questionView = React.lazy(() => import('./Page/Question/view'));
 
 
 // 팀관리 
@@ -54,7 +54,8 @@ const routes = [
     
     // 문제관리
     { path: '/question',        exact: true, name: '문제관리 ', component: questionList },
-    { path: '/question/new',    exact: true, name: '문제등록 ', component: questionNew }
+    { path: '/question/new',    exact: true, name: '문제등록 ', component: questionNew },
+    { path: '/question/:id',    exact: true, name: '문제상세보기 ', component: questionView }
     
 
 ];

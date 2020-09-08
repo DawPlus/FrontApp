@@ -418,3 +418,20 @@ table td, table th{white-space: pre-line !important;}
 .react-viewer-transition{transition: none 0s ease 0s !important; }
 .questionViewer img{width : 100%; cursor: pointer;}
 // .video-react-video{max-height:90%}
+
+
+.react-codemirror2{    flex: 1 1 auto;
+
+  margin-top: 0;
+  min-height: 380px;// Wrap Height
+  position: relative;
+}
+
+div.CodeMirror{position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 380px; // codemirror Height
+  border: 1px #e9ecef solid;
+}

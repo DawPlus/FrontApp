@@ -28,10 +28,15 @@ const CHANGE_FIELD_LIST = 'question/CHANGE_FIELD_LIST';
 const [NEW, NEW_SUCCESS, NEW_FAILURE]  = createRequestActionTypes('question/NEW');  
 // 문제 목록 조회 
 const [LIST, LIST_SUCCESS, LIST_FAILURE]  = createRequestActionTypes('question/LIST');  
+// 문제 상세 조회 
+const [VIEW, VIEW_SUCCESS, VIEW_FAILURE]  = createRequestActionTypes('question/VIEW');  
+
 
 const [MAP_LIST, MAP_LIST_SUCCESS, MAP_LIST_FAILURE]   = createRequestActionTypes('question/MAP_LIST');
 
 const [GUIDE_LIST, GUIDE_LIST_SUCCESS, GUIDE_LIST_FAILURE]   = createRequestActionTypes('question/GUIDE_LIST');
+
+
 
 
 //export const list             = createAction(LIST);
@@ -46,6 +51,7 @@ export const mapListAction  = createAction(MAP_LIST);
 export const guideListAction  = createAction(GUIDE_LIST);
 export const newAction  = createAction(NEW);
 export const listAction  = createAction(LIST);
+export const viewAction  = createAction(VIEW);
 
 
 
@@ -55,9 +61,8 @@ export function* questionSaga() {
   yield takeLatest(GUIDE_LIST,  createRequestSaga(GUIDE_LIST, guideList));
   yield takeLatest(NEW,  createRequestSaga(NEW, API.newQuestion));
   yield takeLatest(LIST,  createRequestSaga(LIST, API.list));
+  yield takeLatest(VIEW,  createRequestSaga(VIEW, API.selectAPI, id=>id));
   
-  
-
 
 }
 
@@ -70,6 +75,22 @@ const initialState = {
         guide : null,
         video : null ,
         hint : null, 
+        examples : [
+            {content : "" , isAnswer : 2},
+            {content : "" , isAnswer : 2},
+            {content : "" , isAnswer : 2},
+            {content : "" , isAnswer : 2}
+        ],
+        singleExample : ""
+    },
+    view :{
+        title : "",
+        content : "",
+        type : null ,
+        map : null,
+        guide : null,
+        video : null ,
+        hint : "", 
         examples : [
             {content : "" , isAnswer : 2},
             {content : "" , isAnswer : 2},
@@ -165,16 +186,18 @@ const question = handleActions(
 
 
         // 등록 성공
-        [NEW_SUCCESS]: (state, {payload : data}) =>({
+        [NEW_SUCCESS]: (state, {payload : {message, result , data}}) =>({
           ...state,
-          message : data.message,
-          new : initialState.new,
+          message : message,
+          new : data,
+          result  : result, 
           status : "NEW_SUCCESS"
         }),
         //  등록실패 
-        [NEW_FAILURE]: (state, {payload : data}) =>({
+        [NEW_FAILURE]: (state, {payload : {message, result}}) =>({
           ...state,
-          message : data.message,
+          message : message,
+          result : result,
           status : "NEW_FAILURE"
         }),
 
@@ -197,6 +220,26 @@ const question = handleActions(
           status : "LIST_FAILURE"
         }),
 
+
+        // 상세조회성공
+        [VIEW_SUCCESS]: (state, {payload : {data, result, message}}) =>{
+
+          console.log(data)
+
+          return {
+          ...state,
+          message : message,
+          view : data,
+          result : result,
+          status : "VIEW_SUCCESS"
+        }},
+        //  상세조회실패 
+        [VIEW_FAILURE]: (state, {payload : {message, result}}) =>({
+          ...state,
+          message : message,
+          result : result,
+          status : "VIEW_FAILURE"
+        }),
 
 
 

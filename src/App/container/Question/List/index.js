@@ -40,7 +40,7 @@ const ListContainer = () => {
                 case "LIST_SUCCESS" : 
                         list.map(it=> { 
                             it.onOff = <SwitchBtn checked={it.useYN} id={it.question_id} onChange={onUpdate}/>
-                            it.title = <Link to={`/init/${it.question_id}`} >{it.title}</Link>
+                            it.title = <Link to={`/question/${it.question_id}`} >{it.title}</Link>
                             it.type = it.type === '1' ?  
                                 <div className="badge badge-primary" style={{fontSize : "12px"}}>
                                      객관식

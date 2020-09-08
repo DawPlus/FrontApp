@@ -11,4 +11,8 @@ export const newQuestion = (data) =>{
 export const list    = () => {
     return client.post(`${baseUrl}`);
 }
-
+// 문제 상세 조회 
+export const selectAPI = (id) => {
+    console.log(id);
+    return client.post(`${baseUrl}/${id}`);
+}

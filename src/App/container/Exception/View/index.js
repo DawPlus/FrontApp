@@ -1,13 +1,17 @@
 import React, {useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import TextField from '@material-ui/core/TextField';
+import {Row, Col} from 'react-bootstrap';
+import Button from '@material-ui/core/Button';
+
 import { withRouter } from 'react-router-dom';
 import { useUpdateEffect } from "react-use";
 import { useSnackbar } from 'notistack';
-import { initialize, initializeForm  , selectAction} from "../../../../store/modules/exceptions"
-import {Controlled as CodeMirror} from 'react-codemirror2'
+import { initialize, initializeForm  , selectAction} from "../../../../store/modules/exceptions";
+import {UnControlled as CodeMirror} from 'react-codemirror2';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/material.css';
+
+
 const ViewContainer = ({history, match}) => {
 
     const {id} = match.params;
@@ -15,7 +19,7 @@ const ViewContainer = ({history, match}) => {
     const {status,  message} = useSelector(state=> state.exceptions);
     const { enqueueSnackbar } = useSnackbar();
 
-    const { title, exceptions, device_id, save_date} = useSelector(state=> state.exceptions.view);
+    const { title, exceptions, deviceId, saveDate} = useSelector(state=> state.exceptions.view);
 
     // SmacBar    
     const snackBar = (text, variant='info') =>{
@@ -60,7 +64,7 @@ const ViewContainer = ({history, match}) => {
         return () => { // *OPTIONAL*
           // do something on unmount
         }
-      },[status]) // you can include deps array if necessary
+      },[status]) 
     
 
 
@@ -77,56 +81,53 @@ const ViewContainer = ({history, match}) => {
 
 
     return(<>
-        
-        
-
-            <div className="position-relative row form-group">
-                <label for="title" className="col-sm-2 col-form-label">Title</label>
-                <div className="col-sm-10">
-                    <TextField id="standard-basic" label="Standard" fullWidth value={title}/>
-                    {/* <input name="title" id="title" placeholder="with a placeholder" type="text" className="form-control" value={title}/> */}
-                </div>
-            </div>
-            <div className="position-relative row form-group"><label for="device_id" className="col-sm-2 col-form-label">Password</label>
-                <div className="col-sm-10">
-                    <input name="device_id" id="device_id" placeholder="password placeholder" type="text" className="form-control" value={device_id}/>
-                    </div>
-            </div>
-            <div className="position-relative row form-group">
-                <label for="save_date" className="col-sm-2 col-form-label">등록일</label>
-                <div className="col-sm-10">
-                    <input name="save_date" id="save_date" placeholder="password placeholder" type="text" className="form-control" value={save_date}/>
-                    </div>
-            </div>
-        
-            <div className="position-relative row form-group"><label for="exceptions" className="col-sm-2 col-form-label">Text Area</label>
-                <div className="col-sm-10">
-                <CodeMirror
-                    value={exceptions}
-                    options={{
-                        mode: 'xml',
-                        theme: 'material',
-                        lineNumbers: true
-                    }}
-                    onChange={(editor, data, value) => {
-                    }}
-                    />
-                
-                
-
-                    </div>
-            </div>
-        
-            
-            
-            <div className="position-relative row form-check">
-                <div className="col-sm-10 offset-sm-2">
-                    <button className="btn btn-secondary" onClick={onCancle}>뒤로</button>
-                </div>
-            </div>
-
-
-        
+            <Row>
+                <Col md={2}>
+                    <label for="title" className="col-form-label">Title</label>
+                </Col>
+                <Col md={10}>
+                    <textarea class="form-control" id="title" value={title} readOnly style={{resize : "none"}}></textarea>
+                </Col>
+            </Row>
+            <Row className="mt-3">
+                <Col md={2}>
+                    <label htmlFor="deviceId" className="col-form-label">Device ID</label>
+                </Col>
+                <Col md={10}>
+                     <input name="deviceId" id="deviceId" type="text" className="form-control" value={deviceId} readOnly/>
+                </Col>
+            </Row>
+            <Row className="mt-3">
+                <Col md={2}>
+                     <label htmlFor="saveDate" className="col-form-label">등록일시</label>
+                </Col>
+                <Col md={10}>
+                    <input name="saveDate" id="saveDate" type="text" className="form-control" value={saveDate} readOnly/>
+                </Col>
+            </Row>
+            <Row className="mt-3">
+                <Col md={2}>
+                     <label htmlFor="exception" className="col-form-label">Exception</label>
+                </Col>
+                <Col md={10}>
+                        <CodeMirror
+                            value={exceptions}
+                            options={{
+                                mode: 'javascript',
+                                theme: 'xq-light',
+                                lineNumbers: true
+                            }}
+                        />
+                </Col>
+            </Row>
+            <Row className="mt-3">
+                <Col style={{textAlign : "right"}}>
+                    <Button variant="contained" color="primary" onClick={onCancle}>
+                        뒤로
+                    </Button>
+                </Col>
+            </Row>
+         
     </>);
 
 

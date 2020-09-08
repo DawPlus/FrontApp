@@ -4,7 +4,7 @@ import {Card} from 'react-bootstrap';
 import Title from "../../App/container/Question/Title";
 import List from "../../App/container/Question/List";
 
-const GuidePage = () => {
+const QuestionList = () => {
 
     return(<>
           <Title/>
@@ -20,4 +20,4 @@ const GuidePage = () => {
             
     </>);
 }
-export default GuidePage;
+export default QuestionList;
