@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch , useSelector} from 'react-redux';
-import {changeFieldList} from "../../../../../../store/modules/question";
+import {changeFieldList, changeFieldRadio} from "../../../../../../store/modules/question";
 
 const MultiContainer = () => {
     const dispatch = useDispatch();
@@ -9,8 +9,17 @@ const MultiContainer = () => {
         dispatch(changeFieldList({
                 index : idx,
                 item : {
-                        [e.target.name] : e.target.type ==="text" ? e.target.value : e.target.checked ? 1 :2
+                    [e.target.name] :e.target.value
                 }
+        }));
+    }
+
+    const onRadioChange = (e, idx) => {
+        dispatch(changeFieldRadio({
+            index : idx,
+            item : {
+                [e.target.name] :  e.target.checked ? 1 :2
+            }
         }));
     }
     return(<>
@@ -23,7 +32,7 @@ const MultiContainer = () => {
                                         type="radio" 
                                         className="" 
                                         name="isAnswer"                                    
-                                        onChange={e => onChange(e, idx)} 
+                                        onChange={e => onRadioChange(e, idx)} 
                             />
                         </span>
                     </div>

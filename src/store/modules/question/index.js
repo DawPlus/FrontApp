@@ -9,13 +9,13 @@ import{list as mapList} from "../../lib/api/map"
 import{list as guideList} from "../../lib/api/guide"
 
 
-const INITIALIZE        = 'question/INITIALIZE';
-const INITIALIZE_FORM   = 'question/INITIALIZE_FORM';
-const INITIALIZE_RADIO  = 'question/INITIALIZE_RADIO';
-const CHANGE_FIELD      = 'question/CHANGE_FIELD';
-const CHANGE_FIELD_FORM = 'question/CHANGE_FIELD_FORM';
-const CHANGE_FIELD_LIST = 'question/CHANGE_FIELD_LIST';
-
+const INITIALIZE          = 'question/INITIALIZE';
+const INITIALIZE_FORM     = 'question/INITIALIZE_FORM';
+const INITIALIZE_RADIO    = 'question/INITIALIZE_RADIO';
+const CHANGE_FIELD        = 'question/CHANGE_FIELD';
+const CHANGE_FIELD_FORM   = 'question/CHANGE_FIELD_FORM';
+const CHANGE_FIELD_LIST   = 'question/CHANGE_FIELD_LIST';
+const CHANGE_FIELD_RADIO  = 'question/CHANGE_FIELD_RADIO';
 
 
 
@@ -31,7 +31,6 @@ const [LIST, LIST_SUCCESS, LIST_FAILURE]  = createRequestActionTypes('question/L
 // 문제 상세 조회 
 const [VIEW, VIEW_SUCCESS, VIEW_FAILURE]  = createRequestActionTypes('question/VIEW');  
 
-
 const [MAP_LIST, MAP_LIST_SUCCESS, MAP_LIST_FAILURE]   = createRequestActionTypes('question/MAP_LIST');
 
 const [GUIDE_LIST, GUIDE_LIST_SUCCESS, GUIDE_LIST_FAILURE]   = createRequestActionTypes('question/GUIDE_LIST');
@@ -45,23 +44,24 @@ export const initializeForm   = createAction(INITIALIZE_FORM);
 export const changeField      = createAction(CHANGE_FIELD);
 export const changeFieldForm  = createAction(CHANGE_FIELD_FORM);
 export const changeFieldList  = createAction(CHANGE_FIELD_LIST);
+export const changeFieldRadio = createAction(CHANGE_FIELD_RADIO);
+
 export const initializeRadio  = createAction(INITIALIZE_RADIO);
-
-export const mapListAction  = createAction(MAP_LIST);
+export const mapListAction    = createAction(MAP_LIST);
 export const guideListAction  = createAction(GUIDE_LIST);
-export const newAction  = createAction(NEW);
-export const listAction  = createAction(LIST);
-export const viewAction  = createAction(VIEW);
+export const newAction        = createAction(NEW);
+export const listAction       = createAction(LIST);
+export const viewAction       = createAction(VIEW);
 
 
 
-export function* questionSaga() {
-  //yield takeLatest(LIST,        createRequestSaga(LIST, API.list));
-  yield takeLatest(MAP_LIST,  createRequestSaga(MAP_LIST, mapList));
+
+export function* questionSaga() {  
+  yield takeLatest(MAP_LIST,    createRequestSaga(MAP_LIST, mapList));
   yield takeLatest(GUIDE_LIST,  createRequestSaga(GUIDE_LIST, guideList));
-  yield takeLatest(NEW,  createRequestSaga(NEW, API.newQuestion));
-  yield takeLatest(LIST,  createRequestSaga(LIST, API.list));
-  yield takeLatest(VIEW,  createRequestSaga(VIEW, API.selectAPI, id=>id));
+  yield takeLatest(NEW,         createRequestSaga(NEW, API.newQuestion));
+  yield takeLatest(LIST,        createRequestSaga(LIST, API.list));
+  yield takeLatest(VIEW,        createRequestSaga(VIEW, API.selectAPI, id=>id));
   
 
 }
@@ -118,6 +118,15 @@ const question = handleActions(
         draft[key] = value; 
     }),
     [CHANGE_FIELD_LIST]: (state,  {payload: value} ) =>{
+      return ({
+        ...state, 
+          new : {
+            ...state.new,
+              examples : Util.update(state.new.examples, value)
+          }
+      })
+    },
+    [CHANGE_FIELD_RADIO]: (state,  {payload: value} ) =>{
    
       state.new.examples.map(it => it.isAnswer= 2);
 

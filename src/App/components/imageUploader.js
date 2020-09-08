@@ -10,7 +10,7 @@ return(<>
                 buttonText='파일을 선택해 주십시오'
                 onChange={onChange}
                 imgExtension={['.jpg', '.gif', '.png', '.gif']}
-                maxFileSize={5242880}
+                maxFileSize={10485760}
                 singleImage={true}
                 withPreview={true}
                 fileContainerStyle={{
