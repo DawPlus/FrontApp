@@ -14,7 +14,6 @@ const QuestionList = () => {
                 </Card.Header>
                 <Card.Body>
                     <List/>
-       
                 </Card.Body>
             </Card>
             

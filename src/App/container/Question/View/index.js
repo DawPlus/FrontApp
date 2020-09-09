@@ -1,11 +1,11 @@
-import React, { useEffect }  from "react"
+import React, { useEffect, useState }  from "react"
 import { useSelector, useDispatch } from "react-redux";
 import Button from '@material-ui/core/Button';
 import { withRouter } from 'react-router-dom';
 import {Row, Col, Card} from 'react-bootstrap';
 
-
-import {viewAction, initialize, initializeForm} from "../../../../store/modules/question";
+import Confirm  from "../../../components/Confirm";
+import {viewAction, initialize, initializeForm, deleteAction} from "../../../../store/modules/question";
 import { useUpdateEffect } from "react-use";
 import { useSnackbar } from 'notistack';
 
@@ -15,13 +15,16 @@ import Example from "./Example";
 import Map from "./Map";
 import Guide from "./Guide";
 import Video from "./Video";
+
 const ViewContainer = ({history, match}) => {
 
     const {id} = match.params;
     const dispatch = useDispatch();
- 
+    const [isOpen, setIsOpen] = useState(false);
+
+
     const {status, message} = useSelector(s => s.question);
- 
+  
     const { enqueueSnackbar } = useSnackbar();
     // SmacBar    
     const snackBar = (text, variant='info') =>{
@@ -40,6 +43,7 @@ const ViewContainer = ({history, match}) => {
 
     // component did mount
     useEffect(() => {
+      
         dispatch(viewAction(id))
         return () => {
             dispatch(initialize());
@@ -54,7 +58,14 @@ const ViewContainer = ({history, match}) => {
                 case "VIEW_SUCCESS" : 
                     snackBar(message);
                     break;
-                case "VIEW_FAILURE" : 
+                case "VIEW_FAILURE" :
+                    snackBar(message);
+                    break;
+                case "DELETE_SUCCESS" : 
+                    snackBar(message);
+                    history.push("/question");
+                    break;
+                case "DELETE_FAILURE" : 
                     snackBar(message);
                     break;
                 default : break;
@@ -70,18 +81,39 @@ const ViewContainer = ({history, match}) => {
       
  
       const backBtn = () => {
-
         history.push("/question")
       }
+
+
+      const onConfirm = () =>{
+          setIsOpen(true);
+      }
+
+      const onDelete = () => {
+            dispatch(deleteAction(id));
+      }
+
+    
  
  return(<>
-    
+        <Confirm
+            message={"문제를 삭제 하시겠습니까?"}
+            isOpen={isOpen}
+            onCancle={()=>setIsOpen(false)}
+            onAccept={onDelete}
+        />
+
+
         <Row>
             <Col>
                  <Card.Body style={{textAlign:"right"}}>
-                 <Button variant="contained" color="primary" onClick={backBtn}>
-                        뒤로
-                </Button>
+                    <Button variant="contained" color="primary" onClick={backBtn} className="mr-2" size="small">
+                            뒤로
+                    </Button>
+                    <Button variant="contained" color="primary" onClick={onConfirm} size="small">
+                            삭제 
+                    </Button>
+                    
                 </Card.Body>
             </Col>
 

@@ -13,6 +13,15 @@ export const list    = () => {
 }
 // 문제 상세 조회 
 export const selectAPI = (id) => {
-    console.log(id);
     return client.post(`${baseUrl}/${id}`);
+}
+
+// 문제 사용여부 변경
+export const updateUseYnAPI = (data) => {
+    return client.put(`${baseUrl}/use`, data);
+}
+
+// 문제 삭제 
+export const deleteAPI = (id) => {
+    return client.delete(`${baseUrl}/${id}`);
 }

@@ -11,7 +11,7 @@ const ExampleContainer = () => {
 
         <Card>
             <Card.Body>
-                <h5 class="card-title">Example</h5>
+                <h5 className="card-title">Example</h5>
                 {type === "1" ? <Multi data={examples}/>: <Single single={singleExample}/> }
             </Card.Body>
         </Card>

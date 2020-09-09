@@ -1,6 +1,6 @@
 import React, {  useCallback }  from "react"
 import {useLifecycles, useUpdateEffect} from 'react-use';
-import {listAction , initialize, initializeForm} from "../../../../store/modules/question";
+import {listAction , initialize, initializeForm, updateUseYnAction} from "../../../../store/modules/question";
 import { useSelector, useDispatch } from "react-redux";
 import { useSnackbar } from "notistack";
 import MdbTable from "../../../components/MdbTable";
@@ -29,8 +29,8 @@ const ListContainer = () => {
 
     
     // 사용여부 변경 
-    const onUpdate = (id) => { 
-        console.log(id+"<-- 사용여부 변경 ")
+    const onUpdate = (use, id) => { 
+        dispatch(updateUseYnAction({useYN:use, question_id : id}));
     }
 
 
@@ -39,7 +39,7 @@ const ListContainer = () => {
             switch(status){
                 case "LIST_SUCCESS" : 
                         list.map(it=> { 
-                            it.onOff = <SwitchBtn checked={it.useYN} id={it.question_id} onChange={onUpdate}/>
+                            it.onOff = <SwitchBtn checked={it.useYN} id={it.question_id} onChange={onUpdate }/>
                             it.title = <Link to={`/question/${it.question_id}`} >{it.title}</Link>
                             it.type = it.type === '1' ?  
                                 <div className="badge badge-primary" style={{fontSize : "12px"}}>
@@ -53,7 +53,16 @@ const ListContainer = () => {
                       break;
                 case "LIST_FAILURE" : 
                       snackBar(message);
-                        break;
+                      break;
+                case "UPDATE_USEYN_SUCCESS" :
+                       dispatch(listAction()); 
+                      snackBar(message);
+                      break;                        
+                case "UPDATE_USEYN_FAILURE" : 
+                      snackBar(message);
+                      break;                        
+
+
                 default : break;
             }
     

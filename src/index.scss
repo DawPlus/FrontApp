@@ -435,3 +435,5 @@ div.CodeMirror{position: absolute;
   height: 380px; // codemirror Height
   border: 1px #e9ecef solid;
 }
+.warningMessage p{margin-bottom : 0.5px;}
+.warningMessage p em{text-decoration: underline; font-weight: bold; font-style:normal;color: #383d41;}

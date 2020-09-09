@@ -22,7 +22,7 @@ const VideoContainer = () => {
         dispatch(changeFieldForm({
             form :"new",
             key : e.target.name,
-            value : config.videoBase+e.target.value
+            value : e.target.value ==="" ? "" : config.videoBase+e.target.value
 
 
         }))
@@ -35,8 +35,8 @@ const VideoContainer = () => {
                     <select name="video" id="video" className="form-control"
                             onChange={onChange}
                     >
-                        <option>선택</option>
-                        {fileList.map((item,idx)=><option key={idx}>{item}</option>)}
+                        <option value="">선택</option>
+                        {fileList.map((item,idx)=><option key={idx} value={item}>{item}</option>)}
                     </select>
                 </div> 
             </Col>

@@ -34,7 +34,7 @@ const ViewContainer =() => {
 
         <Card>
             <Card.Body>
-                <h5 class="card-title">
+                <h5 className="card-title">
                     Question Info
                     {view.type === "1" ?
                     <div className="badge badge-primary" style={{fontSize : "12px", float:"right"}}>
@@ -66,12 +66,12 @@ const ViewContainer =() => {
                     <Row className="mt-3">
                         <Col md={2}><label htmlFor="hint" className="col-form-label">Video</label></Col>
                         <Col md={10}>
-                            <div class="input-group">
-                                <input type="text" class="form-control" value={view.video} readOnly/>
-                                <div class="input-group-append">
+                            <div className="input-group">
+                                <input type="text" className="form-control" value={view.video} readOnly/>
+                                <div className="input-group-append">
                                     <CopyToClipboard onCopy={onCopy} text={view.video}>
                                         <Button variant="contained" color="primary">
-                                            <i class="pe-7s-note2"></i>
+                                            <i className="pe-7s-note2"></i>
                                         </Button>
                                     </CopyToClipboard>
                                 </div>

@@ -9,7 +9,7 @@ const VideoContainer = () => {
     return(<>
       <Card>
             <Card.Body className="questionViewer">
-                <h5 class="card-title">Video</h5>
+                <h5 className="card-title">Video</h5>
                     <Player src={config.baseURL+ video}>
                     <BigPlayButton position="center" />
             </Player>

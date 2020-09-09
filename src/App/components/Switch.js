@@ -1,28 +1,17 @@
-import React, {  useState } from 'react';
-
-
+import React from 'react';
 
 const SwitchBtn = (props) => {
     const {checked, id, onChange} = props;
-    console.log(checked, id );
-
-    const [isChecked, setIsChecked] = useState(checked === "Y" ? true : false);
-
-    const onChangeHandler = () => {
-
-        setIsChecked(isChecked ? false : true);
-
-        onChange(id);
-
+    const onChangeHandler = () => {     
+        onChange(checked === "Y"? "N" : "Y", id);
     }
-
     return(<>
         <div className='custom-control custom-switch'>
             <input
                 type='checkbox'
                 className='custom-control-input'
                 id={`checke${id}`}
-                checked={isChecked}
+                checked={checked === "Y" ? true : false}
                 onChange={onChangeHandler}
                 readOnly
             />

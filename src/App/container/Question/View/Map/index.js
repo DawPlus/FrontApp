@@ -7,7 +7,7 @@ const MapContainer = () => {
     return(<>
           <Card>
             <Card.Body className="questionViewer">
-                <h5 class="card-title">Map</h5>
+                <h5 className="card-title">Map</h5>
                 <ImageViewer src={map} />
             </Card.Body>
         </Card>

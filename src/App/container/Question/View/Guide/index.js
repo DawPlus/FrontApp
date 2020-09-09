@@ -7,7 +7,7 @@ const GuideContainer = () => {
     return(<>
           <Card>
             <Card.Body className="questionViewer">
-                <h5 class="card-title">Guide</h5>
+                <h5 className="card-title">Guide</h5>
                 <ImageViewer src={guide} />
             </Card.Body>
         </Card>
