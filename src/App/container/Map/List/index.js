@@ -79,7 +79,6 @@ const ListContainer = () => {
           }
       }
     
-      console.log(fileList);
     return(<>
         
             <ImageList images={fileList} onDelete={onDelete}/>

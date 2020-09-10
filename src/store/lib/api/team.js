@@ -20,7 +20,7 @@ export const updateAPI = (data) =>{
 };
 // 삭제 
 export const deleteAPI = (id) =>{
-    console.log(id);
+    
     return client.delete(`${baseUrl}/${id}`);
 };
 

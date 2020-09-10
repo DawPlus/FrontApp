@@ -57,7 +57,7 @@ const ViewContainer = ({match, history}) => {
                     break;
                 case "DELETE_SUCCESS" : 
                     history.push("/init");
-                    console.log("삭제 완료 ")
+                  
                     snackBar(message);
                     break;
                 case "DELETE_FAILURE" : 

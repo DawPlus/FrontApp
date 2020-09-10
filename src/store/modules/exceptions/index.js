@@ -86,7 +86,7 @@ const exceptions = handleActions(
 
       // 상세 성공
    [SELECT_SUCCESS]: (state, {payload : {message, data, result}}) =>{
-    console.log(data);
+    
         return {   
           ...state,
             message : message,

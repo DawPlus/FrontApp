@@ -35,7 +35,7 @@ const ListContainer = () => {
         if(status === null ) return;
             switch(status){
                 case "LIST_SUCCESS" : 
-                console.log("list")
+               
                       
                     break;
                 case "LIST_FAILURE" : 

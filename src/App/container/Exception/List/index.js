@@ -85,7 +85,6 @@ const TableContainer = () => {
 
 
   const onDelete = () => {
-      console.log(1);
     dispatch(deleteAllAction());
   }
 

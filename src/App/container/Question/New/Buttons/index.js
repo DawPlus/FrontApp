@@ -28,11 +28,10 @@ const ButtonContainer = () => {
     // 신규 등록 
     const onSubmit = () => {
         const valid = validation(newInfo);
-        //TODO
         if(valid.length > 0) { 
             setIsOpen(false);
-            setIsWarning(true)
-            setWarning(warning.map((it, idx)=><p key={idx}>  [<em>{it}</em>] 이(가) 비어있습니다.</p>));
+            setIsWarning(true);            
+            setWarning(valid.map((it, idx)=><p key={idx}>  [<em>{it}</em>] 이(가) 비어있습니다.</p>));
             return false;
         }
     
@@ -42,27 +41,25 @@ const ButtonContainer = () => {
                 setIsOpen(false);
                 setIsWarning(true)
                 setWarning("보기를 모두 입력해 주십시오");       
-                return;     
+                return false;     
             }
             // 정답여부 체크 
             if(newInfo.examples.filter(it=> it.isAnswer === 1).length === 0){
                 setIsOpen(false);
                 setIsWarning(true)
                 setWarning("정답을 선택해 주십시오");       
-                return;
+                return false;
             }
         }else{
             if(newInfo.singleExample === "" || newInfo.singleExample === null){
                 setIsOpen(false);
                 setIsWarning(true)
                 setWarning("주관식 정답을 입력해 주십시오");       
-                return;
+                return false;
             }
 
-        }
-        console.log(1);
-        
-       //dispatch(newAction(newInfo));
+        }  
+      dispatch(newAction(newInfo));
     }
    
 
