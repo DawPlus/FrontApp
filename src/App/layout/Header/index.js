@@ -6,6 +6,7 @@ const HeaderComponent = () => {
             return (<>
                     <div className="app-header header-shadow">
                         <div className="app-header__logo">
+                            <div className="close-logo-src" ></div>
                             <div className="logo-src"></div>
                             <div className="header__pane ml-auto">
                                 <div>

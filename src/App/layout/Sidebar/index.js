@@ -1,11 +1,17 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
+
+const activeStyle = {
+
+    backgroundColor: "#85CE36 !important",
+    color:"#ffffff !important"
+}
 const SideBar = () => {
     return (<>
+
             <div className="app-sidebar sidebar-shadow">
                 <div className="app-header__logo">
-                    <div className="logo-src"></div>
                     <div className="header__pane ml-auto">
                         <div>
                             <button type="button" className="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
@@ -33,56 +39,48 @@ const SideBar = () => {
                             </span>
                         </button>
                     </span>
-                </div>    <div className="scrollbar-sidebar">
+                </div>    
+                <div className="scrollbar-sidebar">
                     <div className="app-sidebar__inner">
                         <ul className="vertical-nav-menu">
-                            <li className="app-sidebar__heading">관리도구</li>
                             <li>
-                                <Link to="/init">
+                                <NavLink to="/init" activeStyle={activeStyle}>
                                     <i className="metismenu-icon pe-7s-rocket"></i>
                                     API 관리 
-                                </Link>
+                                </NavLink>
                             </li>
                             <li>
-                                <Link to="/exception">
+                                <NavLink to="/exception">
                                     <i className="metismenu-icon pe-7s-display2"></i>
                                     Exception 관리 
-                                </Link>
+                                </NavLink>
                             </li>
                             <li>
-                                <Link to="/team">
-                                    <i className="metismenu-icon pe-7s-rocket"></i>
+                                <NavLink to="/team">
+                                    <i className="metismenu-icon pe-7s-network"></i>
                                     팀 관리 
-                                </Link>
+                                </NavLink>
                             </li>
                             <li>
-                                <a href="index.html">
-                                    <i className="metismenu-icon pe-7s-diamond"></i>
-                                    문제관리
-                                    <i className="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                </a>
-                                <ul>
-                                    <li>
-                                        <Link to="/question">
-                                            <i className="metismenu-icon pe-7s-rocket"></i>
-                                            문제 관리 
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link to="/map">
-                                            <i className="metismenu-icon pe-7s-rocket"></i>
-                                            지도 관리 
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link to="/guide">
-                                            <i className="metismenu-icon pe-7s-rocket"></i>
-                                            가이드 관리 
-                                        </Link>
-                                    </li>
-                                </ul>
+                                <NavLink to="/question">
+                                    <i className="metismenu-icon pe-7s-note"></i>
+                                    문제 관리 
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/map">
+                                    <i className="metismenu-icon pe-7s-map"></i>
+                                    지도 관리 
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/guide">
+                                    <i className="metismenu-icon pe-7s-compass"></i>
+                                    가이드 관리 
+                                </NavLink>
                             </li>
                         </ul>
+                           
                     </div>
                 </div>
             </div>   
