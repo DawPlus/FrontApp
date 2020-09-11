@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React,{useEffect, useState} from 'react';
 import {useDispatch , useSelector} from "react-redux";
 import {withRouter}  from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
@@ -6,14 +6,23 @@ import { useHistory } from "react-router-dom";
 
 import {login ,changeField, initializeForm} from "../../../store/modules/auth";
 import config from "../../../config";
+import { useUpdateEffect } from 'react-use';
+import Warning  from "../../components/Warning";
 
 const SignUp = () => {
     const history = useHistory();
     const dispatch = useDispatch();
-    const {loginInfo, authrization, tokken, userInfo, authError } = useSelector(state => state.auth);
+    // 경고창
+    const [isWarning, setIsWarning] = useState(false);
+    // 경고메시지
+    const [warning , setWarning] = useState("");
+    
+    const {loginInfo, authrization, tokken, userInfo, authError, status, message } = useSelector(state => state.auth);
     
     useEffect(() => {
       dispatch(initializeForm('loginInfo'));
+      // 세선 초기화  
+      sessionStorage.clear();
     }, [dispatch]);
   
     useEffect(() => {
@@ -43,8 +52,38 @@ const SignUp = () => {
         e.preventDefault();
           dispatch(login(loginInfo));
       }
+
+
+        // Use Update Event 
+        useUpdateEffect(() => {
+            if(status === null ) return;
+                switch(status){
+                    case "LOGIN_FAILURE" : 
+                        setWarning(message);
+                        setIsWarning(true);
+                        break;
+               
+                    default : break;
+                }
+
+            dispatch(initializeForm("status"));
+            dispatch(initializeForm("message"));
+
+            return () => {
+
+            }
+        },[status]);
+
+
+
+
+
         return(<>
-           
+            <Warning
+                    message={warning}
+                    isOpen={isWarning}
+                    onCancle={()=>{setWarning(""); setIsWarning(false)}}
+                />
                 <div className="auth-wrapper">
                     <div className="auth-content">
                         <div className="auth-bg">
@@ -70,13 +109,7 @@ const SignUp = () => {
                                         name="id"
                                         value={loginInfo.id}
                                         onChange={onChange}/>
-                                    {/* <input type="text" 
-                                        className="form-control" 
-                                        placeholder="UserId"
-                                        name="id"
-                                        value={loginInfo.id}
-                                        onChange={onChange}/> */}
-
+                                  
                                 </div>
                                 <div className="input-group mb-4">
                                     <TextField

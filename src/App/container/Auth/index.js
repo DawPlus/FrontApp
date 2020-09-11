@@ -1,6 +1,7 @@
 import React, {useEffect}  from "react";
 import { withRouter } from 'react-router-dom';
 import {useSelector}   from "react-redux";
+
 const AuthContainer = ({history}) => {
 
     const tokken = sessionStorage.getItem("tokken");
@@ -42,9 +43,7 @@ const AuthContainer = ({history}) => {
     },[isLoading])
 
 
-
     
-
 
     return <></>;
 }

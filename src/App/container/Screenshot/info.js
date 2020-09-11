@@ -10,9 +10,6 @@ const ScreenShotContainer = ({match}) => {
     const dispatch = useDispatch();
     const {view} = useSelector(s => s.team);
 
-    console.log(view);
-
-
     // Page Mount Event 
     useLifecycles(
         ()=>{

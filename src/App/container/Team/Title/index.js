@@ -12,7 +12,7 @@ const TitleContainer = () => {
                         </i>
                     </div>
                     <div>팀 관리 
-                        <div className="page-title-subheading">팀 목록을 조회하고 ScreenShot을 관리합니다. 
+                        <div className="page-title-subheading">팀 목록을 조회하고 인증샷을 관리합니다. 
                         </div>
                     </div>
                 </div>

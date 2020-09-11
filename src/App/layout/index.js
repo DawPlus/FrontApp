@@ -13,8 +13,8 @@ import SideBar from "./Sidebar";
 import  "../../assets/scripts/main";
 import config from  "../../config";
 // import Error from "./Errors/404";
- import Auth from "../container/Auth"
-
+import Auth from "../container/Auth"
+// import Spinner from "../components/Spinner";
 
 
 
@@ -44,8 +44,8 @@ const AdminLayout = () =>{
      
 
         return (<>
-        
-            <Auth/>
+            {/* <Spinner/> */}
+                <Auth/>
             <div className="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">          
                 <Header />
                 {/* <ThemeSetting/> */}

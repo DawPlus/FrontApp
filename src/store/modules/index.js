@@ -10,8 +10,12 @@ import guide ,{guideSaga} from "./guide";
 import video, {videoSaga} from "./video"
 import team , {teamSaga} from "./team";
 import screenshot, {screenshotSaga} from "./screenshot";
+import loading from "./loading";
+
+
 const rootReducer = combineReducers({
     auth,
+    loading,
     question,
     init,
     exceptions,
