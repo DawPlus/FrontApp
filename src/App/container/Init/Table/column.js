@@ -8,6 +8,10 @@
             options: {
                 filter: true,
                 sort: true,
+                customBodyRenderLite: (dataIndex) => {
+                    let val =dataIndex;
+                    return val;
+                  }
             }
         },
         {

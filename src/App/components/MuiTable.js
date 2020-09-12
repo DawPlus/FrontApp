@@ -15,6 +15,7 @@ const MuiTable = (props) => {
         filterType : "dropdown",
         selectableRows:"none",
         tableId : "ID",
+        jumpToPage: true,
         onRowClick : rowData => console.log(rowData)
     }
 
