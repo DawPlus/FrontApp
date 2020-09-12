@@ -1,28 +1,39 @@
 
+  
   export default 
-       [
-           
-            {
-                label: 'Method',
-                field: 'method',
-                width: 80,
-            },
-            {
-                label: 'Name',
-                field: 'name',
-                width: 100,
-            },
-            {
-                label: 'URL',
-                field: 'url',
-                width: 150,
-            },
-            {
-                label: 'DESCRIPTION',
-                field: 'description',
-                width :250
-                
+    [
+        {
+            name: "method",
+            label: "Method",
+            options: {
+                filter: true,
+                sort: true,
             }
-        ]
+        },
+        {
+            name: "name",
+            label: "Name",
+            options: {
+                filter: false,
+                sort: true,
+            }
+        },
+        {
+            name: "url",
+            label: "URL",
+            options: {
+                filter: false,
+                sort: true,
+            }
+        },
+        {
+            name: "description",
+            label: "DESCRIPTION",
+            options: {
+                filter: false,
+                sort: true,
+            }
+        },
+    ]
 
   
