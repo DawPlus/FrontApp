@@ -1,5 +1,5 @@
 
-  
+  import { Link } from "react-router-dom";
   export default 
     [
         {
@@ -12,11 +12,25 @@
             }
         },
         {
+            name :"apiId",
+            label : "apiId",
+            options : {
+                display:false
+
+            }
+
+        },
+        {
             name: "method",
             label: "Method",
             options: {
                 filter: true,
-                sort: true
+                sort: true,
+                customBodyRender : (value, tableMeta, updateValue)=>{
+                    console.log()
+                    return <Link>{value}</Link>
+                }
+            
             }
         },
         {

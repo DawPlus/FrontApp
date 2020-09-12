@@ -1,7 +1,6 @@
 import React from "react";
  
 import MUIDataTable from "mui-datatables";
-import { Checkbox } from "@material-ui/core";
  
 
 const MuiTable = (props) => {
@@ -16,7 +15,8 @@ const MuiTable = (props) => {
         selectableRows:"none",
         tableId : "ID",
         jumpToPage: true,
-        onRowClick : rowData => console.log(rowData)
+        rowsPerPage : 4
+        //onRowClick : rowData => console.log(rowData)
     }
 
 
@@ -25,7 +25,7 @@ const MuiTable = (props) => {
     
             
         <MUIDataTable
-        title="API LIST"
+            title="API LIST"
             data={data}
             columns={columns}
             options ={options}
