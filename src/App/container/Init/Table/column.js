@@ -3,15 +3,20 @@
   export default 
     [
         {
+            name: " ",
+            label: "NO",
+            options: {
+                customBodyRenderLite: (dataIndex) => {
+                    return dataIndex + 1;
+               }
+            }
+        },
+        {
             name: "method",
             label: "Method",
             options: {
                 filter: true,
-                sort: true,
-                customBodyRenderLite: (dataIndex) => {
-                    let val =dataIndex;
-                    return val;
-                  }
+                sort: true
             }
         },
         {

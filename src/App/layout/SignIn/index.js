@@ -76,7 +76,12 @@ const SignUp = () => {
 
 
 
-
+        const handleKeyPress = e => {
+            if(e.key === 'Enter'){
+                
+                dispatch(login(loginInfo));
+              }
+        }
 
         return(<>
             <Warning
@@ -122,7 +127,10 @@ const SignUp = () => {
                                         fullWidth
                                         name="password"
                                         value={loginInfo.password}
-                                        onChange={onChange}/>
+                                        onChange={onChange}
+                                        
+                                        onKeyPress={handleKeyPress}
+                                        />
                                 </div>
                                
                                 <button className="btn btn-primary shadow-2 mb-4"  onClick={loginAction}>
