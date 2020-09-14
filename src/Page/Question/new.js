@@ -17,18 +17,18 @@ const NewPage = ()=>{
             <Col md={6}>
                 <div className="main-card mb-3 card">
                     <div className="card-body">
-                            <h5 className="card-title">Info</h5>
-                            <div className="divider"></div>
-                            <Info/>
+                        <h5 className="card-title">Info</h5>
+                        <div className="divider"></div>
+                        <Info/>
                     </div>
                 </div>
             </Col>
             <Col md={6}>
                 <div className="main-card mb-3 card">
                     <div className="card-body">
-                            <h5 className="card-title">Example</h5>
-                            <div className="divider"></div>
-                            <Example/>
+                        <h5 className="card-title">Example</h5>
+                        <div className="divider"></div>
+                        <Example/>
                     </div>
                 </div>    
             </Col>

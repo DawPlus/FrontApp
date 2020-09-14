@@ -3,8 +3,8 @@ import {useLifecycles, useUpdateEffect} from 'react-use';
 import {listAction , initialize, initializeForm, updateUseYnAction} from "../../../../store/modules/question";
 import { useSelector, useDispatch } from "react-redux";
 import { useSnackbar } from "notistack";
-import MdbTable from "../../../components/MdbTable";
-import columns from "./column";
+import Datatable from "../../../components/Datatable";
+
 import { Link } from "react-router-dom";
 import SwitchBtn from "../../../components/Switch";
 const ListContainer = () => {
@@ -18,7 +18,7 @@ const ListContainer = () => {
       enqueueSnackbar(text,
             {
                 variant  : variant,
-                anchorOrigin: {
+                anchorOrigin : {
                     vertical: 'bottom',
                     horizontal: 'right',
                 },
@@ -26,7 +26,68 @@ const ListContainer = () => {
             }
         );
     },[enqueueSnackbar]);
-
+    const columns =    [
+        {
+            name :"question_id",
+            label : "QuestionID",
+            options : {
+                display : false, 
+                sort : true,
+                filter : false, 
+            }
+        }, 
+        {
+            name :"useYN",
+            label : "USE YN",
+            options : {
+                display : false, 
+                sort : true,
+                filter : false, 
+            }
+        }, 
+        {
+            name :"",
+            label : "사용여부",
+            options : {
+                sort : false,
+                filter : false,
+                customBodyRender : (value, tableMeta, updateValue)=>{
+                        const id = tableMeta.rowData[1];
+                        const useYN = tableMeta.rowData[2];
+                        return <SwitchBtn checked={useYN} id={id} onChange={onUpdate }/>;
+                }
+               
+            }
+        }, 
+        {
+            name :"type",
+            label : "Type",
+            options : {
+                sort : true,
+                filter : false,
+                customBodyRender : (value, tableMeta, updateValue)=>{
+                    return  value === '1' ?   
+                            <div className="badge badge-primary" style={{fontSize : "12px"}}>
+                                    객관식
+                            </div>: 
+                            <div className="badge badge-success" style={{fontSize : "12px"}}>
+                                주관식
+                            </div>
+                }
+            }
+        }, 
+        {
+            name :"title",
+            label : "Title",
+            options : {
+                sort : true,
+                filter : false,
+                customBodyRender : (value, tableMeta, updateValue)=>{
+                    return <Link to={`/question/${tableMeta.rowData[1]}`}>{value}</Link>
+                }
+            }
+        }
+    ]
     
     // 사용여부 변경 
     const onUpdate = (use, id) => { 
@@ -38,18 +99,7 @@ const ListContainer = () => {
         if(status === null ) return;
             switch(status){
                 case "LIST_SUCCESS" : 
-                        list.map(it=> { 
-                            it.onOff = <SwitchBtn checked={it.useYN} id={it.question_id} onChange={onUpdate }/>
-                            it.title = <Link to={`/question/${it.question_id}`} >{it.title}</Link>
-                            it.type = it.type === '1' ?  
-                                <div className="badge badge-primary" style={{fontSize : "12px"}}>
-                                     객관식
-                                </div>: 
-                                <div className="badge badge-success" style={{fontSize : "12px"}}>
-                                    주관식
-                                </div>
-                            return null;
-                        });
+                     
                       break;
                 case "LIST_FAILURE" : 
                       snackBar(message);
@@ -87,7 +137,7 @@ const ListContainer = () => {
 
     return(<>
     
-       <MdbTable columns={columns} rows ={list}/>
+       <Datatable columns={columns} data ={list} number={false}/>
         </>);
 
 

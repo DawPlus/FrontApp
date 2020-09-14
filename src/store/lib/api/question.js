@@ -25,3 +25,8 @@ export const updateUseYnAPI = (data) => {
 export const deleteAPI = (id) => {
     return client.delete(`${baseUrl}/${id}`);
 }
+// 문제수정
+export const updateAPI = (data) => {
+return  client.put(`${baseUrl}/`, data);
+
+}

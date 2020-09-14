@@ -9,7 +9,6 @@ import {viewAction, initialize, initializeForm, deleteAction} from "../../../../
 import { useUpdateEffect } from "react-use";
 import { useSnackbar } from 'notistack';
 
-
 import Info from "./Info";
 import Example from "./Example";
 import Map from "./Map";
@@ -32,7 +31,7 @@ const ViewContainer = ({history, match}) => {
             {
                 variant  : variant,
                 anchorOrigin: {
-                    vertical: 'bottom',
+                    vertical: 'top',
                     horizontal: 'right',
                 },
                 autoHideDuration : 3000
@@ -93,7 +92,9 @@ const ViewContainer = ({history, match}) => {
             dispatch(deleteAction(id));
       }
 
-    
+      const onEdit = () => {
+            history.push(`/question/edit/${id}`);
+      }
  
  return(<>
         <Confirm
@@ -108,9 +109,12 @@ const ViewContainer = ({history, match}) => {
             <Col>
                  <Card.Body style={{textAlign:"right"}}>
                     <Button variant="contained" color="primary" onClick={backBtn} className="mr-2" size="small">
-                            뒤로
+                            목록
                     </Button>
-                    <Button variant="contained" color="primary" onClick={onConfirm} size="small">
+                    <Button variant="contained" color="primary" onClick={onEdit} size="small"className="mr-2">
+                            수정 
+                    </Button>
+                    <Button variant="contained" color="secondary" onClick={onConfirm} size="small">
                             삭제 
                     </Button>
                     

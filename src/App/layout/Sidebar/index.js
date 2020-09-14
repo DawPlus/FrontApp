@@ -69,13 +69,13 @@ const SideBar = () => {
                             </li>
                             <li>
                                 <NavLink to="/map">
-                                    <i className="metismenu-icon pe-7s-map"></i>
+                                    <i className="metismenu-icon pe-7s-compass"></i>
                                     지도 관리 
                                 </NavLink>
                             </li>
                             <li>
                                 <NavLink to="/guide">
-                                    <i className="metismenu-icon pe-7s-compass"></i>
+                                    <i className="metismenu-icon pe-7s-map"></i>
                                     가이드 관리 
                                 </NavLink>
                             </li>

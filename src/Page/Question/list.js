@@ -9,9 +9,6 @@ const QuestionList = () => {
     return(<>
           <Title/>
             <Card>
-                <Card.Header>
-                    <Card.Title as="h5">Question</Card.Title>
-                </Card.Header>
                 <Card.Body>
                     <List/>
                 </Card.Body>

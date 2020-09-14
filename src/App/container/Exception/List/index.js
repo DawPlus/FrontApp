@@ -3,10 +3,9 @@ import {useDispatch, useSelector } from "react-redux";
 import {listAction ,  initialize, initializeForm, deleteAllAction} from "../../../../store/modules/exceptions"
 import { useUpdateEffect } from "react-use";
 import { useSnackbar } from 'notistack';
+import Datatable from "../../../components/Datatable";
 
 
-import MdbTable from "../../../components/MdbTable";
-import columns from "./column";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
 
@@ -17,7 +16,53 @@ const TableContainer = () => {
     const {list, message, status} = useSelector(state => state.exceptions);
     const { enqueueSnackbar } = useSnackbar();
     
-    
+    const columns =    [
+        {
+            name :"exceptionId",
+            label : "excationId",
+            options : {
+                display : false, 
+                sort : true,
+                filter : false,
+              
+            }
+
+        }, 
+        {
+            name :"title",
+            label : "Title",
+            options : {
+                sort : true,
+                filter : false,
+                customBodyRender : (value, tableMeta, updateValue)=>{
+                    return <Link to={`/exception/${tableMeta.rowData[1]}`}>{value}</Link>
+                }
+
+            }
+
+        }, 
+       
+        {
+            name :"deviceId",
+            label : "DeviceId",
+            options : {
+                sort : true,
+                filter : false
+
+            }
+
+        }, 
+        {
+            name :"saveDate",
+            label : "등록일",
+            options : {
+                sort : true,
+                filter : false
+
+            }
+
+        }
+    ]
 
 
     
@@ -26,7 +71,7 @@ const TableContainer = () => {
             {
                 variant  : variant,
                 anchorOrigin: {
-                    vertical: 'bottom',
+                    vertical: 'top',
                     horizontal: 'right',
                 },
                 autoHideDuration : 3000
@@ -45,10 +90,6 @@ const TableContainer = () => {
     },[dispatch])
 
 
-    const buttonComponent = (id, title)=>{
-        
-        return <Link to={`/exception/${id}`} >{title}</Link>};
-
     
   useUpdateEffect(() => {
     
@@ -57,7 +98,6 @@ const TableContainer = () => {
         switch(status){
 
             case "LIST_SUCCESS" : 
-                list.map(it=> it.title = buttonComponent(it.exceptionId, it.title ));
                 break;
             case "LIST_FAILURE" : 
                   snackBar(message);
@@ -90,7 +130,7 @@ const TableContainer = () => {
 
 
     return(<>
-        <MdbTable columns={columns} rows ={list} rowNum/>
+        <Datatable columns={columns} data ={list}/>
         <Button variant="contained" color="secondary" onClick={onDelete}>
                 전체삭제(임시)
         </Button>

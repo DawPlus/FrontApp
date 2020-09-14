@@ -8,9 +8,6 @@ const TeamList = () => {
     return(<>
             <Title/>
             <Card>
-                <Card.Header>
-                    <Card.Title as="h5">팀 관리 </Card.Title>
-                </Card.Header>
                 <Card.Body>
                     <List/>
                 </Card.Body>

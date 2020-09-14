@@ -3,8 +3,8 @@ import {useDispatch, useSelector } from "react-redux";
 import {listAction ,  initialize, initializeForm} from "../../../../store/modules/team"
 import { useUpdateEffect } from "react-use";
 import { useSnackbar } from 'notistack';
-import MdbTable from "../../../components/MdbTable";
-import columns from "./column";
+import Datatable from "../../../components/Datatable"
+
 import { Link } from "react-router-dom";
 
 const ListContainer = () => {
@@ -17,38 +17,81 @@ const ListContainer = () => {
             {
                 variant  : variant,
                 anchorOrigin: {
-                    vertical: 'bottom',
+                    vertical: 'top',
                     horizontal: 'right',
                 },
                 autoHideDuration : 3000
             }
         );
     }
-
-
+    const columns =    [
+        {
+            name :"teamId",
+            label : "TeamId",
+            options : {
+                display : false, 
+                sort : true,
+                filter : false, 
+            }
+        }, 
+        {
+            name :"team",
+            label : "team",
+            options : {
+                sort : true,
+                filter : false,
+                customBodyRender : (value, tableMeta, updateValue)=>{
+                    return <Link to={`/team/${tableMeta.rowData[1]}`}>{value}</Link>
+                }
+            }
+        }, 
+        {
+            name :"manager",
+            label : "Manager",
+            options : {
+                sort : true,
+                filter : false
+            }
+        }, 
+        {
+            name :"phone",
+            label : "Phone",
+            options : {
+                sort : true,
+                filter : false
+            }
+        },
+        {
+            name :"updateDate",
+            label : "Update Date",
+            options : {
+                sort : true,
+                filter : false
+            }
+        },
+        {
+            name :"saveDate",
+            label : "Save Date",
+            options : {
+                sort : true,
+                filter : false
+            }
+        }
+    ];
 
     useEffect(()=>{
-        dispatch(listAction());
-      
+        dispatch(listAction());  
         return()=>{
             dispatch(initialize());
         }
     },[dispatch]);
 
 
-    const buttonComponent = (id, name)=>{
-        return <Link to={`/team/${id}`} >{name}</Link>};  
-        
         
   useUpdateEffect(() => {
-    
     if(status === null ) return;
-
         switch(status){
-
             case "LIST_SUCCESS" : 
-                    list.map(it=> it.team = buttonComponent(it.teamId, it.team )
-                );
                 break;
             case "LIST_FAILURE" : 
                   snackBar(message);
@@ -67,7 +110,7 @@ const ListContainer = () => {
 
 
     return(<>
-        <MdbTable columns={columns} rows ={list} rowNum/>
+        <Datatable columns={columns} data ={list} />
     </>);
 
 }

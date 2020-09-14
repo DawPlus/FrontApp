@@ -471,5 +471,7 @@ div.app-sidebar{width : 240px ; min-width: 240px;}
 .app-header .app-header__content{
   border-bottom: 2px #85CE36 solid !important;
   height: 64px !important;
-
 }
+.app-page-title{padding : 15px 30px !important;}
+.custom-switch .custom-control-label::after, .custom-switch .custom-control-label::before{cursor: pointer;}
+.MuiTableBody-root tr td { word-break: break-all;}

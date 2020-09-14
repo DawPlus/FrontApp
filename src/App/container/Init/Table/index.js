@@ -1,28 +1,19 @@
 import React, { useEffect } from "react";
-
 import {useDispatch, useSelector } from "react-redux";
 import {listAction ,  initialize} from "../../../../store/modules/init"
-//import columns from "./column";
 import { Link } from "react-router-dom";
-import Tables from "../../../components/MuiTable";
+import Tables from "../../../components/Datatable";
 
 const TableContainer = () => {
 
     const columns =  [
-        {
-            name: " ",
-            label: "NO",
-            options: {
-                customBodyRenderLite: (dataIndex) => {
-                    return dataIndex + 1;
-               }
-            }
-        },
+      
         {
             name :"apiId",
             label : "apiId",
             options : {
-                display:false
+                display: false,
+                filter : false
 
             }
 
@@ -80,8 +71,7 @@ const TableContainer = () => {
 
 
     return(<>
-    
-        <Tables columns={columns} data={list}/>
+        <Tables columns={columns} data={list} />
     </>);
 
 }

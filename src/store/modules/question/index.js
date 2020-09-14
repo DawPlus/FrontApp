@@ -16,7 +16,8 @@ const CHANGE_FIELD        = 'question/CHANGE_FIELD';
 const CHANGE_FIELD_FORM   = 'question/CHANGE_FIELD_FORM';
 const CHANGE_FIELD_LIST   = 'question/CHANGE_FIELD_LIST';
 const CHANGE_FIELD_RADIO  = 'question/CHANGE_FIELD_RADIO';
-
+const CHANGE_FIELD_LIST_EDIT   = 'question/CHANGE_FIELD_LIST_EDIT';
+const CHANGE_FIELD_RADIO_EDIT  = 'question/CHANGE_FIELD_RADIO_EDIT';
 
 
 // 신규등록
@@ -34,6 +35,8 @@ const [UPDATE_USEYN, UPDATE_USEYN_SUCCESS, UPDATE_USEYN_FAILURE]   = createReque
 //문제 삭제 
 const [DELETE, DELETE_SUCCESS, DELETE_FAILURE]   = createRequestActionTypes('question/DELETE');
 
+//문제 수정
+const [UPDATE, UPDATE_SUCCESS, UPDATE_FAILURE]   = createRequestActionTypes('question/UPDATE');
 
 
 //export const list             = createAction(LIST);
@@ -43,6 +46,8 @@ export const changeField      = createAction(CHANGE_FIELD);
 export const changeFieldForm  = createAction(CHANGE_FIELD_FORM);
 export const changeFieldList  = createAction(CHANGE_FIELD_LIST);
 export const changeFieldRadio = createAction(CHANGE_FIELD_RADIO);
+export const changeFieldListEdit  = createAction(CHANGE_FIELD_LIST_EDIT) ;
+export const changeFieldRadioEdit = createAction(CHANGE_FIELD_RADIO_EDIT);
 
 export const initializeRadio  = createAction(INITIALIZE_RADIO);
 export const mapListAction    = createAction(MAP_LIST);
@@ -53,7 +58,7 @@ export const viewAction       = createAction(VIEW);
 export const deleteAction     = createAction(DELETE);
 
 export const updateUseYnAction = createAction(UPDATE_USEYN);
-
+export const updateAction = createAction(UPDATE);
 
 
 export function* questionSaga() {  
@@ -65,8 +70,10 @@ export function* questionSaga() {
 
   // 사용여부 수정 daata : qeustion_id , useYN
   yield takeLatest(UPDATE_USEYN,  createRequestSaga(UPDATE_USEYN, API.updateUseYnAPI, data=>data));
-   // 삭제 
-   yield takeLatest(DELETE,  createRequestSaga(DELETE, API.deleteAPI, id=>id));
+  // 삭제 
+  yield takeLatest(DELETE,  createRequestSaga(DELETE, API.deleteAPI, id=>id));
+  // 수정 
+  yield takeLatest(UPDATE,  createRequestSaga(UPDATE, API.updateAPI, data=>data));
   
   
 }
@@ -122,6 +129,7 @@ const question = handleActions(
       produce(state, draft => {
         draft[key] = value; 
     }),
+  
     [CHANGE_FIELD_LIST]: (state,  {payload: value} ) =>{
       return ({
         ...state, 
@@ -132,9 +140,7 @@ const question = handleActions(
       })
     },
     [CHANGE_FIELD_RADIO]: (state,  {payload: value} ) =>{
-   
       state.new.examples.map(it => it.isAnswer= 2);
-
       return ({
         ...state, 
           new : {
@@ -143,6 +149,27 @@ const question = handleActions(
           }
       })
     },
+    [CHANGE_FIELD_LIST_EDIT]: (state,  {payload: value} ) =>{
+      return ({
+        ...state, 
+          view : {
+            ...state.view,
+              examples : Util.update(state.view.examples, value)
+          }
+      })
+    },
+    [CHANGE_FIELD_RADIO_EDIT]: (state,  {payload: value} ) =>{
+      state.view.examples.map(it => it.isAnswer= "2");
+      return ({
+        ...state, 
+          view : {
+            ...state.view,
+              examples : Util.update(state.view.examples, value)
+          }
+      })
+    },
+
+
     [INITIALIZE_RADIO]: (state) =>{
       return ({
         ...state, 
@@ -283,6 +310,23 @@ const question = handleActions(
         message : message,
         result : result,
         status : "DELETE_FAILURE"
+      }),
+
+
+      // 수정 성공
+      [UPDATE_SUCCESS]: (state, {payload : { result, message}}) =>{
+        return {
+        ...state,
+        message : message,
+        result : result,
+        status : "UPDATE_SUCCESS"
+      }},
+      //  수정 실패 
+      [UPDATE_FAILURE]: (state, {payload : {message, result}}) =>({
+        ...state,
+        message : message,
+        result : result,
+        status : "UPDATE_FAILURE"
       }),
 
 
