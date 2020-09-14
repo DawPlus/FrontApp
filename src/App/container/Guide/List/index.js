@@ -22,7 +22,7 @@ const ListContainer = () => {
             {
                 variant  : variant,
                 anchorOrigin: {
-                    vertical: 'bottom',
+                    vertical: 'top',
                     horizontal: 'right',
                 },
                 autoHideDuration : 3000
