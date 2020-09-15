@@ -1,4 +1,4 @@
-import React, {  useCallback }  from "react"
+import React, {  useCallback, useState }  from "react"
 //import Gallery from "react-photo-gallery";
 //import Viewer from "react-viewer";
 import {useLifecycles, useUpdateEffect} from 'react-use';
@@ -6,14 +6,15 @@ import {listAction, initialize, initializeForm, deleteAction} from "../../../../
 import { useSelector, useDispatch } from "react-redux";
 import ImageList from "../../../components/ImageList";
 import { useSnackbar } from "notistack";
-
+import Confirm from "../../../components/Confirm";
 const ListContainer = () => {
     
     // Dispatch
     const dispatch = useDispatch();
     const {fileList, status, message} = useSelector(state => state.map);
+    const [isOpen, setIsOpen]   = useState(false);
     const { enqueueSnackbar } = useSnackbar();
-    
+    const [deleteFile , setDeleteFile] = useState(null);
     
     const snackBar = useCallback( (text, variant='info') =>{
       enqueueSnackbar(text,
@@ -38,6 +39,7 @@ const ListContainer = () => {
                       snackBar(message);
                         break;
                 case "DELETE_SUCCESS" : 
+                    setIsOpen(false);
                     window.$('.close_1x3s325').trigger("click");
                     snackBar(message);
                     dispatch(listAction());
@@ -46,7 +48,6 @@ const ListContainer = () => {
                 case "DELETE_FAILURE" : 
                     snackBar(message);
                     break;
-                    
                 default : break;
             }
     
@@ -73,23 +74,34 @@ const ListContainer = () => {
 
      
 
-      const onDelete = (info) =>{
-          if(window.confirm("삭제 하시겠습니까?")){
-              dispatch(deleteAction(info));
-          }
+     
+      const onDeleteHandler= (info) => {
+          setDeleteFile(info);
+          setIsOpen(true);
+      }
+      const onCancleHandler = ()=>{
+          setIsOpen(false);
+          setDeleteFile(null);
+      }
+      const onDelete = () =>{
+           dispatch(deleteAction(deleteFile));
       }
     
+      const onClose = ()=>{
+          setDeleteFile(null);
+      }
     return(<>
-        
-            <ImageList images={fileList} onDelete={onDelete}/>
-            {/* <Gallery photos={fileList} onClick={onClicks} renderImage={rerender} />
-            <Viewer activeIndex={imageIdx}
-                noImgDetails={true}
-                noNavbar={true}
-                visible={visible}
-                onClose={()=>{setVisible(false)} }
-                images={fileList}
-            /> */}
+         
+            <ImageList images={fileList} onDelete={onDeleteHandler} onClose={onClose}/>
+            <Confirm 
+                isOpen={isOpen}
+                title="삭제"
+                message = "삭제 하시겠습니까?"
+                confirmBtn="삭제"
+                onAccept = {onDelete}
+                onCancle = {onCancleHandler}
+            
+            />
     </>);
 
 

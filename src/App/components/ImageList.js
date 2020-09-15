@@ -18,7 +18,7 @@ const captionStyle = {
 
 
 const ImageList = (props) =>{
-    const {images, onDelete} =  props;
+    const {images, onDelete, onClose} =  props;
     
     const [currentImage, setCurrentImage] = useState(null);
 
@@ -29,7 +29,6 @@ const ImageList = (props) =>{
 
     // 삭제 
     const deleteImage = () => {
-        
       onDelete(images.find((item, idx)=> {return idx=== currentImage})  );
     }
   
@@ -56,6 +55,7 @@ const ImageList = (props) =>{
                 <Gallery
                     images={nImage}
                     enableLightbox={true}
+                    backdropClosesModal={true}
                     enableImageSelection={false}
                     currentImageWillChange={onCurrentImageChange}
                     customControls={[
@@ -64,6 +64,7 @@ const ImageList = (props) =>{
                              Delete Image
                         </Button>
                     ]}
+                    lightboxWillClose={onClose}
                 />
             </div>
     

@@ -32,7 +32,7 @@ export const deleteAction   = createAction(DELETE, id => id);
 export function* teamSaga() {
   yield takeLatest(LIST, createRequestSaga(LIST, API.listAPI));
   yield takeLatest(NEW, createRequestSaga(NEW, API.newAPI));
-  yield takeLatest(DELETE, createRequestSaga(DELETE, API.deleteAPI));
+  yield takeLatest(DELETE, createRequestSaga(DELETE, API.deleteAPI, id=> id));
   yield takeLatest(SELECT, createRequestSaga(SELECT, API.selectAPI));
 
 }
@@ -102,7 +102,6 @@ const team = handleActions(
     // 
     [DELETE_SUCCESS]: (state, {payload : data}) =>({
       ...state,
-      delete : initialState.delete,
       message : data.message,
       status : "DELETE_SUCCESS"
     }),
