@@ -8,8 +8,10 @@ const ViewPage = () => {
 
     return(<>
     
-        <Title/>
-         <Card>
+        <div className="animated animate__fadeInUp faster">
+            <Title/>
+        </div>
+        <Card className="animated animate__fadeInUp delay-1">
                 <Card.Header>
                     <Card.Title as="h5">Exception 상세보기</Card.Title>
                 </Card.Header>

@@ -138,7 +138,7 @@ const SignUp = () => {
                                 </button>
                                 
                                 <p className="mb-2 text-muted">
-                                    Copyright © 2020 The React Admin Project
+                                    Copyright © 2020 Forest Healing 하이힐링원 
                                 </p>
                                 {/* <p className="mb-0 text-muted">Don’t have an account? <NavLink to="/auth/signup-1">Signup</NavLink></p> */}
                             </div>

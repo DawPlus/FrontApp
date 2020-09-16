@@ -7,8 +7,10 @@ import List from "../../App/container/Question/List";
 const QuestionList = () => {
 
     return(<>
-          <Title/>
-            <Card>
+          <div className="animated animate__fadeInUp faster">
+                <Title/>
+            </div>
+            <Card className="animated animate__fadeInUp delay-1">
                 <Card.Body>
                     <List/>
                 </Card.Body>

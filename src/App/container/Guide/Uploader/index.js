@@ -52,7 +52,7 @@ const UploaderContainer = () => {
                     <ImageUploader onChange={onChange} />
                 </Col>
             </Row>
-            <Row style={{marginBottom : "15px", textAlign : "right"}}>
+            <Row style={{ textAlign : "right"}}>
                 <Col>   
                     <Button variant="contained" color="primary" onClick={fileUpload}>
                         업로드

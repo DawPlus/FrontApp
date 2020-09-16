@@ -2,15 +2,15 @@ import React from "react";
 import { Card} from 'react-bootstrap';
 
 import TableContainer from "../../App/container/Init/Table";
-import {withRouter} from "react-router-dom"
 import Title from "../../App/container/Init/Title";
 
-const APIListPage = ({history, match}) => {
+const APIListPage = () => {
  
     return(<>
-           <Title/>
-            
-            <Card>
+            <div className="animated animate__fadeInUp faster">
+                <Title/>
+            </div>
+            <Card className="animated animate__fadeInUp delay-1">
                 <Card.Body>
                     <TableContainer/>
                 </Card.Body>
@@ -18,4 +18,4 @@ const APIListPage = ({history, match}) => {
     
     </>);
 }
-export default withRouter(APIListPage);
+export default APIListPage;

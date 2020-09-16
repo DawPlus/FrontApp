@@ -45,41 +45,13 @@ const UploaderContainer = () => {
     },[dispatch, status])
 
 
-    // const imgCon ={
-    //     cursor: "pointer",
-    //     width: "100%",
-    //     border: "1px #c4c4c4 solid",
-    //     padding: "2px",
-    //     borderRadius: "5px",
-    //     maxWidth:"300px",
-    //     margin:"0 auto"
-    // }
-
-    // const imgContainer = {
-    //     width: "30%",
-    //     margin: "5%",
-    //     padding: "5px",
-    //     display: "flex",
-    //     alignItems: "center",
-    //     justifyContent: "center",
-    //     height: "inherit",
-    //     boxShadow: "0 0 8px 2px rgba(0,0,0,.1)",
-    //     border: "1px solid #d0dbe4",
-    //     position:" relative",
-    // }
-
     return(<>
             <Row>
                 <Col >
                     <ImageUploader onChange={onChange} />
                 </Col>
-                {/* <Col md={6}>
-                    <div style={imgCon}>
-                        <img src={url} style={{width : "100%", height:"100%"}} alt="img"/>
-                    </div>
-                </Col> */}
             </Row>
-            <Row style={{marginBottom : "15px", textAlign : "right"}}>
+            <Row style={{ textAlign : "right"}}>
                 <Col>   
                     <Button variant="contained" color="primary" onClick={fileUpload}>
                         업로드

@@ -477,3 +477,22 @@ div.app-sidebar{width : 240px ; min-width: 240px;}
 .MuiTableBody-root tr td { word-break: break-all;}
 // 경고창
 .MuiDialog-root{z-index: 2002 !important;}
+
+
+.transition-enter {
+  opacity: 0;
+}
+.transition-enter-active {
+  opacity: 1;
+  transition: opacity 200ms;
+}
+.transition-exit {
+  opacity: 1;
+}
+.transition-exit-active {
+  opacity: 0;
+  transition: opacity 200ms;
+}
+.delay-1 {
+  animation-delay: .1s;
+}

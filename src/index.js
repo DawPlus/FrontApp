@@ -17,7 +17,7 @@ import rootReducer, { rootSaga } from './store/modules';
 import {checkTokken} from './store/modules/auth';
 import 'react-app-polyfill/ie11';
 import 'react-app-polyfill/stable';
-
+import 'animate.css';
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
   rootReducer,

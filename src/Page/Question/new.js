@@ -11,9 +11,14 @@ import Video from "../../App/container/Question/New/Video";
 import Buttons from "../../App/container/Question/New/Buttons";
 const NewPage = ()=>{
     return(<>
-        <Title/>
+        <div className="animated animate__fadeInUp faster">
+            <Title/>
+        </div>
+        <div className="animated animate__fadeInUp delay-1">
         <Toggle/>
-        <Row>
+        </div>
+    
+        <Row className="animated animate__fadeInUp delay-1">
             <Col md={6}>
                 <div className="main-card mb-3 card">
                     <div className="card-body">

@@ -8,7 +8,7 @@ const TitleContainer = () => {
             <div className="page-title-wrapper">
                 <div className="page-title-heading">
                     <div className="page-title-icon">
-                        <i className="pe-7s-car icon-gradient bg-mean-fruit">
+                        <i className="pe-7s-network icon-gradient bg-mean-fruit">
                         </i>
                     </div>
                     <div>팀 관리 

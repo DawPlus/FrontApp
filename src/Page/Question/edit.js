@@ -5,9 +5,13 @@ import Buttons from "../../App/container/Question/Edit/Buttons";
 const ViewPage = () => {
 
     return(<>
-          <Title/>
-          <Buttons/>
-          <Edit/>
+          <div className="animated animate__fadeInUp faster">
+                <Title/>
+           </div>
+          <div className="animated animate__fadeInUp delay-1">
+            <Buttons/>
+            <Edit/>
+          </div>
           
          
     </>);
