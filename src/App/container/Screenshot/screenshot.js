@@ -1,11 +1,11 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useState } from 'react'
 import {initialize, listAction, initializeForm, deleteAction} from "../../../store/modules/screenshot";
 import { useDispatch, useSelector } from 'react-redux';
 import { useUpdateEffect, useLifecycles } from 'react-use';
 import { useSnackbar } from "notistack";
 import { withRouter } from 'react-router-dom';
 import ImageList from "../../components/ImageList";
-
+import Confirm  from "../../components/Confirm";
 import noImage from "../../../assets/images/doh.png"
 const ViewContainer = ({match}) => {
 
@@ -13,6 +13,8 @@ const ViewContainer = ({match}) => {
     const dispatch = useDispatch();
     const {list, status, message} = useSelector(state=> state.screenshot);
     const { enqueueSnackbar } = useSnackbar();
+    const [isOpen, setIsOpen]= useState(false);
+    const [deleteImage, setDeleteImage] = useState(null);
     
     const snackBar = useCallback( (text, variant='info') =>{
         enqueueSnackbar(text,
@@ -38,6 +40,8 @@ const ViewContainer = ({match}) => {
                       break;
                 case "DELETE_SUCCESS" : 
                         window.$('.close_1x3s325').trigger("click");
+                        setIsOpen(false);
+                        setDeleteImage(null);
                         snackBar(message);
                         dispatch(listAction(id));
                       break;
@@ -66,13 +70,32 @@ const ViewContainer = ({match}) => {
         }
       );
 
-    const onImageDelete = e => {
-        dispatch(deleteAction(e));
+
+    const onImageDeleteHandler = e => {
+        setIsOpen(true);
+        setDeleteImage(e);
+    }
+    const onCloseHandler = () => {
+        setIsOpen(false);
+        setDeleteImage(null);
+    }
+
+    const onImageDelete = () => {
+        dispatch(deleteAction(deleteImage));
     }
 
 
     return(<>
-        {list.length > 0  ? <ImageList images={list} onDelete={onImageDelete}/> : <img src={noImage} alt="noImage"/>}    
+
+
+
+        <Confirm
+                message="인증샷을 삭제 하시겠습니까?"
+                isOpen={isOpen}
+                onCancle={onCloseHandler}
+                onAccept={onImageDelete}
+        />
+        {list.length > 0  ? <ImageList images={list} onDelete={onImageDeleteHandler}/> : <img src={noImage} alt="noImage"/>}    
     </>);
 }
 export default withRouter(ViewContainer);
