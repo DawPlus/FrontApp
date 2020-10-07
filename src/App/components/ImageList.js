@@ -29,7 +29,8 @@ const ImageList = (props) =>{
 
     // 삭제 
     const deleteImage = () => {
-      onDelete(images.find((item, idx)=> {return idx=== currentImage})  );
+      onDelete(images.find((item, idx)=> {return idx=== currentImage}));
+      window.$('body').css("overflow","");
     }
   
     var nImage =  images.map((i) => {

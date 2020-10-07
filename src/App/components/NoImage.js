@@ -1,6 +1,6 @@
 import React from "react";
 import Lottie from "lottie-react";
-import noImage from "./Lotties/noImage.json";
+import noImage from "./Lotties/noImage3.json";
 const style = {
     margin : "0 auto",
     width : "350px "
