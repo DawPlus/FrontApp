@@ -6,7 +6,10 @@ import { useSnackbar } from "notistack";
 import { withRouter } from 'react-router-dom';
 import ImageList from "../../components/ImageList";
 import Confirm  from "../../components/Confirm";
-import noImage from "../../../assets/images/doh.png"
+import NoImage from "../../components/NoImage";
+
+
+//import noImage from "../../../assets/images/doh.png"
 const ViewContainer = ({match}) => {
 
     const {id} = match.params;
@@ -95,7 +98,7 @@ const ViewContainer = ({match}) => {
                 onCancle={onCloseHandler}
                 onAccept={onImageDelete}
         />
-        {list.length > 0  ? <ImageList images={list} onDelete={onImageDeleteHandler}/> : <img src={noImage} alt="noImage"/>}    
+        {list.length > 0  ? <ImageList images={list} onDelete={onImageDeleteHandler}/> :  <NoImage/>}    
     </>);
 }
 export default withRouter(ViewContainer);

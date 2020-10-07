@@ -6,7 +6,7 @@ import List from "../../App/container/Team/List";
 const TeamList = () => {
 
     return(<>
-            <div div className="animated animate__fadeInUp faster">
+            <div className="animated animate__fadeInUp faster">
                 <Title/>
             </div>
             <Card className="animated animate__fadeInUp delay-1">

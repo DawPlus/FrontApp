@@ -31,6 +31,9 @@ const questionEdit = React.lazy(() => import('./Page/Question/edit'));
 // 팀관리 
 const teamList = React.lazy(()=> import("./Page/Team/list"))
 const teamView = React.lazy(()=> import("./Page/Team/view"))
+
+
+
 const routes = [
   
     // API 관리 

@@ -83,10 +83,10 @@ const ViewContainer = ({history, match}) => {
     return(<>
             <Row>
                 <Col md={2}>
-                    <label for="title" className="col-form-label">Title</label>
+                    <label htmlFor="title" className="col-form-label">Title</label>
                 </Col>
                 <Col md={10}>
-                    <textarea class="form-control" id="title" value={title} readOnly style={{resize : "none"}}></textarea>
+                    <textarea className="form-control" id="title" value={title} readOnly style={{resize : "none"}}></textarea>
                 </Col>
             </Row>
             <Row className="mt-3">

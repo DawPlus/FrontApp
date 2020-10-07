@@ -16,6 +16,8 @@
     "font-awesome": "^4.7.0",
     "immutable": "^4.0.0-rc.12",
     "jquery": "^3.5.1",
+    "lottie-react": "^2.1.0",
+    "lottie-web": "^5.7.3",
     "mdbreact": "^4.27.0",
     "mui-datatables": "^3.4.1",
     "node-sass": "^4.14.1",

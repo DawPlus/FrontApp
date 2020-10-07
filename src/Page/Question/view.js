@@ -5,7 +5,7 @@ import View from "../../App/container/Question/View";
 const ViewPage = () => {
 
     return(<>
-            <div div className="animated animate__fadeInUp faster">
+            <div className="animated animate__fadeInUp faster">
                 <Title/>
             </div>
             <div className="animated animate__fadeInUp delay-1">

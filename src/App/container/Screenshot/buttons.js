@@ -61,7 +61,7 @@ const ButtonContainer = () => {
     return(<>
         
         <Confirm
-                message={<><p>팀관련 모든 데이터가 삭제됩니다.</p> <p>삭제 하시겠습니까?</p></>}
+                message={<>팀관련 모든 데이터가 삭제됩니다. <br/>삭제 하시겠습니까? </>}
                 isOpen={isOpen}
                 onCancle={()=>setIsOpen(false)}
                 onAccept={onSubmit}

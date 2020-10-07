@@ -4,8 +4,8 @@ import {listAction ,  initialize, initializeForm} from "../../../../store/module
 import { useUpdateEffect } from "react-use";
 import { useSnackbar } from 'notistack';
 import Datatable from "../../../components/Datatable"
-
 import { Link } from "react-router-dom";
+
 
 const ListContainer = () => {
 
@@ -106,8 +106,6 @@ const ListContainer = () => {
       
     }
   },[status])
-
-
 
     return(<>
         <Datatable columns={columns} data ={list} />

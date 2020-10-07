@@ -7,10 +7,10 @@ import Buttons from "../../App/container/Screenshot/buttons";
 const MapPage = () => {
 
     return(<>
-          <div div className="animated animate__fadeInUp faster">
+          <div className="animated animate__fadeInUp faster">
                 <Title/>
             </div>
-            <div div className="animated animate__fadeInUp delay-1">
+            <div className="animated animate__fadeInUp delay-1">
                 <Buttons/>
             </div>
             <Row className="animated animate__fadeInUp delay-1">

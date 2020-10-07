@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Viewer from "react-viewer";
-import NoImage  from "../../assets/images/doh.png";
+import NoImage  from "../components/NoImage";
 import config from "../../config";
 const ImageViewer = (props) => {
 
@@ -12,7 +12,7 @@ const ImageViewer = (props) => {
         setVisible(true);
     }
 
-    const img =   src === null || src===""  ? NoImage :  config.baseURL+src
+    const img =   src === null || src===""  ? <NoImage/> :  config.baseURL+src
 
 
 

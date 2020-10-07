@@ -22,7 +22,7 @@ const SignUp = () => {
     useEffect(() => {
       dispatch(initializeForm('loginInfo'));
       // 세선 초기화  
-      sessionStorage.clear();
+     // sessionStorage.clear();
     }, [dispatch]);
   
     useEffect(() => {

@@ -5,13 +5,11 @@ import {useSelector}   from "react-redux";
 const AuthContainer = ({history}) => {
 
     const tokken            = sessionStorage.getItem("tokken");
-    const isLoading         =   sessionStorage.getItem("isLoadJS");   
+    const isLoading         = sessionStorage.getItem("isLoadJS");   
     const {authrization}    = useSelector(state=> state.auth);
    
     
     useEffect(()=>{
-
-        console.log(tokken, isLoading, authrization)
         // Step 1
         // Tokken 체크 
         // 토큰이 잇을경우 무시
